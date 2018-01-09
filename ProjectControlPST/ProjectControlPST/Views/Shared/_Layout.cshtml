@@ -1,0 +1,44 @@
+﻿<!DOCTYPE html>
+<html lang="en" ng-app="app">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    <script src="~/Theming/scripts/modernizr-2.6.2.js"></script>
+    
+    <!-- Bootstrap Theme Style References -->
+    <link href="~/Theming/styles/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <!-- UIGrid Style References -->
+    <link href="~/Theming/bower_components/angular-ui-grid/ui-grid.css" rel="stylesheet" type="text/css" />
+    <!-- Custom Style References -->
+    <link href="~/Theming/styles/Site.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    @Html.Partial("_NavBar")
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year</p>
+        </footer>
+    </div>
+
+    <!-- JQuery References -->
+    <script src="~/Theming/scripts/jquery-1.10.2.min.js"></script>
+
+    <!-- Bootstrap References -->
+    <script src="~/Theming/scripts/bootstrap.min.js"></script>
+
+    <!-- Angular References -->
+    <script src="~/Theming/bower_components/angular/angular.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.6.7/angular-touch.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.6.7/angular-animate.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular-sanitize.js"></script>
+
+    <!-- UIGrid References -->
+    <script src="~/Theming/bower_components/angular-ui-grid/ui-grid.js"></script>
+
+    <!-- App Angular References -->
+    <script src="~/Theming/scripts/app.js"></script>
+</body>
+</html>
