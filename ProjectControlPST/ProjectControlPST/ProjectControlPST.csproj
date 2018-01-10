@@ -154,6 +154,15 @@
       <DependentUpon>PSTProjectControl.edmx</DependentUpon>
       <LastGenOutput>PSTProjectControl.cs</LastGenOutput>
     </Content>
+    <Content Include="Theming\bower_components\angular-animate\angular-animate.js" />
+    <Content Include="Theming\bower_components\angular-animate\angular-animate.min.js" />
+    <Content Include="Theming\bower_components\angular-animate\index.js" />
+    <Content Include="Theming\bower_components\angular-sanitize\angular-sanitize.js" />
+    <Content Include="Theming\bower_components\angular-sanitize\angular-sanitize.min.js" />
+    <Content Include="Theming\bower_components\angular-sanitize\index.js" />
+    <Content Include="Theming\bower_components\angular-touch\angular-touch.js" />
+    <Content Include="Theming\bower_components\angular-touch\angular-touch.min.js" />
+    <Content Include="Theming\bower_components\angular-touch\index.js" />
     <Content Include="Theming\bower_components\angular-ui-grid\index.js" />
     <Content Include="Theming\bower_components\angular-ui-grid\ui-grid.css" />
     <Content Include="Theming\bower_components\angular-ui-grid\ui-grid.js" />
@@ -165,6 +174,12 @@
     <Content Include="Theming\bower_components\angular\angular.min.js" />
     <Content Include="Theming\bower_components\angular\index.js" />
     <Content Include="Theming\scripts\app.js" />
+    <Content Include="Theming\scripts\app.min.js">
+      <DependentUpon>app.js</DependentUpon>
+    </Content>
+    <Content Include="Theming\scripts\components\_gobal.js" />
+    <Content Include="Theming\scripts\components\_grid-view.js" />
+    <Content Include="Theming\scripts\components\_work-order.js" />
     <Content Include="Theming\styles\bootstrap.css" />
     <Content Include="Theming\styles\bootstrap.min.css" />
     <Content Include="Theming\styles\Site.css" />
@@ -225,6 +240,26 @@
     <Content Include="Models\PSTProjectControl.edmx.diagram">
       <DependentUpon>PSTProjectControl.edmx</DependentUpon>
     </Content>
+    <Content Include="Theming\bower_components\angular-sanitize\.bower.json" />
+    <Content Include="Theming\bower_components\angular-sanitize\angular-sanitize.min.js.map" />
+    <Content Include="Theming\bower_components\angular-sanitize\bower.json" />
+    <Content Include="Theming\bower_components\angular-sanitize\LICENSE.md" />
+    <Content Include="Theming\bower_components\angular-sanitize\package.json" />
+    <Content Include="Theming\bower_components\angular-sanitize\README.md" />
+    <Content Include="Theming\bower_components\angular-touch\.bower.json" />
+    <Content Include="Theming\bower_components\angular-touch\angular-touch.min.js.map" />
+    <Content Include="Theming\bower_components\angular-touch\bower.json" />
+    <Content Include="Theming\bower_components\angular-touch\LICENSE.md" />
+    <Content Include="Theming\bower_components\angular-touch\package.json" />
+    <Content Include="Theming\bower_components\angular-touch\README.md" />
+    <Content Include="Theming\bower_components\angular-animate\.bower.json" />
+    <Content Include="Theming\bower_components\angular-animate\angular-animate.min.js.map" />
+    <Content Include="Theming\bower_components\angular-animate\bower.json" />
+    <Content Include="Theming\bower_components\angular-animate\LICENSE.md" />
+    <Content Include="Theming\bower_components\angular-animate\package.json" />
+    <Content Include="Theming\bower_components\angular-animate\README.md" />
+    <None Include="bundleconfig.json" />
+    <None Include="Properties\PublishProfiles\local.pubxml" />
     <None Include="Theming\scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Theming\scripts\jquery-1.10.2.js" />
     <Content Include="Theming\scripts\jquery-1.10.2.min.js" />
@@ -351,7 +386,9 @@
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props'))" />
     <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+    <Error Condition="!Exists('..\packages\BuildWebCompiler.1.11.326\build\BuildWebCompiler.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\BuildWebCompiler.1.11.326\build\BuildWebCompiler.targets'))" />
   </Target>
+  <Import Project="..\packages\BuildWebCompiler.1.11.326\build\BuildWebCompiler.targets" Condition="Exists('..\packages\BuildWebCompiler.1.11.326\build\BuildWebCompiler.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

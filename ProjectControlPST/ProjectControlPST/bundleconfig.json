@@ -1,0 +1,10 @@
+[
+  {
+    "outputFileName": "Theming/scripts/app.js",
+    "inputFiles": [
+      "Theming/scripts/components/_gobal.js",
+      "Theming/scripts/components/_grid-view.js",
+      "Theming/scripts/components/_work-order.js"
+    ]
+  }
+]
