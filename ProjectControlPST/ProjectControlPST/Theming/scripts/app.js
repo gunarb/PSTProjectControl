@@ -63,7 +63,7 @@ app.controller('MainCtrl', function ($scope, $http, projectControlService) {
             $scope.dataLoaded = true;
             $scope.gridOptions.data = d.data;
         }, function (d) {
-            if ($scope.loadigMessage == '<p>Loading data, please wait...!</p>') {
+            if ($scope.loadigMessage === '<p>Loading data, please wait...!</p>') {
                 $scope.loadigMessage = '';
             }
             $scope.alertType = 'danger';
