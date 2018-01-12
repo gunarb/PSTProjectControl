@@ -97,6 +97,7 @@
     <Property Name="jiraParentUrl" Type="varchar" MaxLength="50" />
     <Property Name="idProjectStatus" Type="int" Nullable="false" />
     <Property Name="idProjectDescription" Type="int" />
+    <Property Name="secureCode" Type="varchar" MaxLength="25" Nullable="false" />
   </EntityType>
   <Association Name="FK_AssetProject_AssetsList">
     <End Role="AssetsList" Type="Self.AssetsList" Multiplicity="0..1" />

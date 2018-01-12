@@ -52,8 +52,8 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="ProjectStatus">
-      <EntityTypeMapping TypeName="PSTProjectControlModel.ProjectStatu">
+    <EntitySetMapping Name="ProjectStatus1">
+      <EntityTypeMapping TypeName="PSTProjectControlModel.ProjectStatus">
         <MappingFragment StoreEntitySet="ProjectStatus">
           <ScalarProperty Name="uniqueId" ColumnName="uniqueId" />
           <ScalarProperty Name="status" ColumnName="status" />
@@ -93,6 +93,7 @@
     <EntitySetMapping Name="WorkOrders">
       <EntityTypeMapping TypeName="PSTProjectControlModel.WorkOrder">
         <MappingFragment StoreEntitySet="WorkOrder">
+          <ScalarProperty Name="secureCode" ColumnName="secureCode" />
           <ScalarProperty Name="uniqueId" ColumnName="uniqueId" />
           <ScalarProperty Name="author" ColumnName="author" />
           <ScalarProperty Name="date" ColumnName="date" />

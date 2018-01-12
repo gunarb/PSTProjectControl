@@ -4,6 +4,10 @@
 
 <h2>Index</h2>
 
-@Html.ActionLink("your text", "Index", "WorkOrder")
+@*<button onclick="createWorkOrder()" class="btn btn-default">New Work Order</button>*@
+
+<button type="button" onclick="location.href='@Url.Action("CreateWorkOrder", "WorkOrder", new { typeRequest = 1 })'" class="btn btn-default">New Web Development</button>
+<button type="button" onclick="location.href='@Url.Action("CreateWorkOrder", "WorkOrder", new { typeRequest = 3 })'" class="btn btn-default">New Banners</button>
+<button type="button" onclick="location.href='@Url.Action("CreateWorkOrder", "WorkOrder", new { typeRequest = 2 })'" class="btn btn-default">New Print</button>
 
 @Html.Partial("GridView")

@@ -1,6 +1,4 @@
-﻿var app = angular.module('app', ['ngTouch', 'ui.grid', 'ngSanitize']);
-
-//Controller function to load the data
+﻿//Controller function to load the data
 app.controller('GridCtrl', function ($scope, $http, projectControlService) {
     //**** global variables ****
     $scope.alertType = 'info';
@@ -79,38 +77,4 @@ app.controller('GridCtrl', function ($scope, $http, projectControlService) {
     return function (value, scope) {
         return scope[value];
     };
-});
-
-//**** call the .net controllers to conect to the DB  ****
-app.factory('projectControlService', function ($http) {
-    var res = {};
-    res.GetWorkOrder = function () {
-        return $http({
-            method: 'GET',
-            dataType: 'jsonp',
-            url: 'api/PstProjectControlInfo/GetWorkOrder'
-        });
-    }
-    res.GetProjectDescription = function () {
-        return $http({
-            method: 'GET',
-            dataType: 'jsonp',
-            url: 'api/PstProjectControlInfo/GetProjectDescription'
-        });
-    }
-    res.GetProjectStatus = function () {
-        return $http({
-            method: 'GET',
-            dataType: 'jsonp',
-            url: 'api/PstProjectControlInfo/GetProjectStatus'
-        });
-    }
-    res.GetTypeRequest = function () {
-        return $http({
-            method: 'GET',
-            dataType: 'jsonp',
-            url: 'api/PstProjectControlInfo/GetTypeRequest'
-        });
-    }
-    return res;
 });

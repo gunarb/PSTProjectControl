@@ -34,11 +34,12 @@ namespace ProjectControlPST.Models
         public string jiraParentUrl { get; set; }
         public int idProjectStatus { get; set; }
         public Nullable<int> idProjectDescription { get; set; }
+        public string secureCode { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ProjectDescription> ProjectDescriptions { get; set; }
         public virtual ProjectDescription ProjectDescription { get; set; }
-        public virtual ProjectStatu ProjectStatu { get; set; }
+        public virtual ProjectStatus ProjectStatu { get; set; }
         public virtual TypeRequest TypeRequest { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<User> Users { get; set; }

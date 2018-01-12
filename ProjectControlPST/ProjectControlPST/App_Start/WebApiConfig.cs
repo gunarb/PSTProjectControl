@@ -12,7 +12,7 @@ namespace ProjectControlPST
             config.MapHttpAttributeRoutes();
 
             config.Routes.MapHttpRoute(
-                name: "ClientApi",
+                name: "DataBaseApi",
                 routeTemplate: "api/{controller}/{action}/{id}",
                 defaults: new { id = RouteParameter.Optional });
 

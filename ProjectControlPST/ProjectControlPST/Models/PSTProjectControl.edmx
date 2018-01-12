@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="PSTProjectControlModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="PSTProjectControlModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="AssetProject">
           <Key>
             <PropertyRef Name="uniqueId" />
@@ -102,6 +102,7 @@
           <Property Name="jiraParentUrl" Type="varchar" MaxLength="50" />
           <Property Name="idProjectStatus" Type="int" Nullable="false" />
           <Property Name="idProjectDescription" Type="int" />
+          <Property Name="secureCode" Type="varchar" MaxLength="25" Nullable="false" />
         </EntityType>
         <Association Name="FK_AssetProject_AssetsList">
           <End Role="AssetsList" Type="Self.AssetsList" Multiplicity="0..1" />
@@ -275,8 +276,7 @@
             <End Role="WorkOrder" EntitySet="WorkOrder" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="PSTProjectControlModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -337,7 +337,7 @@
           <NavigationProperty Name="ThirdPartyCredentials" Relationship="Self.FK_ThirdPartyCredentials_ProjectDescription" FromRole="ProjectDescription" ToRole="ThirdPartyCredentials" />
           <NavigationProperty Name="WorkOrders" Relationship="Self.FK_WorkOrder_ProjectDescription" FromRole="ProjectDescription" ToRole="WorkOrder" />
         </EntityType>
-        <EntityType Name="ProjectStatu">
+        <EntityType Name="ProjectStatus">
           <Key>
             <PropertyRef Name="uniqueId" />
           </Key>
@@ -397,6 +397,7 @@
           <NavigationProperty Name="ProjectStatu" Relationship="Self.FK_WorkOrder_ProjectStatus" FromRole="WorkOrder" ToRole="ProjectStatus" />
           <NavigationProperty Name="TypeRequest" Relationship="Self.FK_WorkOrder_TypeRequest" FromRole="WorkOrder" ToRole="TypeRequest" />
           <NavigationProperty Name="Users" Relationship="Self.FK_Users_WorkOrder" FromRole="WorkOrder" ToRole="Users" />
+          <Property Name="secureCode" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
         </EntityType>
         <Association Name="FK_AssetProject_AssetsList">
           <End Role="AssetsList" Type="Self.AssetsList" Multiplicity="0..1" />
@@ -483,7 +484,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_WorkOrder_ProjectStatus">
-          <End Role="ProjectStatus" Type="Self.ProjectStatu" Multiplicity="1" />
+          <End Role="ProjectStatus" Type="PSTProjectControlModel.ProjectStatus" Multiplicity="1" />
           <End Role="WorkOrder" Type="Self.WorkOrder" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="ProjectStatus">
@@ -524,7 +525,7 @@
           <EntitySet Name="Domains" EntityType="Self.Domain" />
           <EntitySet Name="EffectedURLs" EntityType="Self.EffectedURL" />
           <EntitySet Name="ProjectDescriptions" EntityType="Self.ProjectDescription" />
-          <EntitySet Name="ProjectStatus" EntityType="Self.ProjectStatu" />
+          <EntitySet Name="ProjectStatus1" EntityType="PSTProjectControlModel.ProjectStatus" />
           <EntitySet Name="ThirdPartyCredentials" EntityType="Self.ThirdPartyCredential" />
           <EntitySet Name="TypeRequests" EntityType="Self.TypeRequest" />
           <EntitySet Name="Users" EntityType="Self.User" />
@@ -558,7 +559,7 @@
             <End Role="WorkOrder" EntitySet="WorkOrders" />
           </AssociationSet>
           <AssociationSet Name="FK_WorkOrder_ProjectStatus" Association="Self.FK_WorkOrder_ProjectStatus">
-            <End Role="ProjectStatus" EntitySet="ProjectStatus" />
+            <End Role="ProjectStatus" EntitySet="ProjectStatus1" />
             <End Role="WorkOrder" EntitySet="WorkOrders" />
           </AssociationSet>
           <AssociationSet Name="FK_WorkOrder_TypeRequest" Association="Self.FK_WorkOrder_TypeRequest">
@@ -627,8 +628,8 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="ProjectStatus">
-            <EntityTypeMapping TypeName="PSTProjectControlModel.ProjectStatu">
+          <EntitySetMapping Name="ProjectStatus1">
+            <EntityTypeMapping TypeName="PSTProjectControlModel.ProjectStatus">
               <MappingFragment StoreEntitySet="ProjectStatus">
                 <ScalarProperty Name="uniqueId" ColumnName="uniqueId" />
                 <ScalarProperty Name="status" ColumnName="status" />
@@ -668,6 +669,7 @@
           <EntitySetMapping Name="WorkOrders">
             <EntityTypeMapping TypeName="PSTProjectControlModel.WorkOrder">
               <MappingFragment StoreEntitySet="WorkOrder">
+                <ScalarProperty Name="secureCode" ColumnName="secureCode" />
                 <ScalarProperty Name="uniqueId" ColumnName="uniqueId" />
                 <ScalarProperty Name="author" ColumnName="author" />
                 <ScalarProperty Name="date" ColumnName="date" />

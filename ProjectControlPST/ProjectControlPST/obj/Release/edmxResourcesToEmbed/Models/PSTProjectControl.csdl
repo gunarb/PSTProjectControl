@@ -57,7 +57,7 @@
     <NavigationProperty Name="ThirdPartyCredentials" Relationship="Self.FK_ThirdPartyCredentials_ProjectDescription" FromRole="ProjectDescription" ToRole="ThirdPartyCredentials" />
     <NavigationProperty Name="WorkOrders" Relationship="Self.FK_WorkOrder_ProjectDescription" FromRole="ProjectDescription" ToRole="WorkOrder" />
   </EntityType>
-  <EntityType Name="ProjectStatu">
+  <EntityType Name="ProjectStatus">
     <Key>
       <PropertyRef Name="uniqueId" />
     </Key>
@@ -117,6 +117,7 @@
     <NavigationProperty Name="ProjectStatu" Relationship="Self.FK_WorkOrder_ProjectStatus" FromRole="WorkOrder" ToRole="ProjectStatus" />
     <NavigationProperty Name="TypeRequest" Relationship="Self.FK_WorkOrder_TypeRequest" FromRole="WorkOrder" ToRole="TypeRequest" />
     <NavigationProperty Name="Users" Relationship="Self.FK_Users_WorkOrder" FromRole="WorkOrder" ToRole="Users" />
+    <Property Name="secureCode" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
   </EntityType>
   <Association Name="FK_AssetProject_AssetsList">
     <End Role="AssetsList" Type="Self.AssetsList" Multiplicity="0..1" />
@@ -203,7 +204,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_WorkOrder_ProjectStatus">
-    <End Role="ProjectStatus" Type="Self.ProjectStatu" Multiplicity="1" />
+    <End Role="ProjectStatus" Type="PSTProjectControlModel.ProjectStatus" Multiplicity="1" />
     <End Role="WorkOrder" Type="Self.WorkOrder" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="ProjectStatus">
@@ -244,7 +245,7 @@
     <EntitySet Name="Domains" EntityType="Self.Domain" />
     <EntitySet Name="EffectedURLs" EntityType="Self.EffectedURL" />
     <EntitySet Name="ProjectDescriptions" EntityType="Self.ProjectDescription" />
-    <EntitySet Name="ProjectStatus" EntityType="Self.ProjectStatu" />
+    <EntitySet Name="ProjectStatus1" EntityType="PSTProjectControlModel.ProjectStatus" />
     <EntitySet Name="ThirdPartyCredentials" EntityType="Self.ThirdPartyCredential" />
     <EntitySet Name="TypeRequests" EntityType="Self.TypeRequest" />
     <EntitySet Name="Users" EntityType="Self.User" />
@@ -278,7 +279,7 @@
       <End Role="WorkOrder" EntitySet="WorkOrders" />
     </AssociationSet>
     <AssociationSet Name="FK_WorkOrder_ProjectStatus" Association="Self.FK_WorkOrder_ProjectStatus">
-      <End Role="ProjectStatus" EntitySet="ProjectStatus" />
+      <End Role="ProjectStatus" EntitySet="ProjectStatus1" />
       <End Role="WorkOrder" EntitySet="WorkOrders" />
     </AssociationSet>
     <AssociationSet Name="FK_WorkOrder_TypeRequest" Association="Self.FK_WorkOrder_TypeRequest">
