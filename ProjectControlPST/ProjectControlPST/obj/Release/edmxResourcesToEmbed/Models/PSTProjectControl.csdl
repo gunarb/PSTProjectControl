@@ -74,6 +74,7 @@
     <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="idProjectDescription" Type="Int32" Nullable="false" />
     <NavigationProperty Name="ProjectDescription" Relationship="Self.FK_ThirdPartyCredentials_ProjectDescription" FromRole="ThirdPartyCredentials" ToRole="ProjectDescription" />
+    <Property Name="url" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
   </EntityType>
   <EntityType Name="TypeRequest">
     <Key>
@@ -290,5 +291,38 @@
       <End Role="WorkOrder" EntitySet="WorkOrders" />
       <End Role="Users" EntitySet="Users" />
     </AssociationSet>
+    <EntitySet Name="vw_workOrder_description" EntityType="PSTProjectControlModel.vw_workOrder_description" />
   </EntityContainer>
+  <EntityType Name="vw_workOrder_description">
+    <Key>
+      <PropertyRef Name="uniqueId" />
+      <PropertyRef Name="idTypeRequest" />
+      <PropertyRef Name="idProjectStatus" />
+      <PropertyRef Name="secureCode" />
+      <PropertyRef Name="request" />
+    </Key>
+    <Property Name="uniqueId" Type="Int32" Nullable="false" />
+    <Property Name="author" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="date" Type="DateTime" Precision="0" />
+    <Property Name="idTypeRequest" Type="Int32" Nullable="false" />
+    <Property Name="projectName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="referencePreviousJob" Type="Int32" />
+    <Property Name="agencyPM" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="agencyAccountDirector" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="brandManager" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="prodigiousPM" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="jiraParentUrl" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="idProjectStatus" Type="Int32" Nullable="false" />
+    <Property Name="idProjectDescription" Type="Int32" />
+    <Property Name="secureCode" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Name="request" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="status" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="projectDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="kickOffDate" Type="DateTime" Precision="0" />
+    <Property Name="liveDate" Type="DateTime" Precision="0" />
+    <Property Name="targetDevice" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="platform" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="seoAnalytics" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="additionalComments" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+  </EntityType>
 </Schema>

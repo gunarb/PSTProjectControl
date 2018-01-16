@@ -25,6 +25,7 @@
         <AssociationConnector Association="PSTProjectControlModel.FK_WorkOrder_ProjectStatus" ManuallyRouted="false" />
         <AssociationConnector Association="PSTProjectControlModel.FK_WorkOrder_TypeRequest" ManuallyRouted="false" />
         <AssociationConnector Association="PSTProjectControlModel.FK_Users_WorkOrder" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="PSTProjectControlModel.vw_workOrder_description" Width="1.5" PointX="10.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

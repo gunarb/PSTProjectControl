@@ -320,9 +320,13 @@
     <Compile Include="Models\User.cs">
       <DependentUpon>PSTProjectControl.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\vw_workOrder_description.cs">
+      <DependentUpon>PSTProjectControl.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\WorkOrder.cs">
       <DependentUpon>PSTProjectControl.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\WorkOrderDetails.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\IRepository.cs" />
     <Compile Include="Repositories\Repository.cs" />

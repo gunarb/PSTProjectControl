@@ -1,6 +1,4 @@
-﻿using System;
-using System.Web.Mvc;
-using ProjectControlPST.Models;
+﻿using System.Web.Mvc;
 using ProjectControlPST.Repositories;
 
 namespace ProjectControlPST.Controllers
@@ -21,15 +19,14 @@ namespace ProjectControlPST.Controllers
         public ActionResult Update(int id, string secureCode)
         {
             var workOrder = _repository.GetWorkOrder(id);
-            return Content(workOrder.secureCode == secureCode
-                ? $"workOrderId={workOrder.uniqueId} ProjectName={workOrder.projectName}"
-                : $"Error! the secure code entered do no match to the secure code for project {workOrder.projectName}");
-            
-            //return View(workOrder);
+            if (workOrder.WorkOrderDescription.secureCode == secureCode)
+                return View(workOrder);
+            return Content(
+                $"Error! the secure code entered do no match to the secure code for project {workOrder.WorkOrderDescription.projectName}");
         }
-        public ActionResult CreateWorkOrder(int typeRequest)
+        public ActionResult InsertWorkOrder(int typeRequest)
         {
-            var newWorkOrder = _repository.CreateWorkOrder(typeRequest);
+            var newWorkOrder = _repository.InsertWorkOrder(typeRequest);
             var workOrderId = int.Parse(newWorkOrder[0]);
             var workOrderSecureCode = newWorkOrder[1];
             return RedirectToAction("Update", "WorkOrder", new { @id = workOrderId, @secureCode = workOrderSecureCode });

@@ -30,10 +30,11 @@ namespace ProjectControlPST.Models
         public virtual DbSet<Domain> Domains { get; set; }
         public virtual DbSet<EffectedURL> EffectedURLs { get; set; }
         public virtual DbSet<ProjectDescription> ProjectDescriptions { get; set; }
-        public virtual DbSet<ProjectStatus> ProjectStatus { get; set; }
+        public virtual DbSet<ProjectStatus> ProjectStatus1 { get; set; }
         public virtual DbSet<ThirdPartyCredential> ThirdPartyCredentials { get; set; }
         public virtual DbSet<TypeRequest> TypeRequests { get; set; }
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<WorkOrder> WorkOrders { get; set; }
+        public virtual DbSet<vw_workOrder_description> vw_workOrder_description { get; set; }
     }
 }

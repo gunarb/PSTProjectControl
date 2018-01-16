@@ -70,6 +70,7 @@ CREATE TABLE EffectedURL (
 -- Create Third Party Credentials Table
 CREATE TABLE ThirdPartyCredentials (
 	uniqueId int NOT NULL IDENTITY PRIMARY KEY,
+	url VARCHAR(MAX) NOT NULL,
 	userName varchar(50) NOT NULL,
 	password varchar(50) NOT NULL,
 	idProjectDescription int NOT NULL,
@@ -105,6 +106,15 @@ CREATE TABLE Users (
 );
 GO
 
+CREATE VIEW vw_workOrder_description
+AS
+	SELECT wo.*, tr.request, ps.status, pd.projectDescription, pd.kickOffDate, pd.liveDate, pd.targetDevice, pd.platform, pd.seoAnalytics, pd.additionalComments
+	FROM WorkOrder wo
+	INNER JOIN TypeRequest tr ON wo.idTypeRequest = tr.uniqueId
+	LEFT JOIN ProjectStatus ps ON wo.idProjectStatus = ps.uniqueId
+	LEFT JOIN ProjectDescription pd ON wo.idProjectDescription = pd.uniqueId
+GO
+
 INSERT INTO TypeRequest (request) VALUES ('Web Development');
 INSERT INTO TypeRequest (request) VALUES ('Print');
 INSERT INTO TypeRequest (request) VALUES ('Banners');
@@ -127,3 +137,18 @@ INSERT INTO AssetsList (asset) VALUES ('SEO Content');
 INSERT INTO AssetsList (asset) VALUES ('UI/UX Document / Wireframes');
 INSERT INTO WorkOrder (date, idTypeRequest, projectName, idProjectStatus) VALUES ('1/9/2018', 1, 'Test Project', 1);
 INSERT INTO Users (name, userName, password) VALUES ('Administrator', 'admin', 'admin');
+INSERT INTO ProjectDescription (projectDescription, kickOffDate, liveDate, targetDevice, platform, seoAnalytics, additionalComments, idWorkOrder)
+	VALUES(
+		'This is a test project for the development of PST Project Control',
+		CAST('2018-1-31' AS DATE),
+		CAST('2018-4-30' AS DATE),
+		'Chrome;Firefox;iOS;Android;IE11;',
+		'Windows',
+		'Google Analytics',
+		'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.');
+INSERT INTO Domains (domain, idProjectDescription) VALUES ('http://www.oscarmayer.com', 1);
+INSERT INTO Domains (domain, idProjectDescription) VALUES ('http://www.crystallight.com', 1);
+INSERT INTO EffectedURL (url, idProjectDescription) VALUES ('http://www.oscarmayer.com', 1);
+INSERT INTO EffectedURL (url, idProjectDescription) VALUES ('http://www.oscarmayer.com/our-products', 1);
+INSERT INTO EffectedURL (url, idProjectDescription) VALUES ('http://www.oscarmayer.com/our-story', 1);
+INSERT INTO EffectedURL (url, idProjectDescription) VALUES ('http://www.oscarmayer.com/wienermobile', 1);

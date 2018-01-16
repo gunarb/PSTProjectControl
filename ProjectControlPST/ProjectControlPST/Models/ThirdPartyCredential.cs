@@ -18,6 +18,7 @@ namespace ProjectControlPST.Models
         public string userName { get; set; }
         public string password { get; set; }
         public int idProjectDescription { get; set; }
+        public string url { get; set; }
     
         public virtual ProjectDescription ProjectDescription { get; set; }
     }

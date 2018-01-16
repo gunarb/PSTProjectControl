@@ -12,7 +12,7 @@ namespace ProjectControlPST.Repositories
         List<WorkOrder> GetWorkOrders();
         List<ProjectStatus> GetProjectStatus();
         List<TypeRequest> GetTypeRequest();
-        WorkOrder GetWorkOrder(int id);
-        string[] CreateWorkOrder(int typeRequest);
+        WorkOrderDetails GetWorkOrder(int id);
+        string[] InsertWorkOrder(int typeRequest);
     }
 }

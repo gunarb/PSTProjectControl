@@ -16,3 +16,6 @@ textarea {
     max-width: 280px;
 }
 
+.is-invalid {
+    border-color: red;
+}

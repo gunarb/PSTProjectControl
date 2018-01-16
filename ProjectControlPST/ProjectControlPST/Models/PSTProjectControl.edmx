@@ -66,6 +66,7 @@
           <Property Name="userName" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="password" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="idProjectDescription" Type="int" Nullable="false" />
+          <Property Name="url" Type="varchar(max)" Nullable="false" />
         </EntityType>
         <EntityType Name="TypeRequest">
           <Key>
@@ -103,6 +104,40 @@
           <Property Name="idProjectStatus" Type="int" Nullable="false" />
           <Property Name="idProjectDescription" Type="int" />
           <Property Name="secureCode" Type="varchar" MaxLength="25" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'PSTProjectControl.dbo.vw_workOrder_description' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vw_workOrder_description">
+          <Key>
+            <PropertyRef Name="uniqueId" />
+            <PropertyRef Name="idTypeRequest" />
+            <PropertyRef Name="idProjectStatus" />
+            <PropertyRef Name="secureCode" />
+            <PropertyRef Name="request" />
+          </Key>
+          <Property Name="uniqueId" Type="int" Nullable="false" />
+          <Property Name="author" Type="varchar" MaxLength="50" />
+          <Property Name="date" Type="date" />
+          <Property Name="idTypeRequest" Type="int" Nullable="false" />
+          <Property Name="projectName" Type="varchar" MaxLength="50" />
+          <Property Name="referencePreviousJob" Type="int" />
+          <Property Name="agencyPM" Type="varchar" MaxLength="50" />
+          <Property Name="agencyAccountDirector" Type="varchar" MaxLength="50" />
+          <Property Name="brandManager" Type="varchar" MaxLength="50" />
+          <Property Name="prodigiousPM" Type="varchar" MaxLength="50" />
+          <Property Name="jiraParentUrl" Type="varchar" MaxLength="50" />
+          <Property Name="idProjectStatus" Type="int" Nullable="false" />
+          <Property Name="idProjectDescription" Type="int" />
+          <Property Name="secureCode" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="request" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="status" Type="varchar" MaxLength="30" />
+          <Property Name="projectDescription" Type="varchar(max)" />
+          <Property Name="kickOffDate" Type="date" />
+          <Property Name="liveDate" Type="date" />
+          <Property Name="targetDevice" Type="varchar(max)" />
+          <Property Name="platform" Type="varchar" MaxLength="50" />
+          <Property Name="seoAnalytics" Type="varchar" MaxLength="50" />
+          <Property Name="additionalComments" Type="varchar(max)" />
         </EntityType>
         <Association Name="FK_AssetProject_AssetsList">
           <End Role="AssetsList" Type="Self.AssetsList" Multiplicity="0..1" />
@@ -235,6 +270,33 @@
           <EntitySet Name="TypeRequest" EntityType="Self.TypeRequest" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="WorkOrder" EntityType="Self.WorkOrder" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="vw_workOrder_description" EntityType="Self.vw_workOrder_description" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vw_workOrder_description].[uniqueId] AS [uniqueId], 
+    [vw_workOrder_description].[author] AS [author], 
+    [vw_workOrder_description].[date] AS [date], 
+    [vw_workOrder_description].[idTypeRequest] AS [idTypeRequest], 
+    [vw_workOrder_description].[projectName] AS [projectName], 
+    [vw_workOrder_description].[referencePreviousJob] AS [referencePreviousJob], 
+    [vw_workOrder_description].[agencyPM] AS [agencyPM], 
+    [vw_workOrder_description].[agencyAccountDirector] AS [agencyAccountDirector], 
+    [vw_workOrder_description].[brandManager] AS [brandManager], 
+    [vw_workOrder_description].[prodigiousPM] AS [prodigiousPM], 
+    [vw_workOrder_description].[jiraParentUrl] AS [jiraParentUrl], 
+    [vw_workOrder_description].[idProjectStatus] AS [idProjectStatus], 
+    [vw_workOrder_description].[idProjectDescription] AS [idProjectDescription], 
+    [vw_workOrder_description].[secureCode] AS [secureCode], 
+    [vw_workOrder_description].[request] AS [request], 
+    [vw_workOrder_description].[status] AS [status], 
+    [vw_workOrder_description].[projectDescription] AS [projectDescription], 
+    [vw_workOrder_description].[kickOffDate] AS [kickOffDate], 
+    [vw_workOrder_description].[liveDate] AS [liveDate], 
+    [vw_workOrder_description].[targetDevice] AS [targetDevice], 
+    [vw_workOrder_description].[platform] AS [platform], 
+    [vw_workOrder_description].[seoAnalytics] AS [seoAnalytics], 
+    [vw_workOrder_description].[additionalComments] AS [additionalComments]
+    FROM [dbo].[vw_workOrder_description] AS [vw_workOrder_description]</DefiningQuery>
+          </EntitySet>
           <AssociationSet Name="FK_AssetProject_AssetsList" Association="Self.FK_AssetProject_AssetsList">
             <End Role="AssetsList" EntitySet="AssetsList" />
             <End Role="AssetProject" EntitySet="AssetProject" />
@@ -354,6 +416,7 @@
           <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="idProjectDescription" Type="Int32" Nullable="false" />
           <NavigationProperty Name="ProjectDescription" Relationship="Self.FK_ThirdPartyCredentials_ProjectDescription" FromRole="ThirdPartyCredentials" ToRole="ProjectDescription" />
+          <Property Name="url" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="TypeRequest">
           <Key>
@@ -570,7 +633,40 @@
             <End Role="WorkOrder" EntitySet="WorkOrders" />
             <End Role="Users" EntitySet="Users" />
           </AssociationSet>
+          <EntitySet Name="vw_workOrder_description" EntityType="PSTProjectControlModel.vw_workOrder_description" />
         </EntityContainer>
+        <EntityType Name="vw_workOrder_description">
+          <Key>
+            <PropertyRef Name="uniqueId" />
+            <PropertyRef Name="idTypeRequest" />
+            <PropertyRef Name="idProjectStatus" />
+            <PropertyRef Name="secureCode" />
+            <PropertyRef Name="request" />
+          </Key>
+          <Property Name="uniqueId" Type="Int32" Nullable="false" />
+          <Property Name="author" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="date" Type="DateTime" Precision="0" />
+          <Property Name="idTypeRequest" Type="Int32" Nullable="false" />
+          <Property Name="projectName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="referencePreviousJob" Type="Int32" />
+          <Property Name="agencyPM" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="agencyAccountDirector" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="brandManager" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="prodigiousPM" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="jiraParentUrl" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="idProjectStatus" Type="Int32" Nullable="false" />
+          <Property Name="idProjectDescription" Type="Int32" />
+          <Property Name="secureCode" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="request" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="status" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="projectDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="kickOffDate" Type="DateTime" Precision="0" />
+          <Property Name="liveDate" Type="DateTime" Precision="0" />
+          <Property Name="targetDevice" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="platform" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="seoAnalytics" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="additionalComments" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -639,6 +735,7 @@
           <EntitySetMapping Name="ThirdPartyCredentials">
             <EntityTypeMapping TypeName="PSTProjectControlModel.ThirdPartyCredential">
               <MappingFragment StoreEntitySet="ThirdPartyCredentials">
+                <ScalarProperty Name="url" ColumnName="url" />
                 <ScalarProperty Name="uniqueId" ColumnName="uniqueId" />
                 <ScalarProperty Name="userName" ColumnName="userName" />
                 <ScalarProperty Name="password" ColumnName="password" />
@@ -683,6 +780,35 @@
                 <ScalarProperty Name="jiraParentUrl" ColumnName="jiraParentUrl" />
                 <ScalarProperty Name="idProjectStatus" ColumnName="idProjectStatus" />
                 <ScalarProperty Name="idProjectDescription" ColumnName="idProjectDescription" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vw_workOrder_description">
+            <EntityTypeMapping TypeName="PSTProjectControlModel.vw_workOrder_description">
+              <MappingFragment StoreEntitySet="vw_workOrder_description">
+                <ScalarProperty Name="additionalComments" ColumnName="additionalComments" />
+                <ScalarProperty Name="seoAnalytics" ColumnName="seoAnalytics" />
+                <ScalarProperty Name="platform" ColumnName="platform" />
+                <ScalarProperty Name="targetDevice" ColumnName="targetDevice" />
+                <ScalarProperty Name="liveDate" ColumnName="liveDate" />
+                <ScalarProperty Name="kickOffDate" ColumnName="kickOffDate" />
+                <ScalarProperty Name="projectDescription" ColumnName="projectDescription" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="request" ColumnName="request" />
+                <ScalarProperty Name="secureCode" ColumnName="secureCode" />
+                <ScalarProperty Name="idProjectDescription" ColumnName="idProjectDescription" />
+                <ScalarProperty Name="idProjectStatus" ColumnName="idProjectStatus" />
+                <ScalarProperty Name="jiraParentUrl" ColumnName="jiraParentUrl" />
+                <ScalarProperty Name="prodigiousPM" ColumnName="prodigiousPM" />
+                <ScalarProperty Name="brandManager" ColumnName="brandManager" />
+                <ScalarProperty Name="agencyAccountDirector" ColumnName="agencyAccountDirector" />
+                <ScalarProperty Name="agencyPM" ColumnName="agencyPM" />
+                <ScalarProperty Name="referencePreviousJob" ColumnName="referencePreviousJob" />
+                <ScalarProperty Name="projectName" ColumnName="projectName" />
+                <ScalarProperty Name="idTypeRequest" ColumnName="idTypeRequest" />
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="author" ColumnName="author" />
+                <ScalarProperty Name="uniqueId" ColumnName="uniqueId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
