@@ -53,6 +53,6 @@ C:\Users\angbolan\Documents\Visual Studio 2015\Projects\PSTProjectControl\Projec
 C:\Users\angbolan\Documents\Visual Studio 2015\Projects\PSTProjectControl\ProjectControlPST\ProjectControlPST\bin\System.Web.Webpages.Razor.xml
 C:\Users\angbolan\Documents\Visual Studio 2015\Projects\PSTProjectControl\ProjectControlPST\ProjectControlPST\bin\System.Web.Helpers.xml
 C:\Users\angbolan\Documents\Visual Studio 2015\Projects\PSTProjectControl\ProjectControlPST\ProjectControlPST\bin\System.Web.Mvc.xml
-C:\Users\angbolan\Documents\Visual Studio 2015\Projects\PSTProjectControl\ProjectControlPST\ProjectControlPST\obj\Release\ProjectControlPST.csprojResolveAssemblyReference.cache
 C:\Users\angbolan\Documents\Visual Studio 2015\Projects\PSTProjectControl\ProjectControlPST\ProjectControlPST\obj\Release\ProjectControlPST.dll
 C:\Users\angbolan\Documents\Visual Studio 2015\Projects\PSTProjectControl\ProjectControlPST\ProjectControlPST\obj\Release\ProjectControlPST.pdb
+C:\Users\angbolan\Documents\Visual Studio 2015\Projects\PSTProjectControl\ProjectControlPST\ProjectControlPST\obj\Release\ProjectControlPST.csprojResolveAssemblyReference.cache

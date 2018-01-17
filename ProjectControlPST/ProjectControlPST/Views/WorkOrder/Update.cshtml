@@ -3,7 +3,6 @@
 @{
     ViewBag.Title = "Update Work Order";
     Layout = "~/Views/Shared/_Layout.cshtml";
-    var cont = 0;
 }
 
 <h2>Update Project Number: @Model.WorkOrderDescription.uniqueId</h2>
@@ -57,13 +56,21 @@
         </div>
         <div class="form-group">
             <label>Domains</label>
-            @{ cont = 0; }
-            @foreach (var domain in @Model.Domains)
-            {
-                var domainId = "domain" + cont;
-                <input id="@domainId" type="text" class="form-control" placeholder="URL" value="@domain.domain1" />
-                cont++;
-            }
+            <div id="domains-inputs">
+                @{
+                    <input id="newDomain" type="text" class="form-control initial-list" placeholder="URL" />
+                    <button id="btn-domains"><span class="glyphicon glyphicon-plus"></span></button>
+
+                    var contDomain = 1;
+
+                    foreach (var domain in Model.Domains)
+                    {
+                        var domainId = "domain-" + contDomain;
+                        <input id="@domainId" type="text" class="form-control" placeholder="URL" value="@domain.domain1" />
+                        contDomain++;
+                    }
+                }
+            </div>
         </div>
         <div class="form-group">
             <label for="plataform">Plataform / Enviroment</label>
@@ -71,42 +78,48 @@
         </div>
         <div class="form-group">
             <label>URLs of All Pages Effected</label>
-            @{ cont = 0; }
-            @foreach (var url in @Model.EffectedUrls)
-            {
-                var urlId = "urlAffected" + cont;
-                <input id="@urlId" type="text" class="form-control" placeholder="URL" value="@url.url" />
-                cont++;
-            }
-        </div>
-        <div class="form-group">
-            <label>Third Party Credentials</label>
-            @{
-                cont = 0;
-                if (Model.ThirdPartyCredential.Count > 0)
-                {
-                    foreach (var thirdParty in @Model.ThirdPartyCredential)
+            <div id="urlAffected-inputs">
+                @{
+                    <input id="newUrlAffected" type="text" class="form-control initial-list" placeholder="URL" />
+                    <button id="btn-urlAffected"><span class="glyphicon glyphicon-plus"></span></button>
+
+                    var contUrl = 1;
+
+                    foreach (var url in Model.EffectedUrls)
                     {
-                        var thirdPartyId = "thirdPartyURL" + cont;
-                        <input id="@thirdPartyId" type="text" class="form-control" placeholder="URL" value="@thirdParty.url" />
-                        thirdPartyId = "thirdPartyUser" + cont;
-                        <input id="@thirdPartyId" type="text" class="form-control" placeholder="user" value="@thirdParty.userName" />
-                        thirdPartyId = "thirdPartyPass" + cont;
-                        <input id="@thirdPartyId" type="text" class="form-control" placeholder="password" value="@thirdParty.password" />
-                        cont++;
+                        var urlId = "urlAffected" + contUrl;
+                        <input id="@urlId" type="text" class="form-control" placeholder="URL" value="@url.url" />
+                        contUrl++;
                     }
                 }
-                else
-                {
-                    cont++;
-                    var thirdPartyId = "thirdPartyURL" + cont;
-                    <input id="@thirdPartyId" type="text" class="form-control" placeholder="URL" />
-                    thirdPartyId = "thirdPartyUser" + cont;
-                    <input id="@thirdPartyId" type="text" class="form-control" placeholder="user" />
-                    thirdPartyId = "thirdPartyPass" + cont;
-                    <input id="@thirdPartyId" type="text" class="form-control" placeholder="password" />
+            </div>
+        </div>
+        <div id="thirdPartySection" class="form-group">
+            <label>Third Party Credentials</label>;
+            <div id="thirdParty-inputs">
+                @{
+                    <input id="newThirdPartyUrl" type="text" class="form-control initial-list" placeholder="URL" />
+                    <input id="newThirdPartyUser" type="text" class="form-control initial-list" placeholder="user" />
+                    <input id="newThirdPartyPass" type="text" class="form-control initial-list" placeholder="password" />
+                    <button id="btn-thirdParty"><span class="glyphicon glyphicon-plus"></span></button>
+
+                    var contThirdParty = 1;
+
+                    foreach (var thirdParty in @Model.ThirdPartyCredential)
+                    {
+                        var thirdPartyId = "thirdPartyURL" + contThirdParty;
+                        <input id="@thirdPartyId" type="text" class="form-control" placeholder="URL" value="@thirdParty.url" />
+
+                        thirdPartyId = "thirdPartyUser" + contThirdParty;
+                        <input id="@thirdPartyId" type="text" class="form-control" placeholder="user" value="@thirdParty.userName" />
+
+                        thirdPartyId = "thirdPartyPass" + contThirdParty;
+                        <input id="@thirdPartyId" type="text" class="form-control" placeholder="password" value="@thirdParty.password" />
+
+                        contThirdParty++;
+                    }
                 }
-            }
+            </div>
         </div>
         <div class="form-group">
             <label for="seo">SEO / Analytics</label>
@@ -130,5 +143,4 @@
         <button type="submit" class="btn btn-primary">Submit</button>
         <button type="button" class="btn btn-secondary">Export to PDF</button>
     </fieldset>
-
 </form>

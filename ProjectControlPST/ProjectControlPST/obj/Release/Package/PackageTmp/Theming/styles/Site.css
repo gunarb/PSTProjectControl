@@ -19,3 +19,8 @@ textarea {
 .is-invalid {
     border-color: red;
 }
+
+.initial-list {
+    display: inline-block;
+    margin-bottom: 5px;
+}

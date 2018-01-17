@@ -9,28 +9,21 @@ app.factory('projectControlService', function ($http) {
         return $http({
             method: 'GET',
             dataType: 'jsonp',
-            url: 'api/PstProjectControlInfo/GetWorkOrder'
-        });
-    }
-    res.GetProjectDescription = function () {
-        return $http({
-            method: 'GET',
-            dataType: 'jsonp',
-            url: 'api/PstProjectControlInfo/GetProjectDescription'
+            url: 'api/projectControl/getWorkOrder'
         });
     }
     res.GetProjectStatus = function () {
         return $http({
             method: 'GET',
             dataType: 'jsonp',
-            url: 'api/PstProjectControlInfo/GetProjectStatus'
+            url: 'api/projectControl/getProjectStatus'
         });
     }
     res.GetTypeRequest = function () {
         return $http({
             method: 'GET',
             dataType: 'jsonp',
-            url: 'api/PstProjectControlInfo/GetTypeRequest'
+            url: 'api/projectControl/getTypeRequest'
         });
     }
     return res;
