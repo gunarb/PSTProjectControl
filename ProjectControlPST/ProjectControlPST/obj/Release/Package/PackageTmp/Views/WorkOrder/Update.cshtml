@@ -5,142 +5,34 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Update Project Number: @Model.WorkOrderDescription.uniqueId</h2>
-
-<form>
+<h4><i class="fa fa-wrench"></i>@Model.WorkOrderDescription.request</h4>
+<br />
+@using (Ajax.BeginForm("UpdateWorkOrderDescription", "WorkOrder", new AjaxOptions {HttpMethod = "POST", OnSuccess = "WO.form.init()", UpdateTargetId = "workOrderResult"}))
+{
+    <div id="workOrderResult"></div>
     <fieldset>
-        <legend>@Model.WorkOrderDescription.request</legend>
-        <div class="form-group">
-            <label for="author">Author</label>
-            <input id="author" type="text" class="form-control" value="@Model.WorkOrderDescription.author" />
-        </div>
-        <div class="form-group">
-            <label for="date">Date</label>
-            <input id="date" type="text" class="form-control" value="@Model.WorkOrderDescription.date" />
-        </div>
-        <div class="form-group">
-            <label for="projectName">Project Name</label>
-            <input id="projectName" type="text" class="form-control" value="@Model.WorkOrderDescription.projectName" />
-        </div>
-        <div class="form-group">
-            <label for="referencePreviousJob">Reference Previous Job</label>
-            <input id="referencePreviousJob" type="text" class="form-control" value="@Model.WorkOrderDescription.referencePreviousJob" />
-        </div>
-        <div class="form-group">
-            <label for="agencyPM">Agency PM</label>
-            <input id="agencyPM" type="text" class="form-control" value="@Model.WorkOrderDescription.agencyPM" />
-        </div>
-        <div class="form-group">
-            <label for="agencyAccountDirector">Agency Account Director</label>
-            <input id="agencyAccountDirector" type="text" class="form-control" value="@Model.WorkOrderDescription.agencyAccountDirector" />
-        </div>
-        <div class="form-group">
-            <label for="brandManager">Brand Manager</label>
-            <input id="brandManager" type="text" class="form-control" value="@Model.WorkOrderDescription.brandManager" />
-        </div>
-        <div class="form-group">
-            <label for="prodigiousPM">Prodigious PM</label>
-            <input id="prodigiousPM" type="text" class="form-control" value="@Model.WorkOrderDescription.prodigiousPM" />
-        </div>
-        <div class="form-group">
-            <label for="projectDescription">Project Description</label>
-            <textarea id="projectDescription" class="form-control" rows="3">@Model.WorkOrderDescription.projectDescription</textarea>
-        </div>
-        <div class="form-group">
-            <label for="kickOffDate">Kick Off Date</label>
-            <input id="kickOffDate" type="text" class="form-control" value="@Model.WorkOrderDescription.kickOffDate" />
-        </div>
-        <div class="form-group">
-            <label for="liveDate">Live Date</label>
-            <input id="liveDate" type="text" class="form-control" value="@Model.WorkOrderDescription.liveDate" />
-        </div>
-        <div class="form-group">
-            <label>Domains</label>
-            <div id="domains-inputs">
-                @{
-                    <input id="newDomain" type="text" class="form-control initial-list" placeholder="URL" />
-                    <button id="btn-domains"><span class="glyphicon glyphicon-plus"></span></button>
-
-                    var contDomain = 1;
-
-                    foreach (var domain in Model.Domains)
-                    {
-                        var domainId = "domain-" + contDomain;
-                        <input id="@domainId" type="text" class="form-control" placeholder="URL" value="@domain.domain1" />
-                        contDomain++;
-                    }
-                }
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="plataform">Plataform / Enviroment</label>
-            <input id="plataform" type="text" class="form-control" value="@Model.WorkOrderDescription.platform" />
-        </div>
-        <div class="form-group">
-            <label>URLs of All Pages Effected</label>
-            <div id="urlAffected-inputs">
-                @{
-                    <input id="newUrlAffected" type="text" class="form-control initial-list" placeholder="URL" />
-                    <button id="btn-urlAffected"><span class="glyphicon glyphicon-plus"></span></button>
-
-                    var contUrl = 1;
-
-                    foreach (var url in Model.EffectedUrls)
-                    {
-                        var urlId = "urlAffected" + contUrl;
-                        <input id="@urlId" type="text" class="form-control" placeholder="URL" value="@url.url" />
-                        contUrl++;
-                    }
-                }
-            </div>
-        </div>
-        <div id="thirdPartySection" class="form-group">
-            <label>Third Party Credentials</label>;
-            <div id="thirdParty-inputs">
-                @{
-                    <input id="newThirdPartyUrl" type="text" class="form-control initial-list" placeholder="URL" />
-                    <input id="newThirdPartyUser" type="text" class="form-control initial-list" placeholder="user" />
-                    <input id="newThirdPartyPass" type="text" class="form-control initial-list" placeholder="password" />
-                    <button id="btn-thirdParty"><span class="glyphicon glyphicon-plus"></span></button>
-
-                    var contThirdParty = 1;
-
-                    foreach (var thirdParty in @Model.ThirdPartyCredential)
-                    {
-                        var thirdPartyId = "thirdPartyURL" + contThirdParty;
-                        <input id="@thirdPartyId" type="text" class="form-control" placeholder="URL" value="@thirdParty.url" />
-
-                        thirdPartyId = "thirdPartyUser" + contThirdParty;
-                        <input id="@thirdPartyId" type="text" class="form-control" placeholder="user" value="@thirdParty.userName" />
-
-                        thirdPartyId = "thirdPartyPass" + contThirdParty;
-                        <input id="@thirdPartyId" type="text" class="form-control" placeholder="password" value="@thirdParty.password" />
-
-                        contThirdParty++;
-                    }
-                }
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="seo">SEO / Analytics</label>
-            <input id="seo" type="text" class="form-control" value="@Model.WorkOrderDescription.seoAnalytics" />
-        </div>
-        <fieldset class="form-group">
-            <legend>Assets Check List</legend>
-            @foreach (var asset in @Model.Assets)
-            {
-                <div class="form-check">
-                    <label class="form-check-label">
-                        <input class="form-check-input" type="checkbox" value="@asset.uniqueId"> @asset.asset
-                    </label>
-                </div>
-            }
-        </fieldset>
-        <div class="form-group">
-            <label for="additionalComments">Additional Comments</label>
-            <textarea id="additionalComments" class="form-control" rows="3">@Model.WorkOrderDescription.additionalComments</textarea>
+        @switch (Model.WorkOrderDescription.idTypeRequest)
+        {
+            case 1:
+                Html.RenderPartial("Update/_WebDevelopment", Model);
+                break;
+            case 2:
+                Html.RenderPartial("Update/_Print", Model);
+                break;
+            case 3:
+                Html.RenderPartial("Update/_Banners", Model);
+                break;
+        }
+        <div class="invisible">
+            @Html.HiddenFor(m => m.WorkOrderDescription.uniqueId)
+            @Html.HiddenFor(m => m.WorkOrderDescription.idTypeRequest)
+            @Html.HiddenFor(m => m.WorkOrderDescription.secureCode)
+            @Html.HiddenFor(m => m.WorkOrderDescription.idProjectDescription)
+            @Html.HiddenFor(m => m.WorkOrderDescription.jiraParentUrl)
+            @Html.HiddenFor(m => m.WorkOrderDescription.idProjectStatus)
+            @Html.HiddenFor(m => m.WorkOrderDescription.targetDevice)
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
         <button type="button" class="btn btn-secondary">Export to PDF</button>
     </fieldset>
-</form>
+}

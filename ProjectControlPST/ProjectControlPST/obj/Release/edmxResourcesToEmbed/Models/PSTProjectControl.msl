@@ -11,6 +11,15 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="AssetsForRequests">
+      <EntityTypeMapping TypeName="PSTProjectControlModel.AssetsForRequest">
+        <MappingFragment StoreEntitySet="AssetsForRequest">
+          <ScalarProperty Name="uniqueId" ColumnName="uniqueId" />
+          <ScalarProperty Name="idAssetsList" ColumnName="idAssetsList" />
+          <ScalarProperty Name="idTypeRequest" ColumnName="idTypeRequest" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="AssetsLists">
       <EntityTypeMapping TypeName="PSTProjectControlModel.AssetsList">
         <MappingFragment StoreEntitySet="AssetsList">
@@ -52,8 +61,8 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="ProjectStatus1">
-      <EntityTypeMapping TypeName="PSTProjectControlModel.ProjectStatus">
+    <EntitySetMapping Name="ProjectStatus">
+      <EntityTypeMapping TypeName="PSTProjectControlModel.ProjectStatu">
         <MappingFragment StoreEntitySet="ProjectStatus">
           <ScalarProperty Name="uniqueId" ColumnName="uniqueId" />
           <ScalarProperty Name="status" ColumnName="status" />
@@ -63,8 +72,8 @@
     <EntitySetMapping Name="ThirdPartyCredentials">
       <EntityTypeMapping TypeName="PSTProjectControlModel.ThirdPartyCredential">
         <MappingFragment StoreEntitySet="ThirdPartyCredentials">
-          <ScalarProperty Name="url" ColumnName="url" />
           <ScalarProperty Name="uniqueId" ColumnName="uniqueId" />
+          <ScalarProperty Name="url" ColumnName="url" />
           <ScalarProperty Name="userName" ColumnName="userName" />
           <ScalarProperty Name="password" ColumnName="password" />
           <ScalarProperty Name="idProjectDescription" ColumnName="idProjectDescription" />
@@ -86,6 +95,7 @@
           <ScalarProperty Name="name" ColumnName="name" />
           <ScalarProperty Name="userName" ColumnName="userName" />
           <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="email" ColumnName="email" />
           <ScalarProperty Name="permissionAccess" ColumnName="permissionAccess" />
           <ScalarProperty Name="idWorkOrder" ColumnName="idWorkOrder" />
         </MappingFragment>
@@ -94,7 +104,6 @@
     <EntitySetMapping Name="WorkOrders">
       <EntityTypeMapping TypeName="PSTProjectControlModel.WorkOrder">
         <MappingFragment StoreEntitySet="WorkOrder">
-          <ScalarProperty Name="secureCode" ColumnName="secureCode" />
           <ScalarProperty Name="uniqueId" ColumnName="uniqueId" />
           <ScalarProperty Name="author" ColumnName="author" />
           <ScalarProperty Name="date" ColumnName="date" />
@@ -105,6 +114,7 @@
           <ScalarProperty Name="agencyAccountDirector" ColumnName="agencyAccountDirector" />
           <ScalarProperty Name="brandManager" ColumnName="brandManager" />
           <ScalarProperty Name="prodigiousPM" ColumnName="prodigiousPM" />
+          <ScalarProperty Name="secureCode" ColumnName="secureCode" />
           <ScalarProperty Name="jiraParentUrl" ColumnName="jiraParentUrl" />
           <ScalarProperty Name="idProjectStatus" ColumnName="idProjectStatus" />
           <ScalarProperty Name="idProjectDescription" ColumnName="idProjectDescription" />
@@ -114,29 +124,40 @@
     <EntitySetMapping Name="vw_workOrder_description">
       <EntityTypeMapping TypeName="PSTProjectControlModel.vw_workOrder_description">
         <MappingFragment StoreEntitySet="vw_workOrder_description">
-          <ScalarProperty Name="additionalComments" ColumnName="additionalComments" />
-          <ScalarProperty Name="seoAnalytics" ColumnName="seoAnalytics" />
-          <ScalarProperty Name="platform" ColumnName="platform" />
-          <ScalarProperty Name="targetDevice" ColumnName="targetDevice" />
-          <ScalarProperty Name="liveDate" ColumnName="liveDate" />
-          <ScalarProperty Name="kickOffDate" ColumnName="kickOffDate" />
-          <ScalarProperty Name="projectDescription" ColumnName="projectDescription" />
-          <ScalarProperty Name="status" ColumnName="status" />
-          <ScalarProperty Name="request" ColumnName="request" />
-          <ScalarProperty Name="secureCode" ColumnName="secureCode" />
-          <ScalarProperty Name="idProjectDescription" ColumnName="idProjectDescription" />
-          <ScalarProperty Name="idProjectStatus" ColumnName="idProjectStatus" />
-          <ScalarProperty Name="jiraParentUrl" ColumnName="jiraParentUrl" />
-          <ScalarProperty Name="prodigiousPM" ColumnName="prodigiousPM" />
-          <ScalarProperty Name="brandManager" ColumnName="brandManager" />
-          <ScalarProperty Name="agencyAccountDirector" ColumnName="agencyAccountDirector" />
-          <ScalarProperty Name="agencyPM" ColumnName="agencyPM" />
-          <ScalarProperty Name="referencePreviousJob" ColumnName="referencePreviousJob" />
-          <ScalarProperty Name="projectName" ColumnName="projectName" />
-          <ScalarProperty Name="idTypeRequest" ColumnName="idTypeRequest" />
-          <ScalarProperty Name="date" ColumnName="date" />
-          <ScalarProperty Name="author" ColumnName="author" />
           <ScalarProperty Name="uniqueId" ColumnName="uniqueId" />
+          <ScalarProperty Name="author" ColumnName="author" />
+          <ScalarProperty Name="date" ColumnName="date" />
+          <ScalarProperty Name="idTypeRequest" ColumnName="idTypeRequest" />
+          <ScalarProperty Name="projectName" ColumnName="projectName" />
+          <ScalarProperty Name="referencePreviousJob" ColumnName="referencePreviousJob" />
+          <ScalarProperty Name="agencyPM" ColumnName="agencyPM" />
+          <ScalarProperty Name="agencyAccountDirector" ColumnName="agencyAccountDirector" />
+          <ScalarProperty Name="brandManager" ColumnName="brandManager" />
+          <ScalarProperty Name="prodigiousPM" ColumnName="prodigiousPM" />
+          <ScalarProperty Name="secureCode" ColumnName="secureCode" />
+          <ScalarProperty Name="jiraParentUrl" ColumnName="jiraParentUrl" />
+          <ScalarProperty Name="idProjectStatus" ColumnName="idProjectStatus" />
+          <ScalarProperty Name="idProjectDescription" ColumnName="idProjectDescription" />
+          <ScalarProperty Name="request" ColumnName="request" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="projectDescription" ColumnName="projectDescription" />
+          <ScalarProperty Name="kickOffDate" ColumnName="kickOffDate" />
+          <ScalarProperty Name="liveDate" ColumnName="liveDate" />
+          <ScalarProperty Name="targetDevice" ColumnName="targetDevice" />
+          <ScalarProperty Name="platform" ColumnName="platform" />
+          <ScalarProperty Name="seoAnalytics" ColumnName="seoAnalytics" />
+          <ScalarProperty Name="additionalComments" ColumnName="additionalComments" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="vw_assets_project">
+      <EntityTypeMapping TypeName="PSTProjectControlModel.vw_assets_project">
+        <MappingFragment StoreEntitySet="vw_assets_project">
+          <ScalarProperty Name="idProjectDescription" ColumnName="idProjectDescription" />
+          <ScalarProperty Name="value" ColumnName="value" />
+          <ScalarProperty Name="asset" ColumnName="asset" />
+          <ScalarProperty Name="assetListId" ColumnName="assetListId" />
+          <ScalarProperty Name="assetProjectId" ColumnName="assetProjectId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

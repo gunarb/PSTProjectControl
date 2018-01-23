@@ -1,0 +1,95 @@
+﻿@model ProjectControlPST.Models.WorkOrderDetails
+
+<div class="row">
+    <div class="col-sm-3">
+        <div class="form-group">
+            <label class="control-label" for="author">Author</label>
+            @Html.TextBoxFor(m => m.WorkOrderDescription.author, new { id = "author", @class = "form-control" })
+        </div>
+    </div>
+    <div class="col-sm-3">
+        <div class="form-group">
+            <label class="control-label" for="date">Date</label>
+            @Html.TextBoxFor(m => m.WorkOrderDescription.date, "{0:yyyy-MM-dd}", new { id = "date", @class = "form-control", @type = "date" })
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-3">
+        <div class="form-group">
+            <label class="control-label" for="projectName">Project Name</label>
+            @Html.TextBoxFor(m => m.WorkOrderDescription.projectName, new { id = "projectName", @class = "form-control" })
+        </div>
+    </div>
+    <div class="col-sm-3">
+        <div class="form-group">
+            <label class="control-label" for="referencePreviousJob">Reference Previous Job</label>
+            @Html.TextBoxFor(m => m.WorkOrderDescription.referencePreviousJob, new { id = "referencePreviousJob", @class = "form-control" })
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-3 col-sm-4">
+        <div class="form-group">
+            <label class="control-label" for="agencyPM">Agency PM</label>
+            @Html.TextBoxFor(m => m.WorkOrderDescription.agencyPM, new { id = "agencyPM", @class = "form-control" })
+        </div>
+    </div>
+
+    <div class="col-md-3 col-sm-4">
+        <div class="form-group">
+            <label class="control-label" for="agencyAccountDirector">Agency Account Director</label>
+            @Html.TextBoxFor(m => m.WorkOrderDescription.agencyAccountDirector, new { id = "agencyAccountDirector", @class = "form-control" })
+        </div>
+    </div>
+
+    <div class="col-md-3 col-sm-4">
+        <div class="form-group">
+            <label class="control-label" for="brandManager">Brand Manager</label>
+            @Html.TextBoxFor(m => m.WorkOrderDescription.brandManager, new { id = "brandManager", @class = "form-control" })
+        </div>
+    </div>
+
+    <div class="col-md-3 col-sm-4">
+        <div class="form-group">
+            <label class="control-label" for="prodigiousPM">Prodigious PM</label>
+            @Html.TextBoxFor(m => m.WorkOrderDescription.prodigiousPM, new { id = "prodigiousPM", @class = "form-control" })
+        </div>
+    </div>
+</div>
+<div class="form-group">
+    <label class="control-label" for="projectDescription">Project Description</label>
+    @Html.TextAreaFor(m => m.WorkOrderDescription.projectDescription, new { id = "projectDescription", @class = "form-control" })
+</div>
+<div class="row">
+    <div class="col-sm-3">
+        <div class="form-group">
+            <label class="control-label" for="kickOffDate">Kick Off Date</label>
+            @Html.TextBoxFor(m => m.WorkOrderDescription.kickOffDate, "{0:yyyy-MM-dd}", new { id = "kickOffDate", @class = "form-control", @type = "date" })
+        </div>
+    </div>
+    <div class="col-sm-3">
+        <div class="form-group">
+            <label class="control-label" for="liveDate">Live Date</label>
+            @Html.TextBoxFor(m => m.WorkOrderDescription.liveDate, "{0:yyyy-MM-dd}", new { id = "liveDate", @class = "form-control", @type = "date" })
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-3 col-sm-4">
+        <div class="form-group">
+            <label class="control-label" for="plataform">Plataform / Enviroment</label>
+            @Html.TextBoxFor(m => m.WorkOrderDescription.platform, new { id = "platform", @class = "form-control" })
+        </div>
+    </div>
+</div>
+<div class="form-group">
+    <label class="control-label">Assets Check List</label>
+    <div id="assets-check-box">
+        @Html.EditorFor(m => m.Assets)
+    </div>
+</div>
+<div class="form-group">
+    <label class="control-label" for="additionalComments">Additional Comments</label>
+    @Html.TextAreaFor(m => m.WorkOrderDescription.additionalComments, new { id = "additionalComments", @class = "form-control" })
+</div>

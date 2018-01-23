@@ -18,6 +18,7 @@ namespace ProjectControlPST.Models
         public AssetsList()
         {
             this.AssetProjects = new HashSet<AssetProject>();
+            this.AssetsForRequests = new HashSet<AssetsForRequest>();
         }
     
         public int uniqueId { get; set; }
@@ -25,5 +26,7 @@ namespace ProjectControlPST.Models
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AssetProject> AssetProjects { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<AssetsForRequest> AssetsForRequests { get; set; }
     }
 }

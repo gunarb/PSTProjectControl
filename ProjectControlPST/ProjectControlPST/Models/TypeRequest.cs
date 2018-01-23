@@ -17,12 +17,15 @@ namespace ProjectControlPST.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public TypeRequest()
         {
+            this.AssetsForRequests = new HashSet<AssetsForRequest>();
             this.WorkOrders = new HashSet<WorkOrder>();
         }
     
         public int uniqueId { get; set; }
         public string request { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<AssetsForRequest> AssetsForRequests { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<WorkOrder> WorkOrders { get; set; }
     }

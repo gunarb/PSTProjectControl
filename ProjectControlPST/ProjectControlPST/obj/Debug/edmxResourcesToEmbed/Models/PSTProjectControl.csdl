@@ -7,9 +7,19 @@
     <Property Name="uniqueId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="idProjectDescription" Type="Int32" />
     <Property Name="idAssetsList" Type="Int32" />
-    <Property Name="value" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="value" Type="Boolean" />
     <NavigationProperty Name="AssetsList" Relationship="Self.FK_AssetProject_AssetsList" FromRole="AssetProject" ToRole="AssetsList" />
     <NavigationProperty Name="ProjectDescription" Relationship="Self.FK_AssetProject_ProjectDescription" FromRole="AssetProject" ToRole="ProjectDescription" />
+  </EntityType>
+  <EntityType Name="AssetsForRequest">
+    <Key>
+      <PropertyRef Name="uniqueId" />
+    </Key>
+    <Property Name="uniqueId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="idAssetsList" Type="Int32" />
+    <Property Name="idTypeRequest" Type="Int32" />
+    <NavigationProperty Name="AssetsList" Relationship="Self.FK_AssetsForRequest_AssetsList" FromRole="AssetsForRequest" ToRole="AssetsList" />
+    <NavigationProperty Name="TypeRequest" Relationship="Self.FK_AssetsForRequest_TypeRequest" FromRole="AssetsForRequest" ToRole="TypeRequest" />
   </EntityType>
   <EntityType Name="AssetsList">
     <Key>
@@ -18,6 +28,7 @@
     <Property Name="uniqueId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="asset" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <NavigationProperty Name="AssetProjects" Relationship="Self.FK_AssetProject_AssetsList" FromRole="AssetsList" ToRole="AssetProject" />
+    <NavigationProperty Name="AssetsForRequests" Relationship="Self.FK_AssetsForRequest_AssetsList" FromRole="AssetsList" ToRole="AssetsForRequest" />
   </EntityType>
   <EntityType Name="Domain">
     <Key>
@@ -57,7 +68,7 @@
     <NavigationProperty Name="ThirdPartyCredentials" Relationship="Self.FK_ThirdPartyCredentials_ProjectDescription" FromRole="ProjectDescription" ToRole="ThirdPartyCredentials" />
     <NavigationProperty Name="WorkOrders" Relationship="Self.FK_WorkOrder_ProjectDescription" FromRole="ProjectDescription" ToRole="WorkOrder" />
   </EntityType>
-  <EntityType Name="ProjectStatus">
+  <EntityType Name="ProjectStatu">
     <Key>
       <PropertyRef Name="uniqueId" />
     </Key>
@@ -70,6 +81,7 @@
       <PropertyRef Name="uniqueId" />
     </Key>
     <Property Name="uniqueId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="url" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="userName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="idProjectDescription" Type="Int32" Nullable="false" />
@@ -81,6 +93,7 @@
     </Key>
     <Property Name="uniqueId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="request" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="AssetsForRequests" Relationship="Self.FK_AssetsForRequest_TypeRequest" FromRole="TypeRequest" ToRole="AssetsForRequest" />
     <NavigationProperty Name="WorkOrders" Relationship="Self.FK_WorkOrder_TypeRequest" FromRole="TypeRequest" ToRole="WorkOrder" />
   </EntityType>
   <EntityType Name="User">
@@ -91,6 +104,7 @@
     <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="userName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="permissionAccess" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
     <Property Name="idWorkOrder" Type="Int32" />
     <NavigationProperty Name="WorkOrder" Relationship="Self.FK_Users_WorkOrder" FromRole="Users" ToRole="WorkOrder" />
@@ -109,6 +123,7 @@
     <Property Name="agencyAccountDirector" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="brandManager" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="prodigiousPM" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="secureCode" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="jiraParentUrl" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="idProjectStatus" Type="Int32" Nullable="false" />
     <Property Name="idProjectDescription" Type="Int32" />
@@ -117,7 +132,38 @@
     <NavigationProperty Name="ProjectStatu" Relationship="Self.FK_WorkOrder_ProjectStatus" FromRole="WorkOrder" ToRole="ProjectStatus" />
     <NavigationProperty Name="TypeRequest" Relationship="Self.FK_WorkOrder_TypeRequest" FromRole="WorkOrder" ToRole="TypeRequest" />
     <NavigationProperty Name="Users" Relationship="Self.FK_Users_WorkOrder" FromRole="WorkOrder" ToRole="Users" />
-    <Property Name="secureCode" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="vw_workOrder_description">
+    <Key>
+      <PropertyRef Name="uniqueId" />
+      <PropertyRef Name="idTypeRequest" />
+      <PropertyRef Name="secureCode" />
+      <PropertyRef Name="idProjectStatus" />
+      <PropertyRef Name="request" />
+    </Key>
+    <Property Name="uniqueId" Type="Int32" Nullable="false" />
+    <Property Name="author" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="date" Type="DateTime" Precision="0" />
+    <Property Name="idTypeRequest" Type="Int32" Nullable="false" />
+    <Property Name="projectName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="referencePreviousJob" Type="Int32" />
+    <Property Name="agencyPM" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="agencyAccountDirector" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="brandManager" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="prodigiousPM" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="secureCode" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="jiraParentUrl" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="idProjectStatus" Type="Int32" Nullable="false" />
+    <Property Name="idProjectDescription" Type="Int32" />
+    <Property Name="request" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="status" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="projectDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="kickOffDate" Type="DateTime" Precision="0" />
+    <Property Name="liveDate" Type="DateTime" Precision="0" />
+    <Property Name="targetDevice" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="platform" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="seoAnalytics" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="additionalComments" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
   </EntityType>
   <Association Name="FK_AssetProject_AssetsList">
     <End Role="AssetsList" Type="Self.AssetsList" Multiplicity="0..1" />
@@ -140,6 +186,30 @@
       </Principal>
       <Dependent Role="AssetProject">
         <PropertyRef Name="idProjectDescription" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AssetsForRequest_AssetsList">
+    <End Role="AssetsList" Type="Self.AssetsList" Multiplicity="0..1" />
+    <End Role="AssetsForRequest" Type="Self.AssetsForRequest" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AssetsList">
+        <PropertyRef Name="uniqueId" />
+      </Principal>
+      <Dependent Role="AssetsForRequest">
+        <PropertyRef Name="idAssetsList" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AssetsForRequest_TypeRequest">
+    <End Role="TypeRequest" Type="Self.TypeRequest" Multiplicity="0..1" />
+    <End Role="AssetsForRequest" Type="Self.AssetsForRequest" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TypeRequest">
+        <PropertyRef Name="uniqueId" />
+      </Principal>
+      <Dependent Role="AssetsForRequest">
+        <PropertyRef Name="idTypeRequest" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -204,7 +274,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_WorkOrder_ProjectStatus">
-    <End Role="ProjectStatus" Type="PSTProjectControlModel.ProjectStatus" Multiplicity="1" />
+    <End Role="ProjectStatus" Type="Self.ProjectStatu" Multiplicity="1" />
     <End Role="WorkOrder" Type="Self.WorkOrder" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="ProjectStatus">
@@ -241,15 +311,17 @@
   </Association>
   <EntityContainer Name="PSTProjectControlEntities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="AssetProjects" EntityType="Self.AssetProject" />
+    <EntitySet Name="AssetsForRequests" EntityType="Self.AssetsForRequest" />
     <EntitySet Name="AssetsLists" EntityType="Self.AssetsList" />
     <EntitySet Name="Domains" EntityType="Self.Domain" />
     <EntitySet Name="EffectedURLs" EntityType="Self.EffectedURL" />
     <EntitySet Name="ProjectDescriptions" EntityType="Self.ProjectDescription" />
-    <EntitySet Name="ProjectStatus1" EntityType="PSTProjectControlModel.ProjectStatus" />
+    <EntitySet Name="ProjectStatus" EntityType="Self.ProjectStatu" />
     <EntitySet Name="ThirdPartyCredentials" EntityType="Self.ThirdPartyCredential" />
     <EntitySet Name="TypeRequests" EntityType="Self.TypeRequest" />
     <EntitySet Name="Users" EntityType="Self.User" />
     <EntitySet Name="WorkOrders" EntityType="Self.WorkOrder" />
+    <EntitySet Name="vw_workOrder_description" EntityType="Self.vw_workOrder_description" />
     <AssociationSet Name="FK_AssetProject_AssetsList" Association="Self.FK_AssetProject_AssetsList">
       <End Role="AssetsList" EntitySet="AssetsLists" />
       <End Role="AssetProject" EntitySet="AssetProjects" />
@@ -257,6 +329,14 @@
     <AssociationSet Name="FK_AssetProject_ProjectDescription" Association="Self.FK_AssetProject_ProjectDescription">
       <End Role="ProjectDescription" EntitySet="ProjectDescriptions" />
       <End Role="AssetProject" EntitySet="AssetProjects" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AssetsForRequest_AssetsList" Association="Self.FK_AssetsForRequest_AssetsList">
+      <End Role="AssetsList" EntitySet="AssetsLists" />
+      <End Role="AssetsForRequest" EntitySet="AssetsForRequests" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AssetsForRequest_TypeRequest" Association="Self.FK_AssetsForRequest_TypeRequest">
+      <End Role="TypeRequest" EntitySet="TypeRequests" />
+      <End Role="AssetsForRequest" EntitySet="AssetsForRequests" />
     </AssociationSet>
     <AssociationSet Name="FK_Domains_ProjectDescription" Association="Self.FK_Domains_ProjectDescription">
       <End Role="ProjectDescription" EntitySet="ProjectDescriptions" />
@@ -279,7 +359,7 @@
       <End Role="WorkOrder" EntitySet="WorkOrders" />
     </AssociationSet>
     <AssociationSet Name="FK_WorkOrder_ProjectStatus" Association="Self.FK_WorkOrder_ProjectStatus">
-      <End Role="ProjectStatus" EntitySet="ProjectStatus1" />
+      <End Role="ProjectStatus" EntitySet="ProjectStatus" />
       <End Role="WorkOrder" EntitySet="WorkOrders" />
     </AssociationSet>
     <AssociationSet Name="FK_WorkOrder_TypeRequest" Association="Self.FK_WorkOrder_TypeRequest">
@@ -290,5 +370,18 @@
       <End Role="WorkOrder" EntitySet="WorkOrders" />
       <End Role="Users" EntitySet="Users" />
     </AssociationSet>
+    <EntitySet Name="vw_assets_project" EntityType="PSTProjectControlModel.vw_assets_project" />
   </EntityContainer>
+  <EntityType Name="vw_assets_project">
+    <Key>
+      <PropertyRef Name="assetProjectId" />
+      <PropertyRef Name="assetListId" />
+      <PropertyRef Name="asset" />
+    </Key>
+    <Property Name="assetProjectId" Type="Int32" Nullable="false" />
+    <Property Name="assetListId" Type="Int32" Nullable="false" />
+    <Property Name="asset" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="value" Type="Boolean" />
+    <Property Name="idProjectDescription" Type="Int32" />
+  </EntityType>
 </Schema>

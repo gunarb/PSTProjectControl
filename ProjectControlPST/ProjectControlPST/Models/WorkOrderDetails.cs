@@ -11,7 +11,6 @@ namespace ProjectControlPST.Models
         public IList<Domain> Domains { get; set; }
         public IList<EffectedURL> EffectedUrls { get; set; }
         public IList<ThirdPartyCredential> ThirdPartyCredential { get; set; }
-        public IList<AssetProject> AssetProjects { get; set; }
-        public List<AssetsList> Assets { get; set; }
+        public IList<vw_assets_project> Assets { get; set; }
     }
 }

@@ -24,10 +24,10 @@ namespace ProjectControlPST.Models
         public string agencyAccountDirector { get; set; }
         public string brandManager { get; set; }
         public string prodigiousPM { get; set; }
+        public string secureCode { get; set; }
         public string jiraParentUrl { get; set; }
         public int idProjectStatus { get; set; }
         public Nullable<int> idProjectDescription { get; set; }
-        public string secureCode { get; set; }
         public string request { get; set; }
         public string status { get; set; }
         public string projectDescription { get; set; }

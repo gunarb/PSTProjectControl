@@ -1,0 +1,6 @@
+﻿@model ProjectControlPST.Models.EffectedURL
+
+<div>
+    @Html.HiddenFor(m => m.uniqueId)
+    @Html.TextBoxFor(m => m.url, new { @class = "form-control" })
+</div>

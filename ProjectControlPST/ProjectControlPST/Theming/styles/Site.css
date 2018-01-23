@@ -1,26 +1,61 @@
-﻿body {
-    padding-top: 50px;
-    padding-bottom: 20px;
-}
-
-/* Set padding to keep content from hitting the edges */
-.body-content {
-    padding-left: 15px;
-    padding-right: 15px;
-}
-
-/* Set width on the form input elements since they're 100% wide by default */
-input,
-select,
-textarea {
-    max-width: 280px;
+﻿/* Set width on the form input elements since they're 100% wide by default */
+body {
+    font-family: 'Open Sans', sans-serif;
 }
 
 .is-invalid {
     border-color: red;
 }
 
-.initial-list {
-    display: inline-block;
-    margin-bottom: 5px;
+.navbar-default {
+    background: #fff;
+}
+
+.navbar-brand {
+    padding: 0 15px;
+}
+
+.navbar-brand img {
+    max-width: 140px;
+}
+
+.navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
+    background: #367cff;
+    color: #fff;
+}
+
+.dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus {
+    background: #367cff;
+    color: #fff;
+}
+
+.box-project {
+    border: none;
+    width: 100%;
+    text-align: center;
+    color: #fff;
+    background: #367cff;
+    height: 20vw;
+    transition: 0.5s;
+    margin-bottom: 30px;
+}
+
+.box-project:hover {
+    background: #035afc;
+}
+
+.box-project i {
+    font-size: 72px;
+    display: block;
+    margin-bottom: 30px;
+}
+
+.control-label {
+    font-size: 10px;
+    font-weight: normal;
+    text-transform: uppercase;
+}
+
+.form-group {
+    margin-bottom: 30px;
 }

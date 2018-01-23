@@ -12,10 +12,10 @@ namespace ProjectControlPST.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class ProjectStatus
+    public partial class ProjectStatu
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public ProjectStatus()
+        public ProjectStatu()
         {
             this.WorkOrders = new HashSet<WorkOrder>();
         }

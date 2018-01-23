@@ -2,12 +2,32 @@
     ViewBag.Title = "Project Control PST";
 }
 
-<h2>Index</h2>
+<h4><i class="fa fa-plus"></i> New Project</h4>
 
 @*<button onclick="createWorkOrder()" class="btn btn-default">New Work Order</button>*@
+<div class="row">
+    <div class="col-sm-4">
+        <button type="button" onclick="location.href = '@Url.Action("InsertWorkOrder", "WorkOrder", new { typeRequest = 1 })'" class="box-project">
+            <i class="fa fa-wrench"></i>
+            <span>Web Development</span>
+        </button>
+    </div>
 
-<button type="button" onclick="location.href = '@Url.Action("InsertWorkOrder", "WorkOrder", new { typeRequest = 1 })'" class="btn btn-default">New Web Development</button>
-<button type="button" onclick="location.href = '@Url.Action("InsertWorkOrder", "WorkOrder", new { typeRequest = 3 })'" class="btn btn-default">New Banners</button>
-<button type="button" onclick="location.href = '@Url.Action("InsertWorkOrder", "WorkOrder", new { typeRequest = 2 })'" class="btn btn-default">New Print</button>
 
+    <div class="col-sm-4">
+        <button type="button" onclick="location.href = '@Url.Action("InsertWorkOrder", "WorkOrder", new { typeRequest = 3 })'" class="box-project">
+            <i class="fa fa-file-image-o"></i>
+            <span>Banners</span>
+        </button>
+    </div>
+
+    <div class="col-sm-4">
+        <button type="button" onclick="location.href = '@Url.Action("InsertWorkOrder", "WorkOrder", new { typeRequest = 2 })'" class="box-project">
+            <i class="fa fa-pencil"></i>
+            <span>Print</span>
+        </button>
+    </div>
+</div> 
+
+<h4><i class="fa fa-briefcase"></i> Projects</h4>
 @Html.Partial("GridView")

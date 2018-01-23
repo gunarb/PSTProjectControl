@@ -1,0 +1,9 @@
+﻿@model ProjectControlPST.Models.vw_assets_project
+
+<div class="form-check">
+    <label class="form-check-label">
+        @Html.HiddenFor(m=>m.assetProjectId)
+        @Html.CheckBoxFor(m => m.value, new { @disabled = "disabled" })
+        @Html.LabelFor(m=>m.asset, Model.asset)
+    </label>
+</div>

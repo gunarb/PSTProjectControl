@@ -17,7 +17,7 @@ namespace ProjectControlPST.Models
         public int uniqueId { get; set; }
         public Nullable<int> idProjectDescription { get; set; }
         public Nullable<int> idAssetsList { get; set; }
-        public string value { get; set; }
+        public Nullable<bool> value { get; set; }
     
         public virtual AssetsList AssetsList { get; set; }
         public virtual ProjectDescription ProjectDescription { get; set; }

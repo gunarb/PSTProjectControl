@@ -12,7 +12,15 @@
           <Property Name="uniqueId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="idProjectDescription" Type="int" />
           <Property Name="idAssetsList" Type="int" />
-          <Property Name="value" Type="varchar" MaxLength="50" />
+          <Property Name="value" Type="bit" />
+        </EntityType>
+        <EntityType Name="AssetsForRequest">
+          <Key>
+            <PropertyRef Name="uniqueId" />
+          </Key>
+          <Property Name="uniqueId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idAssetsList" Type="int" />
+          <Property Name="idTypeRequest" Type="int" />
         </EntityType>
         <EntityType Name="AssetsList">
           <Key>
@@ -63,10 +71,10 @@
             <PropertyRef Name="uniqueId" />
           </Key>
           <Property Name="uniqueId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="url" Type="varchar(max)" Nullable="false" />
           <Property Name="userName" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="password" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="idProjectDescription" Type="int" Nullable="false" />
-          <Property Name="url" Type="varchar(max)" Nullable="false" />
         </EntityType>
         <EntityType Name="TypeRequest">
           <Key>
@@ -83,6 +91,7 @@
           <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="userName" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="password" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="email" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="permissionAccess" Type="varchar" MaxLength="25" />
           <Property Name="idWorkOrder" Type="int" />
         </EntityType>
@@ -100,10 +109,24 @@
           <Property Name="agencyAccountDirector" Type="varchar" MaxLength="50" />
           <Property Name="brandManager" Type="varchar" MaxLength="50" />
           <Property Name="prodigiousPM" Type="varchar" MaxLength="50" />
+          <Property Name="secureCode" Type="varchar" MaxLength="25" Nullable="false" />
           <Property Name="jiraParentUrl" Type="varchar" MaxLength="50" />
           <Property Name="idProjectStatus" Type="int" Nullable="false" />
           <Property Name="idProjectDescription" Type="int" />
-          <Property Name="secureCode" Type="varchar" MaxLength="25" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'PSTProjectControl.dbo.vw_assets_project' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vw_assets_project">
+          <Key>
+            <PropertyRef Name="assetProjectId" />
+            <PropertyRef Name="assetListId" />
+            <PropertyRef Name="asset" />
+          </Key>
+          <Property Name="assetProjectId" Type="int" Nullable="false" />
+          <Property Name="assetListId" Type="int" Nullable="false" />
+          <Property Name="asset" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="value" Type="bit" />
+          <Property Name="idProjectDescription" Type="int" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'PSTProjectControl.dbo.vw_workOrder_description' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -111,8 +134,8 @@ warning 6002: The table/view 'PSTProjectControl.dbo.vw_workOrder_description' do
           <Key>
             <PropertyRef Name="uniqueId" />
             <PropertyRef Name="idTypeRequest" />
-            <PropertyRef Name="idProjectStatus" />
             <PropertyRef Name="secureCode" />
+            <PropertyRef Name="idProjectStatus" />
             <PropertyRef Name="request" />
           </Key>
           <Property Name="uniqueId" Type="int" Nullable="false" />
@@ -125,10 +148,10 @@ warning 6002: The table/view 'PSTProjectControl.dbo.vw_workOrder_description' do
           <Property Name="agencyAccountDirector" Type="varchar" MaxLength="50" />
           <Property Name="brandManager" Type="varchar" MaxLength="50" />
           <Property Name="prodigiousPM" Type="varchar" MaxLength="50" />
+          <Property Name="secureCode" Type="varchar" MaxLength="25" Nullable="false" />
           <Property Name="jiraParentUrl" Type="varchar" MaxLength="50" />
           <Property Name="idProjectStatus" Type="int" Nullable="false" />
           <Property Name="idProjectDescription" Type="int" />
-          <Property Name="secureCode" Type="varchar" MaxLength="25" Nullable="false" />
           <Property Name="request" Type="varchar" MaxLength="30" Nullable="false" />
           <Property Name="status" Type="varchar" MaxLength="30" />
           <Property Name="projectDescription" Type="varchar(max)" />
@@ -160,6 +183,30 @@ warning 6002: The table/view 'PSTProjectControl.dbo.vw_workOrder_description' do
             </Principal>
             <Dependent Role="AssetProject">
               <PropertyRef Name="idProjectDescription" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AssetsForRequest_AssetsList">
+          <End Role="AssetsList" Type="Self.AssetsList" Multiplicity="0..1" />
+          <End Role="AssetsForRequest" Type="Self.AssetsForRequest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AssetsList">
+              <PropertyRef Name="uniqueId" />
+            </Principal>
+            <Dependent Role="AssetsForRequest">
+              <PropertyRef Name="idAssetsList" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AssetsForRequest_TypeRequest">
+          <End Role="TypeRequest" Type="Self.TypeRequest" Multiplicity="0..1" />
+          <End Role="AssetsForRequest" Type="Self.AssetsForRequest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TypeRequest">
+              <PropertyRef Name="uniqueId" />
+            </Principal>
+            <Dependent Role="AssetsForRequest">
+              <PropertyRef Name="idTypeRequest" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -261,6 +308,7 @@ warning 6002: The table/view 'PSTProjectControl.dbo.vw_workOrder_description' do
         </Association>
         <EntityContainer Name="PSTProjectControlModelStoreContainer">
           <EntitySet Name="AssetProject" EntityType="Self.AssetProject" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AssetsForRequest" EntityType="Self.AssetsForRequest" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AssetsList" EntityType="Self.AssetsList" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Domains" EntityType="Self.Domains" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="EffectedURL" EntityType="Self.EffectedURL" Schema="dbo" store:Type="Tables" />
@@ -270,6 +318,15 @@ warning 6002: The table/view 'PSTProjectControl.dbo.vw_workOrder_description' do
           <EntitySet Name="TypeRequest" EntityType="Self.TypeRequest" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="WorkOrder" EntityType="Self.WorkOrder" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="vw_assets_project" EntityType="Self.vw_assets_project" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vw_assets_project].[assetProjectId] AS [assetProjectId], 
+    [vw_assets_project].[assetListId] AS [assetListId], 
+    [vw_assets_project].[asset] AS [asset], 
+    [vw_assets_project].[value] AS [value], 
+    [vw_assets_project].[idProjectDescription] AS [idProjectDescription]
+    FROM [dbo].[vw_assets_project] AS [vw_assets_project]</DefiningQuery>
+          </EntitySet>
           <EntitySet Name="vw_workOrder_description" EntityType="Self.vw_workOrder_description" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [vw_workOrder_description].[uniqueId] AS [uniqueId], 
@@ -282,10 +339,10 @@ warning 6002: The table/view 'PSTProjectControl.dbo.vw_workOrder_description' do
     [vw_workOrder_description].[agencyAccountDirector] AS [agencyAccountDirector], 
     [vw_workOrder_description].[brandManager] AS [brandManager], 
     [vw_workOrder_description].[prodigiousPM] AS [prodigiousPM], 
+    [vw_workOrder_description].[secureCode] AS [secureCode], 
     [vw_workOrder_description].[jiraParentUrl] AS [jiraParentUrl], 
     [vw_workOrder_description].[idProjectStatus] AS [idProjectStatus], 
     [vw_workOrder_description].[idProjectDescription] AS [idProjectDescription], 
-    [vw_workOrder_description].[secureCode] AS [secureCode], 
     [vw_workOrder_description].[request] AS [request], 
     [vw_workOrder_description].[status] AS [status], 
     [vw_workOrder_description].[projectDescription] AS [projectDescription], 
@@ -304,6 +361,14 @@ warning 6002: The table/view 'PSTProjectControl.dbo.vw_workOrder_description' do
           <AssociationSet Name="FK_AssetProject_ProjectDescription" Association="Self.FK_AssetProject_ProjectDescription">
             <End Role="ProjectDescription" EntitySet="ProjectDescription" />
             <End Role="AssetProject" EntitySet="AssetProject" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AssetsForRequest_AssetsList" Association="Self.FK_AssetsForRequest_AssetsList">
+            <End Role="AssetsList" EntitySet="AssetsList" />
+            <End Role="AssetsForRequest" EntitySet="AssetsForRequest" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AssetsForRequest_TypeRequest" Association="Self.FK_AssetsForRequest_TypeRequest">
+            <End Role="TypeRequest" EntitySet="TypeRequest" />
+            <End Role="AssetsForRequest" EntitySet="AssetsForRequest" />
           </AssociationSet>
           <AssociationSet Name="FK_Domains_ProjectDescription" Association="Self.FK_Domains_ProjectDescription">
             <End Role="ProjectDescription" EntitySet="ProjectDescription" />
@@ -349,9 +414,19 @@ warning 6002: The table/view 'PSTProjectControl.dbo.vw_workOrder_description' do
           <Property Name="uniqueId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="idProjectDescription" Type="Int32" />
           <Property Name="idAssetsList" Type="Int32" />
-          <Property Name="value" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="value" Type="Boolean" />
           <NavigationProperty Name="AssetsList" Relationship="Self.FK_AssetProject_AssetsList" FromRole="AssetProject" ToRole="AssetsList" />
           <NavigationProperty Name="ProjectDescription" Relationship="Self.FK_AssetProject_ProjectDescription" FromRole="AssetProject" ToRole="ProjectDescription" />
+        </EntityType>
+        <EntityType Name="AssetsForRequest">
+          <Key>
+            <PropertyRef Name="uniqueId" />
+          </Key>
+          <Property Name="uniqueId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idAssetsList" Type="Int32" />
+          <Property Name="idTypeRequest" Type="Int32" />
+          <NavigationProperty Name="AssetsList" Relationship="Self.FK_AssetsForRequest_AssetsList" FromRole="AssetsForRequest" ToRole="AssetsList" />
+          <NavigationProperty Name="TypeRequest" Relationship="Self.FK_AssetsForRequest_TypeRequest" FromRole="AssetsForRequest" ToRole="TypeRequest" />
         </EntityType>
         <EntityType Name="AssetsList">
           <Key>
@@ -360,6 +435,7 @@ warning 6002: The table/view 'PSTProjectControl.dbo.vw_workOrder_description' do
           <Property Name="uniqueId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="asset" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="AssetProjects" Relationship="Self.FK_AssetProject_AssetsList" FromRole="AssetsList" ToRole="AssetProject" />
+          <NavigationProperty Name="AssetsForRequests" Relationship="Self.FK_AssetsForRequest_AssetsList" FromRole="AssetsList" ToRole="AssetsForRequest" />
         </EntityType>
         <EntityType Name="Domain">
           <Key>
@@ -399,7 +475,7 @@ warning 6002: The table/view 'PSTProjectControl.dbo.vw_workOrder_description' do
           <NavigationProperty Name="ThirdPartyCredentials" Relationship="Self.FK_ThirdPartyCredentials_ProjectDescription" FromRole="ProjectDescription" ToRole="ThirdPartyCredentials" />
           <NavigationProperty Name="WorkOrders" Relationship="Self.FK_WorkOrder_ProjectDescription" FromRole="ProjectDescription" ToRole="WorkOrder" />
         </EntityType>
-        <EntityType Name="ProjectStatus">
+        <EntityType Name="ProjectStatu">
           <Key>
             <PropertyRef Name="uniqueId" />
           </Key>
@@ -412,11 +488,11 @@ warning 6002: The table/view 'PSTProjectControl.dbo.vw_workOrder_description' do
             <PropertyRef Name="uniqueId" />
           </Key>
           <Property Name="uniqueId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="url" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="userName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="idProjectDescription" Type="Int32" Nullable="false" />
           <NavigationProperty Name="ProjectDescription" Relationship="Self.FK_ThirdPartyCredentials_ProjectDescription" FromRole="ThirdPartyCredentials" ToRole="ProjectDescription" />
-          <Property Name="url" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="TypeRequest">
           <Key>
@@ -424,6 +500,7 @@ warning 6002: The table/view 'PSTProjectControl.dbo.vw_workOrder_description' do
           </Key>
           <Property Name="uniqueId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="request" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="AssetsForRequests" Relationship="Self.FK_AssetsForRequest_TypeRequest" FromRole="TypeRequest" ToRole="AssetsForRequest" />
           <NavigationProperty Name="WorkOrders" Relationship="Self.FK_WorkOrder_TypeRequest" FromRole="TypeRequest" ToRole="WorkOrder" />
         </EntityType>
         <EntityType Name="User">
@@ -434,6 +511,7 @@ warning 6002: The table/view 'PSTProjectControl.dbo.vw_workOrder_description' do
           <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="userName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="permissionAccess" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
           <Property Name="idWorkOrder" Type="Int32" />
           <NavigationProperty Name="WorkOrder" Relationship="Self.FK_Users_WorkOrder" FromRole="Users" ToRole="WorkOrder" />
@@ -452,6 +530,7 @@ warning 6002: The table/view 'PSTProjectControl.dbo.vw_workOrder_description' do
           <Property Name="agencyAccountDirector" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="brandManager" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="prodigiousPM" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="secureCode" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="jiraParentUrl" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="idProjectStatus" Type="Int32" Nullable="false" />
           <Property Name="idProjectDescription" Type="Int32" />
@@ -460,7 +539,38 @@ warning 6002: The table/view 'PSTProjectControl.dbo.vw_workOrder_description' do
           <NavigationProperty Name="ProjectStatu" Relationship="Self.FK_WorkOrder_ProjectStatus" FromRole="WorkOrder" ToRole="ProjectStatus" />
           <NavigationProperty Name="TypeRequest" Relationship="Self.FK_WorkOrder_TypeRequest" FromRole="WorkOrder" ToRole="TypeRequest" />
           <NavigationProperty Name="Users" Relationship="Self.FK_Users_WorkOrder" FromRole="WorkOrder" ToRole="Users" />
-          <Property Name="secureCode" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="vw_workOrder_description">
+          <Key>
+            <PropertyRef Name="uniqueId" />
+            <PropertyRef Name="idTypeRequest" />
+            <PropertyRef Name="secureCode" />
+            <PropertyRef Name="idProjectStatus" />
+            <PropertyRef Name="request" />
+          </Key>
+          <Property Name="uniqueId" Type="Int32" Nullable="false" />
+          <Property Name="author" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="date" Type="DateTime" Precision="0" />
+          <Property Name="idTypeRequest" Type="Int32" Nullable="false" />
+          <Property Name="projectName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="referencePreviousJob" Type="Int32" />
+          <Property Name="agencyPM" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="agencyAccountDirector" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="brandManager" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="prodigiousPM" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="secureCode" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="jiraParentUrl" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="idProjectStatus" Type="Int32" Nullable="false" />
+          <Property Name="idProjectDescription" Type="Int32" />
+          <Property Name="request" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="status" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="projectDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="kickOffDate" Type="DateTime" Precision="0" />
+          <Property Name="liveDate" Type="DateTime" Precision="0" />
+          <Property Name="targetDevice" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="platform" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="seoAnalytics" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="additionalComments" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
         <Association Name="FK_AssetProject_AssetsList">
           <End Role="AssetsList" Type="Self.AssetsList" Multiplicity="0..1" />
@@ -483,6 +593,30 @@ warning 6002: The table/view 'PSTProjectControl.dbo.vw_workOrder_description' do
             </Principal>
             <Dependent Role="AssetProject">
               <PropertyRef Name="idProjectDescription" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AssetsForRequest_AssetsList">
+          <End Role="AssetsList" Type="Self.AssetsList" Multiplicity="0..1" />
+          <End Role="AssetsForRequest" Type="Self.AssetsForRequest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AssetsList">
+              <PropertyRef Name="uniqueId" />
+            </Principal>
+            <Dependent Role="AssetsForRequest">
+              <PropertyRef Name="idAssetsList" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AssetsForRequest_TypeRequest">
+          <End Role="TypeRequest" Type="Self.TypeRequest" Multiplicity="0..1" />
+          <End Role="AssetsForRequest" Type="Self.AssetsForRequest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TypeRequest">
+              <PropertyRef Name="uniqueId" />
+            </Principal>
+            <Dependent Role="AssetsForRequest">
+              <PropertyRef Name="idTypeRequest" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -547,7 +681,7 @@ warning 6002: The table/view 'PSTProjectControl.dbo.vw_workOrder_description' do
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_WorkOrder_ProjectStatus">
-          <End Role="ProjectStatus" Type="PSTProjectControlModel.ProjectStatus" Multiplicity="1" />
+          <End Role="ProjectStatus" Type="Self.ProjectStatu" Multiplicity="1" />
           <End Role="WorkOrder" Type="Self.WorkOrder" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="ProjectStatus">
@@ -584,15 +718,17 @@ warning 6002: The table/view 'PSTProjectControl.dbo.vw_workOrder_description' do
         </Association>
         <EntityContainer Name="PSTProjectControlEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="AssetProjects" EntityType="Self.AssetProject" />
+          <EntitySet Name="AssetsForRequests" EntityType="Self.AssetsForRequest" />
           <EntitySet Name="AssetsLists" EntityType="Self.AssetsList" />
           <EntitySet Name="Domains" EntityType="Self.Domain" />
           <EntitySet Name="EffectedURLs" EntityType="Self.EffectedURL" />
           <EntitySet Name="ProjectDescriptions" EntityType="Self.ProjectDescription" />
-          <EntitySet Name="ProjectStatus1" EntityType="PSTProjectControlModel.ProjectStatus" />
+          <EntitySet Name="ProjectStatus" EntityType="Self.ProjectStatu" />
           <EntitySet Name="ThirdPartyCredentials" EntityType="Self.ThirdPartyCredential" />
           <EntitySet Name="TypeRequests" EntityType="Self.TypeRequest" />
           <EntitySet Name="Users" EntityType="Self.User" />
           <EntitySet Name="WorkOrders" EntityType="Self.WorkOrder" />
+          <EntitySet Name="vw_workOrder_description" EntityType="Self.vw_workOrder_description" />
           <AssociationSet Name="FK_AssetProject_AssetsList" Association="Self.FK_AssetProject_AssetsList">
             <End Role="AssetsList" EntitySet="AssetsLists" />
             <End Role="AssetProject" EntitySet="AssetProjects" />
@@ -600,6 +736,14 @@ warning 6002: The table/view 'PSTProjectControl.dbo.vw_workOrder_description' do
           <AssociationSet Name="FK_AssetProject_ProjectDescription" Association="Self.FK_AssetProject_ProjectDescription">
             <End Role="ProjectDescription" EntitySet="ProjectDescriptions" />
             <End Role="AssetProject" EntitySet="AssetProjects" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AssetsForRequest_AssetsList" Association="Self.FK_AssetsForRequest_AssetsList">
+            <End Role="AssetsList" EntitySet="AssetsLists" />
+            <End Role="AssetsForRequest" EntitySet="AssetsForRequests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AssetsForRequest_TypeRequest" Association="Self.FK_AssetsForRequest_TypeRequest">
+            <End Role="TypeRequest" EntitySet="TypeRequests" />
+            <End Role="AssetsForRequest" EntitySet="AssetsForRequests" />
           </AssociationSet>
           <AssociationSet Name="FK_Domains_ProjectDescription" Association="Self.FK_Domains_ProjectDescription">
             <End Role="ProjectDescription" EntitySet="ProjectDescriptions" />
@@ -622,7 +766,7 @@ warning 6002: The table/view 'PSTProjectControl.dbo.vw_workOrder_description' do
             <End Role="WorkOrder" EntitySet="WorkOrders" />
           </AssociationSet>
           <AssociationSet Name="FK_WorkOrder_ProjectStatus" Association="Self.FK_WorkOrder_ProjectStatus">
-            <End Role="ProjectStatus" EntitySet="ProjectStatus1" />
+            <End Role="ProjectStatus" EntitySet="ProjectStatus" />
             <End Role="WorkOrder" EntitySet="WorkOrders" />
           </AssociationSet>
           <AssociationSet Name="FK_WorkOrder_TypeRequest" Association="Self.FK_WorkOrder_TypeRequest">
@@ -633,39 +777,19 @@ warning 6002: The table/view 'PSTProjectControl.dbo.vw_workOrder_description' do
             <End Role="WorkOrder" EntitySet="WorkOrders" />
             <End Role="Users" EntitySet="Users" />
           </AssociationSet>
-          <EntitySet Name="vw_workOrder_description" EntityType="PSTProjectControlModel.vw_workOrder_description" />
+          <EntitySet Name="vw_assets_project" EntityType="PSTProjectControlModel.vw_assets_project" />
         </EntityContainer>
-        <EntityType Name="vw_workOrder_description">
+        <EntityType Name="vw_assets_project">
           <Key>
-            <PropertyRef Name="uniqueId" />
-            <PropertyRef Name="idTypeRequest" />
-            <PropertyRef Name="idProjectStatus" />
-            <PropertyRef Name="secureCode" />
-            <PropertyRef Name="request" />
+            <PropertyRef Name="assetProjectId" />
+            <PropertyRef Name="assetListId" />
+            <PropertyRef Name="asset" />
           </Key>
-          <Property Name="uniqueId" Type="Int32" Nullable="false" />
-          <Property Name="author" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="date" Type="DateTime" Precision="0" />
-          <Property Name="idTypeRequest" Type="Int32" Nullable="false" />
-          <Property Name="projectName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="referencePreviousJob" Type="Int32" />
-          <Property Name="agencyPM" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="agencyAccountDirector" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="brandManager" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="prodigiousPM" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="jiraParentUrl" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="idProjectStatus" Type="Int32" Nullable="false" />
+          <Property Name="assetProjectId" Type="Int32" Nullable="false" />
+          <Property Name="assetListId" Type="Int32" Nullable="false" />
+          <Property Name="asset" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="value" Type="Boolean" />
           <Property Name="idProjectDescription" Type="Int32" />
-          <Property Name="secureCode" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
-          <Property Name="request" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
-          <Property Name="status" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
-          <Property Name="projectDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="kickOffDate" Type="DateTime" Precision="0" />
-          <Property Name="liveDate" Type="DateTime" Precision="0" />
-          <Property Name="targetDevice" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="platform" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="seoAnalytics" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="additionalComments" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -680,6 +804,15 @@ warning 6002: The table/view 'PSTProjectControl.dbo.vw_workOrder_description' do
                 <ScalarProperty Name="idProjectDescription" ColumnName="idProjectDescription" />
                 <ScalarProperty Name="idAssetsList" ColumnName="idAssetsList" />
                 <ScalarProperty Name="value" ColumnName="value" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AssetsForRequests">
+            <EntityTypeMapping TypeName="PSTProjectControlModel.AssetsForRequest">
+              <MappingFragment StoreEntitySet="AssetsForRequest">
+                <ScalarProperty Name="uniqueId" ColumnName="uniqueId" />
+                <ScalarProperty Name="idAssetsList" ColumnName="idAssetsList" />
+                <ScalarProperty Name="idTypeRequest" ColumnName="idTypeRequest" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -724,8 +857,8 @@ warning 6002: The table/view 'PSTProjectControl.dbo.vw_workOrder_description' do
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="ProjectStatus1">
-            <EntityTypeMapping TypeName="PSTProjectControlModel.ProjectStatus">
+          <EntitySetMapping Name="ProjectStatus">
+            <EntityTypeMapping TypeName="PSTProjectControlModel.ProjectStatu">
               <MappingFragment StoreEntitySet="ProjectStatus">
                 <ScalarProperty Name="uniqueId" ColumnName="uniqueId" />
                 <ScalarProperty Name="status" ColumnName="status" />
@@ -735,8 +868,8 @@ warning 6002: The table/view 'PSTProjectControl.dbo.vw_workOrder_description' do
           <EntitySetMapping Name="ThirdPartyCredentials">
             <EntityTypeMapping TypeName="PSTProjectControlModel.ThirdPartyCredential">
               <MappingFragment StoreEntitySet="ThirdPartyCredentials">
-                <ScalarProperty Name="url" ColumnName="url" />
                 <ScalarProperty Name="uniqueId" ColumnName="uniqueId" />
+                <ScalarProperty Name="url" ColumnName="url" />
                 <ScalarProperty Name="userName" ColumnName="userName" />
                 <ScalarProperty Name="password" ColumnName="password" />
                 <ScalarProperty Name="idProjectDescription" ColumnName="idProjectDescription" />
@@ -758,6 +891,7 @@ warning 6002: The table/view 'PSTProjectControl.dbo.vw_workOrder_description' do
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="userName" ColumnName="userName" />
                 <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="email" ColumnName="email" />
                 <ScalarProperty Name="permissionAccess" ColumnName="permissionAccess" />
                 <ScalarProperty Name="idWorkOrder" ColumnName="idWorkOrder" />
               </MappingFragment>
@@ -766,7 +900,6 @@ warning 6002: The table/view 'PSTProjectControl.dbo.vw_workOrder_description' do
           <EntitySetMapping Name="WorkOrders">
             <EntityTypeMapping TypeName="PSTProjectControlModel.WorkOrder">
               <MappingFragment StoreEntitySet="WorkOrder">
-                <ScalarProperty Name="secureCode" ColumnName="secureCode" />
                 <ScalarProperty Name="uniqueId" ColumnName="uniqueId" />
                 <ScalarProperty Name="author" ColumnName="author" />
                 <ScalarProperty Name="date" ColumnName="date" />
@@ -777,6 +910,7 @@ warning 6002: The table/view 'PSTProjectControl.dbo.vw_workOrder_description' do
                 <ScalarProperty Name="agencyAccountDirector" ColumnName="agencyAccountDirector" />
                 <ScalarProperty Name="brandManager" ColumnName="brandManager" />
                 <ScalarProperty Name="prodigiousPM" ColumnName="prodigiousPM" />
+                <ScalarProperty Name="secureCode" ColumnName="secureCode" />
                 <ScalarProperty Name="jiraParentUrl" ColumnName="jiraParentUrl" />
                 <ScalarProperty Name="idProjectStatus" ColumnName="idProjectStatus" />
                 <ScalarProperty Name="idProjectDescription" ColumnName="idProjectDescription" />
@@ -786,29 +920,40 @@ warning 6002: The table/view 'PSTProjectControl.dbo.vw_workOrder_description' do
           <EntitySetMapping Name="vw_workOrder_description">
             <EntityTypeMapping TypeName="PSTProjectControlModel.vw_workOrder_description">
               <MappingFragment StoreEntitySet="vw_workOrder_description">
-                <ScalarProperty Name="additionalComments" ColumnName="additionalComments" />
-                <ScalarProperty Name="seoAnalytics" ColumnName="seoAnalytics" />
-                <ScalarProperty Name="platform" ColumnName="platform" />
-                <ScalarProperty Name="targetDevice" ColumnName="targetDevice" />
-                <ScalarProperty Name="liveDate" ColumnName="liveDate" />
-                <ScalarProperty Name="kickOffDate" ColumnName="kickOffDate" />
-                <ScalarProperty Name="projectDescription" ColumnName="projectDescription" />
-                <ScalarProperty Name="status" ColumnName="status" />
-                <ScalarProperty Name="request" ColumnName="request" />
-                <ScalarProperty Name="secureCode" ColumnName="secureCode" />
-                <ScalarProperty Name="idProjectDescription" ColumnName="idProjectDescription" />
-                <ScalarProperty Name="idProjectStatus" ColumnName="idProjectStatus" />
-                <ScalarProperty Name="jiraParentUrl" ColumnName="jiraParentUrl" />
-                <ScalarProperty Name="prodigiousPM" ColumnName="prodigiousPM" />
-                <ScalarProperty Name="brandManager" ColumnName="brandManager" />
-                <ScalarProperty Name="agencyAccountDirector" ColumnName="agencyAccountDirector" />
-                <ScalarProperty Name="agencyPM" ColumnName="agencyPM" />
-                <ScalarProperty Name="referencePreviousJob" ColumnName="referencePreviousJob" />
-                <ScalarProperty Name="projectName" ColumnName="projectName" />
-                <ScalarProperty Name="idTypeRequest" ColumnName="idTypeRequest" />
-                <ScalarProperty Name="date" ColumnName="date" />
-                <ScalarProperty Name="author" ColumnName="author" />
                 <ScalarProperty Name="uniqueId" ColumnName="uniqueId" />
+                <ScalarProperty Name="author" ColumnName="author" />
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="idTypeRequest" ColumnName="idTypeRequest" />
+                <ScalarProperty Name="projectName" ColumnName="projectName" />
+                <ScalarProperty Name="referencePreviousJob" ColumnName="referencePreviousJob" />
+                <ScalarProperty Name="agencyPM" ColumnName="agencyPM" />
+                <ScalarProperty Name="agencyAccountDirector" ColumnName="agencyAccountDirector" />
+                <ScalarProperty Name="brandManager" ColumnName="brandManager" />
+                <ScalarProperty Name="prodigiousPM" ColumnName="prodigiousPM" />
+                <ScalarProperty Name="secureCode" ColumnName="secureCode" />
+                <ScalarProperty Name="jiraParentUrl" ColumnName="jiraParentUrl" />
+                <ScalarProperty Name="idProjectStatus" ColumnName="idProjectStatus" />
+                <ScalarProperty Name="idProjectDescription" ColumnName="idProjectDescription" />
+                <ScalarProperty Name="request" ColumnName="request" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="projectDescription" ColumnName="projectDescription" />
+                <ScalarProperty Name="kickOffDate" ColumnName="kickOffDate" />
+                <ScalarProperty Name="liveDate" ColumnName="liveDate" />
+                <ScalarProperty Name="targetDevice" ColumnName="targetDevice" />
+                <ScalarProperty Name="platform" ColumnName="platform" />
+                <ScalarProperty Name="seoAnalytics" ColumnName="seoAnalytics" />
+                <ScalarProperty Name="additionalComments" ColumnName="additionalComments" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vw_assets_project">
+            <EntityTypeMapping TypeName="PSTProjectControlModel.vw_assets_project">
+              <MappingFragment StoreEntitySet="vw_assets_project">
+                <ScalarProperty Name="idProjectDescription" ColumnName="idProjectDescription" />
+                <ScalarProperty Name="value" ColumnName="value" />
+                <ScalarProperty Name="asset" ColumnName="asset" />
+                <ScalarProperty Name="assetListId" ColumnName="assetListId" />
+                <ScalarProperty Name="assetProjectId" ColumnName="assetProjectId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

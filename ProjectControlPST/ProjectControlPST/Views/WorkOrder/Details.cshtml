@@ -1,0 +1,33 @@
+﻿@model ProjectControlPST.Models.WorkOrderDetails
+
+@{
+    ViewBag.Title = "Details Work Order";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h4><i class="fa fa-wrench"></i>@Model.WorkOrderDescription.request</h4>
+<br />
+<div>
+    @switch (Model.WorkOrderDescription.idTypeRequest)
+    {
+        case 1:
+            Html.RenderPartial("Details/_WebDevelopment", Model);
+            break;
+        case 2:
+            Html.RenderPartial("Details/_Print", Model);
+            break;
+        case 3:
+            Html.RenderPartial("Details/_Banners", Model);
+            break;
+    }
+    <div class="invisible">
+        @Html.HiddenFor(m => m.WorkOrderDescription.uniqueId)
+        @Html.HiddenFor(m => m.WorkOrderDescription.idTypeRequest)
+        @Html.HiddenFor(m => m.WorkOrderDescription.secureCode)
+        @Html.HiddenFor(m => m.WorkOrderDescription.idProjectDescription)
+        @Html.HiddenFor(m => m.WorkOrderDescription.jiraParentUrl)
+        @Html.HiddenFor(m => m.WorkOrderDescription.idProjectStatus)
+        @Html.HiddenFor(m => m.WorkOrderDescription.targetDevice)
+    </div>
+    <button type="button" class="btn btn-secondary">Export to PDF</button>
+</div>

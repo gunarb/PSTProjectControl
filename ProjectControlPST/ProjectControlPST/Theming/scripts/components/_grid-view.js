@@ -18,12 +18,11 @@ app.controller('GridCtrl', function ($scope, $http, projectControlService) {
                 $scope.gridApi.grid.registerRowsProcessor($scope.searchFilter, 10000);
             },
             columnDefs: [
-                { field: 'projectName', name: 'Project' },
+                { field: 'projectName', name: 'Project', cellTemplate: '<div class="ui-grid-cell-contents"><a href="/workorder/detail/{{ row.entity.uniqueId }}/{{ row.entity.secureCode }}">{{ COL_FIELD }}</a></div>' },
                 { field: 'idTypeRequest', name: 'Request Type', cellFilter: 'getTypeRequest:grid.appScope.typeRequest' },
                 { field: 'date' },
                 { field: 'prodigiousPM', name: 'Prodigious PM' },
-                { field: 'idProjectStatus', name: 'Status', cellFilter: 'getStatusType:grid.appScope.projectStatus' },
-                { field: 'idProjectDescription', name: 'Description' }
+                { field: 'idProjectStatus', name: 'Status', cellFilter: 'getStatusType:grid.appScope.projectStatus' }
             ]
         };
         //**** get and map id and request type from TypeRequest Table data ****

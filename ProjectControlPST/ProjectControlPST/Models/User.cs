@@ -18,6 +18,7 @@ namespace ProjectControlPST.Models
         public string name { get; set; }
         public string userName { get; set; }
         public string password { get; set; }
+        public string email { get; set; }
         public string permissionAccess { get; set; }
         public Nullable<int> idWorkOrder { get; set; }
     
