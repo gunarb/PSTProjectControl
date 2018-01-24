@@ -11,7 +11,7 @@ namespace ProjectControlPST.Controllers
         // GET: Home
         public ActionResult Index()
         {
-            return View();
+            return Session["UserID"] != null ? (ActionResult) View() : RedirectToAction("Index", "Login");
         }
     }
 }

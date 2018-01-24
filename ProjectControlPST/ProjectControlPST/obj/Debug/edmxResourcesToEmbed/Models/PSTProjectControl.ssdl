@@ -88,7 +88,6 @@
     <Property Name="password" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="email" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="permissionAccess" Type="varchar" MaxLength="25" />
-    <Property Name="idWorkOrder" Type="int" />
   </EntityType>
   <EntityType Name="WorkOrder">
     <Key>
@@ -253,18 +252,6 @@ warning 6002: The table/view 'PSTProjectControl.dbo.vw_workOrder_description' do
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Users_WorkOrder">
-    <End Role="WorkOrder" Type="Self.WorkOrder" Multiplicity="0..1" />
-    <End Role="Users" Type="Self.Users" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="WorkOrder">
-        <PropertyRef Name="uniqueId" />
-      </Principal>
-      <Dependent Role="Users">
-        <PropertyRef Name="idWorkOrder" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_WorkOrder_ProjectDescription">
     <End Role="ProjectDescription" Type="Self.ProjectDescription" Multiplicity="0..1" />
     <End Role="WorkOrder" Type="Self.WorkOrder" Multiplicity="*" />
@@ -380,10 +367,6 @@ warning 6002: The table/view 'PSTProjectControl.dbo.vw_workOrder_description' do
     <AssociationSet Name="FK_ThirdPartyCredentials_ProjectDescription" Association="Self.FK_ThirdPartyCredentials_ProjectDescription">
       <End Role="ProjectDescription" EntitySet="ProjectDescription" />
       <End Role="ThirdPartyCredentials" EntitySet="ThirdPartyCredentials" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Users_WorkOrder" Association="Self.FK_Users_WorkOrder">
-      <End Role="WorkOrder" EntitySet="WorkOrder" />
-      <End Role="Users" EntitySet="Users" />
     </AssociationSet>
     <AssociationSet Name="FK_WorkOrder_ProjectDescription" Association="Self.FK_WorkOrder_ProjectDescription">
       <End Role="ProjectDescription" EntitySet="ProjectDescription" />

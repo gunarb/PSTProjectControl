@@ -25,6 +25,10 @@ namespace ProjectControlPST.Repositories
                 }
             }
         }
+        public User GetUser(string logInUser)
+        {
+            return DbContext.Users.First(u => u.userName == logInUser);
+        }
         public List<WorkOrder> GetWorkOrders()
         {
             return DbContext.WorkOrders.ToList();

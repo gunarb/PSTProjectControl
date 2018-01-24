@@ -93,7 +93,6 @@
           <Property Name="password" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="email" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="permissionAccess" Type="varchar" MaxLength="25" />
-          <Property Name="idWorkOrder" Type="int" />
         </EntityType>
         <EntityType Name="WorkOrder">
           <Key>
@@ -258,18 +257,6 @@ warning 6002: The table/view 'PSTProjectControl.dbo.vw_workOrder_description' do
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Users_WorkOrder">
-          <End Role="WorkOrder" Type="Self.WorkOrder" Multiplicity="0..1" />
-          <End Role="Users" Type="Self.Users" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="WorkOrder">
-              <PropertyRef Name="uniqueId" />
-            </Principal>
-            <Dependent Role="Users">
-              <PropertyRef Name="idWorkOrder" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_WorkOrder_ProjectDescription">
           <End Role="ProjectDescription" Type="Self.ProjectDescription" Multiplicity="0..1" />
           <End Role="WorkOrder" Type="Self.WorkOrder" Multiplicity="*" />
@@ -386,10 +373,6 @@ warning 6002: The table/view 'PSTProjectControl.dbo.vw_workOrder_description' do
             <End Role="ProjectDescription" EntitySet="ProjectDescription" />
             <End Role="ThirdPartyCredentials" EntitySet="ThirdPartyCredentials" />
           </AssociationSet>
-          <AssociationSet Name="FK_Users_WorkOrder" Association="Self.FK_Users_WorkOrder">
-            <End Role="WorkOrder" EntitySet="WorkOrder" />
-            <End Role="Users" EntitySet="Users" />
-          </AssociationSet>
           <AssociationSet Name="FK_WorkOrder_ProjectDescription" Association="Self.FK_WorkOrder_ProjectDescription">
             <End Role="ProjectDescription" EntitySet="ProjectDescription" />
             <End Role="WorkOrder" EntitySet="WorkOrder" />
@@ -503,19 +486,6 @@ warning 6002: The table/view 'PSTProjectControl.dbo.vw_workOrder_description' do
           <NavigationProperty Name="AssetsForRequests" Relationship="Self.FK_AssetsForRequest_TypeRequest" FromRole="TypeRequest" ToRole="AssetsForRequest" />
           <NavigationProperty Name="WorkOrders" Relationship="Self.FK_WorkOrder_TypeRequest" FromRole="TypeRequest" ToRole="WorkOrder" />
         </EntityType>
-        <EntityType Name="User">
-          <Key>
-            <PropertyRef Name="uniqueId" />
-          </Key>
-          <Property Name="uniqueId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="userName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="permissionAccess" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
-          <Property Name="idWorkOrder" Type="Int32" />
-          <NavigationProperty Name="WorkOrder" Relationship="Self.FK_Users_WorkOrder" FromRole="Users" ToRole="WorkOrder" />
-        </EntityType>
         <EntityType Name="WorkOrder">
           <Key>
             <PropertyRef Name="uniqueId" />
@@ -538,7 +508,6 @@ warning 6002: The table/view 'PSTProjectControl.dbo.vw_workOrder_description' do
           <NavigationProperty Name="ProjectDescription" Relationship="Self.FK_WorkOrder_ProjectDescription" FromRole="WorkOrder" ToRole="ProjectDescription" />
           <NavigationProperty Name="ProjectStatu" Relationship="Self.FK_WorkOrder_ProjectStatus" FromRole="WorkOrder" ToRole="ProjectStatus" />
           <NavigationProperty Name="TypeRequest" Relationship="Self.FK_WorkOrder_TypeRequest" FromRole="WorkOrder" ToRole="TypeRequest" />
-          <NavigationProperty Name="Users" Relationship="Self.FK_Users_WorkOrder" FromRole="WorkOrder" ToRole="Users" />
         </EntityType>
         <EntityType Name="vw_workOrder_description">
           <Key>
@@ -704,18 +673,6 @@ warning 6002: The table/view 'PSTProjectControl.dbo.vw_workOrder_description' do
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Users_WorkOrder">
-          <End Role="WorkOrder" Type="Self.WorkOrder" Multiplicity="0..1" />
-          <End Role="Users" Type="Self.User" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="WorkOrder">
-              <PropertyRef Name="uniqueId" />
-            </Principal>
-            <Dependent Role="Users">
-              <PropertyRef Name="idWorkOrder" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="PSTProjectControlEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="AssetProjects" EntityType="Self.AssetProject" />
           <EntitySet Name="AssetsForRequests" EntityType="Self.AssetsForRequest" />
@@ -726,7 +683,6 @@ warning 6002: The table/view 'PSTProjectControl.dbo.vw_workOrder_description' do
           <EntitySet Name="ProjectStatus" EntityType="Self.ProjectStatu" />
           <EntitySet Name="ThirdPartyCredentials" EntityType="Self.ThirdPartyCredential" />
           <EntitySet Name="TypeRequests" EntityType="Self.TypeRequest" />
-          <EntitySet Name="Users" EntityType="Self.User" />
           <EntitySet Name="WorkOrders" EntityType="Self.WorkOrder" />
           <EntitySet Name="vw_workOrder_description" EntityType="Self.vw_workOrder_description" />
           <AssociationSet Name="FK_AssetProject_AssetsList" Association="Self.FK_AssetProject_AssetsList">
@@ -773,11 +729,8 @@ warning 6002: The table/view 'PSTProjectControl.dbo.vw_workOrder_description' do
             <End Role="TypeRequest" EntitySet="TypeRequests" />
             <End Role="WorkOrder" EntitySet="WorkOrders" />
           </AssociationSet>
-          <AssociationSet Name="FK_Users_WorkOrder" Association="Self.FK_Users_WorkOrder">
-            <End Role="WorkOrder" EntitySet="WorkOrders" />
-            <End Role="Users" EntitySet="Users" />
-          </AssociationSet>
           <EntitySet Name="vw_assets_project" EntityType="PSTProjectControlModel.vw_assets_project" />
+          <EntitySet Name="Users" EntityType="PSTProjectControlModel.User" />
         </EntityContainer>
         <EntityType Name="vw_assets_project">
           <Key>
@@ -790,6 +743,17 @@ warning 6002: The table/view 'PSTProjectControl.dbo.vw_workOrder_description' do
           <Property Name="asset" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="value" Type="Boolean" />
           <Property Name="idProjectDescription" Type="Int32" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="uniqueId" />
+          </Key>
+          <Property Name="uniqueId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="userName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="permissionAccess" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -884,19 +848,6 @@ warning 6002: The table/view 'PSTProjectControl.dbo.vw_workOrder_description' do
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Users">
-            <EntityTypeMapping TypeName="PSTProjectControlModel.User">
-              <MappingFragment StoreEntitySet="Users">
-                <ScalarProperty Name="uniqueId" ColumnName="uniqueId" />
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="userName" ColumnName="userName" />
-                <ScalarProperty Name="password" ColumnName="password" />
-                <ScalarProperty Name="email" ColumnName="email" />
-                <ScalarProperty Name="permissionAccess" ColumnName="permissionAccess" />
-                <ScalarProperty Name="idWorkOrder" ColumnName="idWorkOrder" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="WorkOrders">
             <EntityTypeMapping TypeName="PSTProjectControlModel.WorkOrder">
               <MappingFragment StoreEntitySet="WorkOrder">
@@ -954,6 +905,18 @@ warning 6002: The table/view 'PSTProjectControl.dbo.vw_workOrder_description' do
                 <ScalarProperty Name="asset" ColumnName="asset" />
                 <ScalarProperty Name="assetListId" ColumnName="assetListId" />
                 <ScalarProperty Name="assetProjectId" ColumnName="assetProjectId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="PSTProjectControlModel.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="permissionAccess" ColumnName="permissionAccess" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="userName" ColumnName="userName" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="uniqueId" ColumnName="uniqueId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

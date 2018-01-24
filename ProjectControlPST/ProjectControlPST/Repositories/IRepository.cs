@@ -5,6 +5,7 @@ namespace ProjectControlPST.Repositories
 {
     public interface IRepository
     {
+        User GetUser(string logInUser);
         List<WorkOrder> GetWorkOrders();
         List<TypeRequest> GetTypeRequest();
         List<ProjectStatu> GetProjectStatus();

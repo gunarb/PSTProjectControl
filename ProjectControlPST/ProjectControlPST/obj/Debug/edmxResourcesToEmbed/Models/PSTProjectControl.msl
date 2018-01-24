@@ -88,19 +88,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Users">
-      <EntityTypeMapping TypeName="PSTProjectControlModel.User">
-        <MappingFragment StoreEntitySet="Users">
-          <ScalarProperty Name="uniqueId" ColumnName="uniqueId" />
-          <ScalarProperty Name="name" ColumnName="name" />
-          <ScalarProperty Name="userName" ColumnName="userName" />
-          <ScalarProperty Name="password" ColumnName="password" />
-          <ScalarProperty Name="email" ColumnName="email" />
-          <ScalarProperty Name="permissionAccess" ColumnName="permissionAccess" />
-          <ScalarProperty Name="idWorkOrder" ColumnName="idWorkOrder" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="WorkOrders">
       <EntityTypeMapping TypeName="PSTProjectControlModel.WorkOrder">
         <MappingFragment StoreEntitySet="WorkOrder">
@@ -158,6 +145,18 @@
           <ScalarProperty Name="asset" ColumnName="asset" />
           <ScalarProperty Name="assetListId" ColumnName="assetListId" />
           <ScalarProperty Name="assetProjectId" ColumnName="assetProjectId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="PSTProjectControlModel.User">
+        <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="permissionAccess" ColumnName="permissionAccess" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="userName" ColumnName="userName" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="uniqueId" ColumnName="uniqueId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

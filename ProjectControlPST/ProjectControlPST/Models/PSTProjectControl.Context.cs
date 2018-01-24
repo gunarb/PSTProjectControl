@@ -34,9 +34,9 @@ namespace ProjectControlPST.Models
         public virtual DbSet<ProjectStatu> ProjectStatus { get; set; }
         public virtual DbSet<ThirdPartyCredential> ThirdPartyCredentials { get; set; }
         public virtual DbSet<TypeRequest> TypeRequests { get; set; }
-        public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<WorkOrder> WorkOrders { get; set; }
         public virtual DbSet<vw_workOrder_description> vw_workOrder_description { get; set; }
         public virtual DbSet<vw_assets_project> vw_assets_project { get; set; }
+        public virtual DbSet<User> Users { get; set; }
     }
 }

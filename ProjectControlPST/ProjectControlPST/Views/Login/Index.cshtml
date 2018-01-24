@@ -1,8 +1,32 @@
-﻿@{
-    ViewBag.Title = "Index";
+﻿@model ProjectControlPST.Models.User
+
+@{
+    ViewBag.Title = "Log In";
+    Layout = "~/Views/Shared/_LayoutLogin.cshtml";
 }
 
-<label for="user">User</label>
-<input id="user" type="text" />
-<label for="password">Password</label>
-<input id="password" type="password" />
+@using (Html.BeginForm("LogIn", "Login", FormMethod.Post))
+{
+    <fieldset>
+        <legend>Log In</legend>
+        @Html.AntiForgeryToken()
+        <table>
+            <tr>
+                <td><label class="control-label">User</label></td>
+                <td>@Html.TextBoxFor(m => m.userName)</td>
+            </tr>
+            <tr>
+                <td><label class="control-label">Password</label></td>
+                <td>@Html.PasswordFor(m => m.password)</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <button type="submit" class="btn btn-primary">
+                        <span class="glyphicon glyphicon-log-in"></span> Log in
+                    </button>
+                </td>
+            </tr>
+        </table>
+    </fieldset>
+}

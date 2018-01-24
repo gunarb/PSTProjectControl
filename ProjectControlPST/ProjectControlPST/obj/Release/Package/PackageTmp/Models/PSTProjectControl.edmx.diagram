@@ -14,7 +14,6 @@
         <EntityTypeShape EntityType="PSTProjectControlModel.ProjectStatu" Width="1.5" PointX="3.75" PointY="6" IsExpanded="true" />
         <EntityTypeShape EntityType="PSTProjectControlModel.ThirdPartyCredential" Width="1.5" PointX="10.5" PointY="12.5" IsExpanded="true" />
         <EntityTypeShape EntityType="PSTProjectControlModel.TypeRequest" Width="1.5" PointX="0.75" PointY="8.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="PSTProjectControlModel.User" Width="1.5" PointX="8.25" PointY="12.5" IsExpanded="true" />
         <EntityTypeShape EntityType="PSTProjectControlModel.WorkOrder" Width="1.5" PointX="6" PointY="7.375" IsExpanded="true" />
         <EntityTypeShape EntityType="PSTProjectControlModel.vw_workOrder_description" Width="1.5" PointX="0.75" PointY="11.75" IsExpanded="true" />
         <AssociationConnector Association="PSTProjectControlModel.FK_AssetProject_AssetsList" ManuallyRouted="false" />
@@ -28,8 +27,8 @@
         <AssociationConnector Association="PSTProjectControlModel.FK_WorkOrder_ProjectDescription" ManuallyRouted="false" />
         <AssociationConnector Association="PSTProjectControlModel.FK_WorkOrder_ProjectStatus" ManuallyRouted="false" />
         <AssociationConnector Association="PSTProjectControlModel.FK_WorkOrder_TypeRequest" ManuallyRouted="false" />
-        <AssociationConnector Association="PSTProjectControlModel.FK_Users_WorkOrder" ManuallyRouted="false" />
         <EntityTypeShape EntityType="PSTProjectControlModel.vw_assets_project" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="PSTProjectControlModel.User" Width="1.5" PointX="3.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -98,13 +98,10 @@ CREATE TABLE AssetProject (
 CREATE TABLE Users (
 	uniqueId int NOT NULL IDENTITY PRIMARY KEY,
 	name varchar(50) NOT NULL,
-    userName varchar(50) NOT NULL,
+    userName varchar(50) NOT NULL UNIQUE,
     password varchar(50) NOT NULL,
-	email varchar(50) NOT NULL,
-    permissionAccess varchar(25) NULL,
-	idWorkOrder int NULL,
-	CONSTRAINT FK_Users_WorkOrder FOREIGN KEY (idWorkOrder)
-	REFERENCES WorkOrder (uniqueId)
+	email varchar(50) NOT NULL UNIQUE,
+    permissionAccess varchar(25) NULL
 );
 -- Create AssetsForRequest Table
 CREATE TABLE AssetsForRequest (

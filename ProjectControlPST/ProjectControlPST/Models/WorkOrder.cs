@@ -18,7 +18,6 @@ namespace ProjectControlPST.Models
         public WorkOrder()
         {
             this.ProjectDescriptions = new HashSet<ProjectDescription>();
-            this.Users = new HashSet<User>();
         }
     
         public int uniqueId { get; set; }
@@ -41,7 +40,5 @@ namespace ProjectControlPST.Models
         public virtual ProjectDescription ProjectDescription { get; set; }
         public virtual ProjectStatu ProjectStatu { get; set; }
         public virtual TypeRequest TypeRequest { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<User> Users { get; set; }
     }
 }
