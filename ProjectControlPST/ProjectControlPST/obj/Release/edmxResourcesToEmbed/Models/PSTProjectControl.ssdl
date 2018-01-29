@@ -107,6 +107,7 @@
     <Property Name="jiraParentUrl" Type="varchar" MaxLength="50" />
     <Property Name="idProjectStatus" Type="int" Nullable="false" />
     <Property Name="idProjectDescription" Type="int" />
+    <Property Name="idUser" Type="int" Nullable="false" />
   </EntityType>
   <!--Errors Found During Generation:
 warning 6002: The table/view 'PSTProjectControl.dbo.vw_assets_project' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -123,6 +124,19 @@ warning 6002: The table/view 'PSTProjectControl.dbo.vw_assets_project' does not 
     <Property Name="idProjectDescription" Type="int" />
   </EntityType>
   <!--Errors Found During Generation:
+warning 6002: The table/view 'PSTProjectControl.dbo.vw_typerequest_assets' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="vw_typerequest_assets">
+    <Key>
+      <PropertyRef Name="uniqueId" />
+      <PropertyRef Name="request" />
+    </Key>
+    <Property Name="uniqueId" Type="int" Nullable="false" />
+    <Property Name="idAssetsList" Type="int" />
+    <Property Name="idTypeRequest" Type="int" />
+    <Property Name="request" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="asset" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <!--Errors Found During Generation:
 warning 6002: The table/view 'PSTProjectControl.dbo.vw_workOrder_description' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="vw_workOrder_description">
     <Key>
@@ -130,6 +144,7 @@ warning 6002: The table/view 'PSTProjectControl.dbo.vw_workOrder_description' do
       <PropertyRef Name="idTypeRequest" />
       <PropertyRef Name="secureCode" />
       <PropertyRef Name="idProjectStatus" />
+      <PropertyRef Name="idUser" />
       <PropertyRef Name="request" />
     </Key>
     <Property Name="uniqueId" Type="int" Nullable="false" />
@@ -146,6 +161,7 @@ warning 6002: The table/view 'PSTProjectControl.dbo.vw_workOrder_description' do
     <Property Name="jiraParentUrl" Type="varchar" MaxLength="50" />
     <Property Name="idProjectStatus" Type="int" Nullable="false" />
     <Property Name="idProjectDescription" Type="int" />
+    <Property Name="idUser" Type="int" Nullable="false" />
     <Property Name="request" Type="varchar" MaxLength="30" Nullable="false" />
     <Property Name="status" Type="varchar" MaxLength="30" />
     <Property Name="projectDescription" Type="varchar(max)" />
@@ -288,6 +304,18 @@ warning 6002: The table/view 'PSTProjectControl.dbo.vw_workOrder_description' do
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_WorkOrder_User">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="WorkOrder" Type="Self.WorkOrder" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="uniqueId" />
+      </Principal>
+      <Dependent Role="WorkOrder">
+        <PropertyRef Name="idUser" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <EntityContainer Name="PSTProjectControlModelStoreContainer">
     <EntitySet Name="AssetProject" EntityType="Self.AssetProject" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="AssetsForRequest" EntityType="Self.AssetsForRequest" Schema="dbo" store:Type="Tables" />
@@ -309,6 +337,15 @@ warning 6002: The table/view 'PSTProjectControl.dbo.vw_workOrder_description' do
     [vw_assets_project].[idProjectDescription] AS [idProjectDescription]
     FROM [dbo].[vw_assets_project] AS [vw_assets_project]</DefiningQuery>
     </EntitySet>
+    <EntitySet Name="vw_typerequest_assets" EntityType="Self.vw_typerequest_assets" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [vw_typerequest_assets].[uniqueId] AS [uniqueId], 
+    [vw_typerequest_assets].[idAssetsList] AS [idAssetsList], 
+    [vw_typerequest_assets].[idTypeRequest] AS [idTypeRequest], 
+    [vw_typerequest_assets].[request] AS [request], 
+    [vw_typerequest_assets].[asset] AS [asset]
+    FROM [dbo].[vw_typerequest_assets] AS [vw_typerequest_assets]</DefiningQuery>
+    </EntitySet>
     <EntitySet Name="vw_workOrder_description" EntityType="Self.vw_workOrder_description" store:Type="Views" store:Schema="dbo">
       <DefiningQuery>SELECT 
     [vw_workOrder_description].[uniqueId] AS [uniqueId], 
@@ -325,6 +362,7 @@ warning 6002: The table/view 'PSTProjectControl.dbo.vw_workOrder_description' do
     [vw_workOrder_description].[jiraParentUrl] AS [jiraParentUrl], 
     [vw_workOrder_description].[idProjectStatus] AS [idProjectStatus], 
     [vw_workOrder_description].[idProjectDescription] AS [idProjectDescription], 
+    [vw_workOrder_description].[idUser] AS [idUser], 
     [vw_workOrder_description].[request] AS [request], 
     [vw_workOrder_description].[status] AS [status], 
     [vw_workOrder_description].[projectDescription] AS [projectDescription], 
@@ -378,6 +416,10 @@ warning 6002: The table/view 'PSTProjectControl.dbo.vw_workOrder_description' do
     </AssociationSet>
     <AssociationSet Name="FK_WorkOrder_TypeRequest" Association="Self.FK_WorkOrder_TypeRequest">
       <End Role="TypeRequest" EntitySet="TypeRequest" />
+      <End Role="WorkOrder" EntitySet="WorkOrder" />
+    </AssociationSet>
+    <AssociationSet Name="FK_WorkOrder_User" Association="Self.FK_WorkOrder_User">
+      <End Role="Users" EntitySet="Users" />
       <End Role="WorkOrder" EntitySet="WorkOrder" />
     </AssociationSet>
   </EntityContainer>

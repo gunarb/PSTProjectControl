@@ -14,11 +14,20 @@ namespace ProjectControlPST.Models
     
     public partial class User
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public User()
+        {
+            this.WorkOrders = new HashSet<WorkOrder>();
+        }
+    
         public int uniqueId { get; set; }
         public string name { get; set; }
         public string userName { get; set; }
         public string password { get; set; }
         public string email { get; set; }
         public string permissionAccess { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<WorkOrder> WorkOrders { get; set; }
     }
 }

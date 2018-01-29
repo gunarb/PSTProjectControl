@@ -88,6 +88,18 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="PSTProjectControlModel.User">
+        <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="uniqueId" ColumnName="uniqueId" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="userName" ColumnName="userName" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="permissionAccess" ColumnName="permissionAccess" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="WorkOrders">
       <EntityTypeMapping TypeName="PSTProjectControlModel.WorkOrder">
         <MappingFragment StoreEntitySet="WorkOrder">
@@ -104,6 +116,18 @@
           <ScalarProperty Name="secureCode" ColumnName="secureCode" />
           <ScalarProperty Name="jiraParentUrl" ColumnName="jiraParentUrl" />
           <ScalarProperty Name="idProjectStatus" ColumnName="idProjectStatus" />
+          <ScalarProperty Name="idProjectDescription" ColumnName="idProjectDescription" />
+          <ScalarProperty Name="idUser" ColumnName="idUser" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="vw_assets_project">
+      <EntityTypeMapping TypeName="PSTProjectControlModel.vw_assets_project">
+        <MappingFragment StoreEntitySet="vw_assets_project">
+          <ScalarProperty Name="assetProjectId" ColumnName="assetProjectId" />
+          <ScalarProperty Name="assetListId" ColumnName="assetListId" />
+          <ScalarProperty Name="asset" ColumnName="asset" />
+          <ScalarProperty Name="value" ColumnName="value" />
           <ScalarProperty Name="idProjectDescription" ColumnName="idProjectDescription" />
         </MappingFragment>
       </EntityTypeMapping>
@@ -125,6 +149,7 @@
           <ScalarProperty Name="jiraParentUrl" ColumnName="jiraParentUrl" />
           <ScalarProperty Name="idProjectStatus" ColumnName="idProjectStatus" />
           <ScalarProperty Name="idProjectDescription" ColumnName="idProjectDescription" />
+          <ScalarProperty Name="idUser" ColumnName="idUser" />
           <ScalarProperty Name="request" ColumnName="request" />
           <ScalarProperty Name="status" ColumnName="status" />
           <ScalarProperty Name="projectDescription" ColumnName="projectDescription" />
@@ -137,25 +162,13 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="vw_assets_project">
-      <EntityTypeMapping TypeName="PSTProjectControlModel.vw_assets_project">
-        <MappingFragment StoreEntitySet="vw_assets_project">
-          <ScalarProperty Name="idProjectDescription" ColumnName="idProjectDescription" />
-          <ScalarProperty Name="value" ColumnName="value" />
+    <EntitySetMapping Name="vw_typerequest_assets">
+      <EntityTypeMapping TypeName="PSTProjectControlModel.vw_typerequest_assets">
+        <MappingFragment StoreEntitySet="vw_typerequest_assets">
           <ScalarProperty Name="asset" ColumnName="asset" />
-          <ScalarProperty Name="assetListId" ColumnName="assetListId" />
-          <ScalarProperty Name="assetProjectId" ColumnName="assetProjectId" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Users">
-      <EntityTypeMapping TypeName="PSTProjectControlModel.User">
-        <MappingFragment StoreEntitySet="Users">
-          <ScalarProperty Name="permissionAccess" ColumnName="permissionAccess" />
-          <ScalarProperty Name="email" ColumnName="email" />
-          <ScalarProperty Name="password" ColumnName="password" />
-          <ScalarProperty Name="userName" ColumnName="userName" />
-          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="request" ColumnName="request" />
+          <ScalarProperty Name="idTypeRequest" ColumnName="idTypeRequest" />
+          <ScalarProperty Name="idAssetsList" ColumnName="idAssetsList" />
           <ScalarProperty Name="uniqueId" ColumnName="uniqueId" />
         </MappingFragment>
       </EntityTypeMapping>

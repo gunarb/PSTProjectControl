@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Collections.Generic;
+using System.Web.Mvc;
 using ProjectControlPST.Models;
 
 namespace ProjectControlPST.Repositories
@@ -55,13 +56,26 @@ namespace ProjectControlPST.Repositories
             };
             return workOrder;
         }
-        public string[] InsertWorkOrder(int typeRequest)
+
+        public PreferencesDetails GetPreferencesDetails(int userId)
+        {
+            var assets = DbContext.AssetsLists.ToList();
+            var preferencesDetails = new PreferencesDetails
+            {
+                User = DbContext.Users.First(i=>i.uniqueId==userId),
+                Requests = DbContext.TypeRequests.ToList(),
+                Assets = assets
+            };
+            return preferencesDetails;
+        }
+        public string[] InsertWorkOrder(int typeRequest, int userId)
         {
             var workOrder = new WorkOrder
             {
                 idTypeRequest = typeRequest,
                 secureCode = GenerateSecureCode(),
-                idProjectStatus = 1
+                idProjectStatus = 1,
+                idUser = userId
             };
             DbContext.WorkOrders.Add(workOrder);
             DbContext.SaveChanges();

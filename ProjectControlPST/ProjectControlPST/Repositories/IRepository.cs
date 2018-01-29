@@ -10,7 +10,8 @@ namespace ProjectControlPST.Repositories
         List<TypeRequest> GetTypeRequest();
         List<ProjectStatu> GetProjectStatus();
         WorkOrderDetails GetWorkOrder(int id);
-        string[] InsertWorkOrder(int typeRequest);
+        PreferencesDetails GetPreferencesDetails(int userId);
+        string[] InsertWorkOrder(int typeRequest, int userId);
         void UpdateAssets(IList<vw_assets_project> assetsProjects);
         void UpdateWorkOrderDescription(WorkOrderDetails workOrderDetails);
         void UpdateDomains(IList<Domain> domains, int idProjectDescription);

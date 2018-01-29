@@ -37,7 +37,8 @@ namespace ProjectControlPST.Controllers
         }
         public ActionResult InsertWorkOrder(int typeRequest)
         {
-            var newWorkOrder = _repository.InsertWorkOrder(typeRequest);
+            var userId = (int) Session["UserId"];
+            var newWorkOrder = _repository.InsertWorkOrder(typeRequest, userId);
             var workOrderId = int.Parse(newWorkOrder[0]);
             var workOrderSecureCode = newWorkOrder[1];
             return RedirectToAction("Update", "WorkOrder", new { @id = workOrderId, @secureCode = workOrderSecureCode });

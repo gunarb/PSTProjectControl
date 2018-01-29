@@ -5,6 +5,15 @@ CREATE DATABASE PSTProjectControl;
 GO
 USE PSTProjectControl;
 
+-- Create Users Table
+CREATE TABLE Users (
+	uniqueId int NOT NULL IDENTITY PRIMARY KEY,
+	name varchar(50) NOT NULL,
+    userName varchar(50) NOT NULL UNIQUE,
+    password varchar(50) NOT NULL,
+	email varchar(50) NOT NULL UNIQUE,
+    permissionAccess varchar(25) NULL
+);
 -- Create Type Request Table
 CREATE TABLE TypeRequest(
 	uniqueId int NOT NULL IDENTITY PRIMARY KEY,
@@ -31,10 +40,13 @@ CREATE TABLE WorkOrder (
 	jiraParentUrl varchar(50) NULL,
 	idProjectStatus int NOT NULL,
 	idProjectDescription int NULL,
+	idUser int NOT NULL,
 	CONSTRAINT FK_WorkOrder_TypeRequest FOREIGN KEY (idTypeRequest)
 	REFERENCES TypeRequest (uniqueId),
 	CONSTRAINT FK_WorkOrder_ProjectStatus FOREIGN KEY (idProjectStatus)
-	REFERENCES ProjectStatus (uniqueId)
+	REFERENCES ProjectStatus (uniqueId),
+	CONSTRAINT FK_WorkOrder_User FOREIGN KEY (idUser)
+	REFERENCES Users (uniqueId)
 );
 -- Create Project Description Table
 CREATE TABLE ProjectDescription (
@@ -94,15 +106,6 @@ CREATE TABLE AssetProject (
 	CONSTRAINT FK_AssetProject_AssetsList FOREIGN KEY (idAssetsList)
 	REFERENCES AssetsList (uniqueId)
 );
--- Create Users Table
-CREATE TABLE Users (
-	uniqueId int NOT NULL IDENTITY PRIMARY KEY,
-	name varchar(50) NOT NULL,
-    userName varchar(50) NOT NULL UNIQUE,
-    password varchar(50) NOT NULL,
-	email varchar(50) NOT NULL UNIQUE,
-    permissionAccess varchar(25) NULL
-);
 -- Create AssetsForRequest Table
 CREATE TABLE AssetsForRequest (
 	uniqueId int NOT NULL IDENTITY PRIMARY KEY,
@@ -124,13 +127,12 @@ AS
 	LEFT JOIN ProjectStatus ps ON wo.idProjectStatus = ps.uniqueId
 	LEFT JOIN ProjectDescription pd ON wo.idProjectDescription = pd.uniqueId
 GO
-
 -- View AssetList to AssetProject
 CREATE VIEW vw_assets_project
 AS
-	SELECT ap.idProjectDescription, al.asset, ap.value
+	SELECT ap.uniqueId as assetProjectId, al.uniqueId as assetListId, al.asset, ap.value, ap.idProjectDescription
 	FROM AssetProject ap
-	INNER JOIN AssetsList al ON ap.idAssetsList=al.uniqueId
+	INNER JOIN AssetsList al ON ap.idAssetsList=al.uniqueId;
 GO
 
 -- TRIGGER trgAI_WorkOrder after insert ON Work
@@ -150,7 +152,6 @@ BEGIN
 	PRINT 'New ProjectDescription added after WorkOrder was added'
 END
 GO
-
 -- TRIGGER trgProjectDescription after insert ON ProjectDescription
 CREATE TRIGGER trgAI_ProjectDescription
    ON  ProjectDescription
@@ -229,11 +230,11 @@ INSERT INTO ProjectStatus (status) VALUES ('Completed');
 INSERT INTO ProjectStatus (status) VALUES ('Not Completed');
 select*from ProjectStatus;
 
-INSERT INTO WorkOrder (idTypeRequest, secureCode, idProjectStatus) VALUES (1, 'jedz3TkC5B6xAaC)TGxQ(M4', 1);
-select*from WorkOrder;
-
 INSERT INTO Users (name, userName, password, email) VALUES ('Administrator', 'admin', 'admin', 'admin@admin.com');
 select*from Users;
+
+INSERT INTO WorkOrder (idTypeRequest, secureCode, idProjectStatus, idUser) VALUES (1, 'jedz3TkC5B6xAaC)TGxQ(M4', 1, 1);
+select*from WorkOrder;
 
 Update ProjectDescription set 
 	projectDescription='This is a test project for the development of PST Project Control', 
@@ -253,6 +254,7 @@ INSERT INTO EffectedURL (url, idProjectDescription) VALUES ('http://www.oscarmay
 INSERT INTO EffectedURL (url, idProjectDescription) VALUES ('http://www.oscarmayer.com/our-products', 1);
 INSERT INTO EffectedURL (url, idProjectDescription) VALUES ('http://www.oscarmayer.com/our-story', 1);
 INSERT INTO EffectedURL (url, idProjectDescription) VALUES ('http://www.oscarmayer.com/wienermobile', 1);
+Insert into ThirdPartyCredentials(url, userName, password, idProjectDescription) values ('https://azure.microsoft.com/en-us/account/', 'gbolanos', 'HJ54%dsa', 1);
 
 select*from AssetsForRequest;
 select*from AssetProject;

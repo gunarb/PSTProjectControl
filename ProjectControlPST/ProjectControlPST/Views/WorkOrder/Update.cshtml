@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h4><i class="fa fa-wrench"></i>@Model.WorkOrderDescription.request</h4>
+<h4><i class="fa fa-wrench"></i>&nbsp;&nbsp; @Model.WorkOrderDescription.request</h4>
 <br />
 @using (Ajax.BeginForm("UpdateWorkOrderDescription", "WorkOrder", new AjaxOptions {HttpMethod = "POST", OnSuccess = "WO.form.init()", UpdateTargetId = "workOrderResult"}))
 {

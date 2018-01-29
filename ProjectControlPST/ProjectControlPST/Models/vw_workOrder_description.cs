@@ -28,6 +28,7 @@ namespace ProjectControlPST.Models
         public string jiraParentUrl { get; set; }
         public int idProjectStatus { get; set; }
         public Nullable<int> idProjectDescription { get; set; }
+        public int idUser { get; set; }
         public string request { get; set; }
         public string status { get; set; }
         public string projectDescription { get; set; }

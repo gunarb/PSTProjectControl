@@ -1,0 +1,78 @@
+﻿@using System.Web.Mvc.Html
+@model ProjectControlPST.Models.PreferencesDetails
+
+@{
+    ViewBag.Title = "Preferences";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h4><i class="glyphicon glyphicon-cog"></i>&nbsp;&nbsp; Preferences</h4>
+<br />
+@using (Ajax.BeginForm("UpdatePreferences", "Preferences", new AjaxOptions { HttpMethod = "POST", OnSuccess = "Pr.form.init()", UpdateTargetId = "preferencesResult" }))
+{
+    <div id="preferencesResult"></div>
+    <fieldset>
+        <div class="row">
+            <div class="col-sm-3">
+                <div class="form-group">
+                    <label class="control-label">Name</label>
+                    @Html.TextBoxFor(m => m.User.name, new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="form-group">
+                    <label class="control-label">E-mail</label>
+                    @Html.TextBoxFor(m => m.User.email, new { @class = "form-control" })
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3">
+                <div class="form-group">
+                    <label class="control-label">Password</label>
+                    @Html.TextBoxFor(m => m.User.password, new { @class = "form-control", @type = "password" })
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="form-group">
+                    <label class="control-label">Confirm Password</label>
+                    @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <label class="control-label">Select a request type:</label>
+                    @Html.DropDownListFor(m => m.TypeRequest, new SelectList(Model.Requests, "uniqueId", "request"),
+                        "---Select Request---", new { onchange = "Pr.SelectedIndexChanged.init()" })
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-5">
+                <div class="form-group">
+                    @Html.ListBoxFor(m => m.SelectedIds, new SelectList(Model.Assets, "uniqueId", "asset"), new { @id = "assetsOring" })
+                </div>
+            </div>
+            <div class="col-sm-2">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <button type="button" id="right"><span class="glyphicon glyphicon-arrow-right"></span></button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <button type="button" id="left"><span class="glyphicon glyphicon-arrow-left"></span></button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-5">
+                <div class="form-group">
+                    <select id="assetsDestination" multiple="multiple"></select>
+                </div>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Save</button>
+    </fieldset>
+}

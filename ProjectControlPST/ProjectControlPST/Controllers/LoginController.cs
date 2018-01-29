@@ -25,14 +25,16 @@ namespace ProjectControlPST.Controllers
             var user = _repository.GetUser(userName);
             if (user == null) return Content("User not register");
             if (user.password != password) return Content("Password do not match for user: " + userName);
-            Session["UserId"] = user.userName;
+            Session["UserId"] = user.uniqueId;
             Session["UserName"] = user.name;
+            Session["UserUserName"] = user.userName;
             return RedirectToAction("Index", "Home");
         }
         public ActionResult LogOut()
         {
             Session["UserId"] = null;
             Session["UserName"] = null;
+            Session["UserUserName"] = null;
             return RedirectToAction("Index", "Login");
         }
     }

@@ -113,3 +113,4 @@ C:\Users\angbolan\Documents\Visual Studio 2015\Projects\PSTProjectControl\Projec
 C:\Users\angbolan\Documents\Visual Studio 2015\Projects\PSTProjectControl\ProjectControlPST\ProjectControlPST\bin\System.Web.Mvc.xml
 C:\Users\angbolan\Documents\Visual Studio 2015\Projects\PSTProjectControl\ProjectControlPST\ProjectControlPST\obj\Debug\ProjectControlPST.dll
 C:\Users\angbolan\Documents\Visual Studio 2015\Projects\PSTProjectControl\ProjectControlPST\ProjectControlPST\obj\Debug\ProjectControlPST.pdb
+C:\Users\angbolan\Documents\Visual Studio 2015\Projects\PSTProjectControl\ProjectControlPST\ProjectControlPST\obj\Debug\ProjectControlPST.csprojResolveAssemblyReference.cache
