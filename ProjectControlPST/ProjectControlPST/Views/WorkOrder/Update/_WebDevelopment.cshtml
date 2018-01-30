@@ -1,5 +1,4 @@
-﻿@model ProjectControlPST.Models.WorkOrderDetails
-
+﻿@model ProjectControlPST.Models.WorkOrderDetails    
 <div class="row">
     <div class="col-sm-3">
         <div class="form-group">
@@ -35,21 +34,18 @@
             @Html.TextBoxFor(m => m.WorkOrderDescription.agencyPM, new { id = "agencyPM", @class = "form-control" })
         </div>
     </div>
-
     <div class="col-md-3 col-sm-4">
         <div class="form-group">
             <label class="control-label" for="agencyAccountDirector">Agency Account Director</label>
             @Html.TextBoxFor(m => m.WorkOrderDescription.agencyAccountDirector, new { id = "agencyAccountDirector", @class = "form-control" })
         </div>
     </div>
-
     <div class="col-md-3 col-sm-4">
         <div class="form-group">
             <label class="control-label" for="brandManager">Brand Manager</label>
             @Html.TextBoxFor(m => m.WorkOrderDescription.brandManager, new { id = "brandManager", @class = "form-control" })
         </div>
     </div>
-
     <div class="col-md-3 col-sm-4">
         <div class="form-group">
             <label class="control-label" for="prodigiousPM">Prodigious PM</label>
@@ -59,7 +55,7 @@
 </div>
 <div class="form-group">
     <label class="control-label" for="projectDescription">Project Description</label>
-    @Html.TextAreaFor(m => m.WorkOrderDescription.projectDescription, new { id = "projectDescription", @class = "form-control" })
+    @Html.TextAreaFor(m => m.WorkOrderDescription.projectDescription, new { id = "projectDescription", @class = "form-control", @rows = 6 })
 </div>
 <div class="row">
     <div class="col-sm-3">
@@ -75,16 +71,24 @@
         </div>
     </div>
 </div>
-<!--**********************START REVIEW**********************-->
-<div>
-    <label class="control-label">Domains</label>
-    <div id="domains-inputs" data-count="@Model.Domains.Count">
-        <input id="newDomain" type="text" class="form-control initial-list" placeholder="URL" />
-        <button id="btn-domains"><span class="glyphicon glyphicon-plus"></span></button>
+
+<label class="control-label">Domains</label>
+<div id="domains-inputs" data-count="@Model.Domains.Count">
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="input-group form-group">
+                <input id="newDomain" type="text" class="form-control initial-list" placeholder="URL" />
+                <span class="input-group-btn">
+                    <button id="btn-domains" class="btn btn-primary"><i class="fa fa-plus"></i></button>
+                </span>
+            </div>
+        </div>
+    </div>
+    <div class="row">
         @Html.EditorFor(m => m.Domains)
     </div>
 </div>
-<!--**********************END REVIEW**********************-->
+
 <div class="row">
     <div class="col-md-3 col-sm-4">
         <div class="form-group">
@@ -93,26 +97,50 @@
         </div>
     </div>
 </div>
-<!--**********************START REVIEW**********************-->
-<div class="form-group">
-    <label class="control-label">URLs of All Pages Effected</label>
-    <div id="urlAffected-inputs" data-count="@Model.EffectedUrls.Count">
-        <input id="newUrlAffected" type="text" class="form-control initial-list" placeholder="URL" />
-        <button id="btn-urlAffected"><span class="glyphicon glyphicon-plus"></span></button>
+
+
+<label class="control-label">URLs of All Pages Effected</label>
+<div id="urlAffected-inputs" data-count="@Model.EffectedUrls.Count">
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="input-group form-group">
+                <input id="newUrlAffected" type="text" class="form-control initial-list" placeholder="URL" />
+                <span class="input-group-btn">
+                    <button id="btn-urlAffected" class="btn btn-primary"><i class="fa fa-plus"></i></button>
+                </span>
+            </div>
+        </div>
+    </div>
+    <div class="row">
         @Html.EditorFor(m => m.EffectedUrls)
     </div>
 </div>
-<div class="form-group">
-    <label class="control-label">Third Party Credentials</label>;
-    <div id="thirdParty-inputs" data-count="@Model.ThirdPartyCredential.Count">
-        <input id="newThirdPartyUrl" type="text" class="form-control initial-list" placeholder="URL" />
-        <input id="newThirdPartyUser" type="text" class="form-control initial-list" placeholder="user" />
-        <input id="newThirdPartyPass" type="text" class="form-control initial-list" placeholder="password" />
-        <button id="btn-thirdParty"><span class="glyphicon glyphicon-plus"></span></button>
-        @Html.EditorFor(m => m.ThirdPartyCredential)
+
+<label class="control-label">Third Party Credentials</label>;
+<div id="thirdParty-inputs" data-count="@Model.ThirdPartyCredential.Count">
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="form-group">
+                <input id="newThirdPartyUrl" type="text" class="form-control initial-list" placeholder="URL" />
+            </div>
+        </div>
+
+        <div class="col-sm-4">
+            <div class="fomr-group">
+                <input id="newThirdPartyUser" type="text" class="form-control initial-list" placeholder="user" />
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="form-group input-group">
+                <input id="newThirdPartyPass" type="text" class="form-control initial-list" placeholder="password" />
+                <span class="input-group-btn">
+                    <button id="btn-thirdParty" class="btn btn-primary"><i class="fa fa-plus"></i></button>
+                </span>
+            </div>
+        </div>
     </div>
+    @Html.EditorFor(m => m.ThirdPartyCredential)
 </div>
-<!--**********************END REVIEW**********************-->
 <div class="row">
     <div class="col-sm-4">
         <div class="form-group">
@@ -129,5 +157,5 @@
 </div>
 <div class="form-group">
     <label class="control-label" for="additionalComments">Additional Comments</label>
-    @Html.TextAreaFor(m => m.WorkOrderDescription.additionalComments, new { id = "additionalComments", @class = "form-control" })
+    @Html.TextAreaFor(m => m.WorkOrderDescription.additionalComments, new { id = "additionalComments", @class = "form-control", @rows = 6 })
 </div>

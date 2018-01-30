@@ -1,6 +1,6 @@
-﻿/* Set width on the form input elements since they're 100% wide by default */
-body {
+﻿body {
     font-family: 'Open Sans', sans-serif;
+    position: relative;
 }
 
 .is-invalid {
@@ -12,7 +12,7 @@ body {
 }
 
 .navbar-brand {
-    padding: 0 15px;
+    padding: 10px 0 10px 15px;
 }
 
 .navbar-brand img {
@@ -27,6 +27,13 @@ body {
 .dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus {
     background: #367cff;
     color: #fff;
+}
+
+footer {
+    background: #367cff;
+    color: #fff;
+    padding: 20px 0 10px;
+    margin-top: 50px;
 }
 
 .box-project {
@@ -58,4 +65,76 @@ body {
 
 .form-group {
     margin-bottom: 30px;
+}
+
+.btn,
+.panel,
+.form-control {
+    border-radius: 0;
+}
+
+.login-bg {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: url(../images/login-bg.jpg);
+    background-size: cover;
+    height: 100vh;
+}
+
+.login {
+    margin-top: 25vh;
+    padding: 5px 25px 35px;
+}
+
+.login h4 {
+    text-align: center;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 24px;
+    color: #367cff;
+    font-weight: bold;
+}
+
+
+.btn-primary {
+    background: #367cff;
+}
+
+
+.btn-primary:hover,
+.btn-primary:active {
+    background: #035afc;
+}
+
+.ui-grid,
+.ui-grid-viewport {
+    height: auto !important;
+}
+
+.ui-grid-header {
+    border: none;
+}
+
+.ui-grid-top-panel {
+    background: #367cff;
+    color: #fff;
+}
+
+.ui-grid-header-cell {
+    border: none;
+    font-weight: normal;
+}
+
+.ui-grid-canvas,
+.ui-grid-header-canvas,
+ui-grid-header-cell-wrapper {
+    width: 100% !important;
+}
+
+.ui-grid-coluiGrid-000A,
+.grid-update {
+    max-width: 117px !important;
+    min-width: 117px !important;
 }

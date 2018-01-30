@@ -124,19 +124,6 @@ warning 6002: The table/view 'PSTProjectControl.dbo.vw_assets_project' does not 
     <Property Name="idProjectDescription" Type="int" />
   </EntityType>
   <!--Errors Found During Generation:
-warning 6002: The table/view 'PSTProjectControl.dbo.vw_typerequest_assets' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
-  <EntityType Name="vw_typerequest_assets">
-    <Key>
-      <PropertyRef Name="uniqueId" />
-      <PropertyRef Name="request" />
-    </Key>
-    <Property Name="uniqueId" Type="int" Nullable="false" />
-    <Property Name="idAssetsList" Type="int" />
-    <Property Name="idTypeRequest" Type="int" />
-    <Property Name="request" Type="varchar" MaxLength="30" Nullable="false" />
-    <Property Name="asset" Type="varchar" MaxLength="50" />
-  </EntityType>
-  <!--Errors Found During Generation:
 warning 6002: The table/view 'PSTProjectControl.dbo.vw_workOrder_description' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="vw_workOrder_description">
     <Key>
@@ -336,15 +323,6 @@ warning 6002: The table/view 'PSTProjectControl.dbo.vw_workOrder_description' do
     [vw_assets_project].[value] AS [value], 
     [vw_assets_project].[idProjectDescription] AS [idProjectDescription]
     FROM [dbo].[vw_assets_project] AS [vw_assets_project]</DefiningQuery>
-    </EntitySet>
-    <EntitySet Name="vw_typerequest_assets" EntityType="Self.vw_typerequest_assets" store:Type="Views" store:Schema="dbo">
-      <DefiningQuery>SELECT 
-    [vw_typerequest_assets].[uniqueId] AS [uniqueId], 
-    [vw_typerequest_assets].[idAssetsList] AS [idAssetsList], 
-    [vw_typerequest_assets].[idTypeRequest] AS [idTypeRequest], 
-    [vw_typerequest_assets].[request] AS [request], 
-    [vw_typerequest_assets].[asset] AS [asset]
-    FROM [dbo].[vw_typerequest_assets] AS [vw_typerequest_assets]</DefiningQuery>
     </EntitySet>
     <EntitySet Name="vw_workOrder_description" EntityType="Self.vw_workOrder_description" store:Type="Views" store:Schema="dbo">
       <DefiningQuery>SELECT 

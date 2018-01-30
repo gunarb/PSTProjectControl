@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="PSTProjectControlModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="PSTProjectControlModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="AssetProject">
           <Key>
             <PropertyRef Name="uniqueId" />
@@ -127,19 +127,6 @@ warning 6002: The table/view 'PSTProjectControl.dbo.vw_assets_project' does not 
           <Property Name="asset" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="value" Type="bit" />
           <Property Name="idProjectDescription" Type="int" />
-        </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'PSTProjectControl.dbo.vw_typerequest_assets' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
-        <EntityType Name="vw_typerequest_assets">
-          <Key>
-            <PropertyRef Name="uniqueId" />
-            <PropertyRef Name="request" />
-          </Key>
-          <Property Name="uniqueId" Type="int" Nullable="false" />
-          <Property Name="idAssetsList" Type="int" />
-          <Property Name="idTypeRequest" Type="int" />
-          <Property Name="request" Type="varchar" MaxLength="30" Nullable="false" />
-          <Property Name="asset" Type="varchar" MaxLength="50" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'PSTProjectControl.dbo.vw_workOrder_description' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -342,15 +329,6 @@ warning 6002: The table/view 'PSTProjectControl.dbo.vw_workOrder_description' do
     [vw_assets_project].[idProjectDescription] AS [idProjectDescription]
     FROM [dbo].[vw_assets_project] AS [vw_assets_project]</DefiningQuery>
           </EntitySet>
-          <EntitySet Name="vw_typerequest_assets" EntityType="Self.vw_typerequest_assets" store:Type="Views" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [vw_typerequest_assets].[uniqueId] AS [uniqueId], 
-    [vw_typerequest_assets].[idAssetsList] AS [idAssetsList], 
-    [vw_typerequest_assets].[idTypeRequest] AS [idTypeRequest], 
-    [vw_typerequest_assets].[request] AS [request], 
-    [vw_typerequest_assets].[asset] AS [asset]
-    FROM [dbo].[vw_typerequest_assets] AS [vw_typerequest_assets]</DefiningQuery>
-          </EntitySet>
           <EntitySet Name="vw_workOrder_description" EntityType="Self.vw_workOrder_description" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [vw_workOrder_description].[uniqueId] AS [uniqueId], 
@@ -428,7 +406,8 @@ warning 6002: The table/view 'PSTProjectControl.dbo.vw_workOrder_description' do
             <End Role="WorkOrder" EntitySet="WorkOrder" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="PSTProjectControlModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -817,19 +796,7 @@ warning 6002: The table/view 'PSTProjectControl.dbo.vw_workOrder_description' do
             <End Role="Users" EntitySet="Users" />
             <End Role="WorkOrder" EntitySet="WorkOrders" />
           </AssociationSet>
-          <EntitySet Name="vw_typerequest_assets" EntityType="PSTProjectControlModel.vw_typerequest_assets" />
         </EntityContainer>
-        <EntityType Name="vw_typerequest_assets">
-          <Key>
-            <PropertyRef Name="uniqueId" />
-            <PropertyRef Name="request" />
-          </Key>
-          <Property Name="uniqueId" Type="Int32" Nullable="false" />
-          <Property Name="idAssetsList" Type="Int32" />
-          <Property Name="idTypeRequest" Type="Int32" />
-          <Property Name="request" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
-          <Property Name="asset" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -994,17 +961,6 @@ warning 6002: The table/view 'PSTProjectControl.dbo.vw_workOrder_description' do
                 <ScalarProperty Name="platform" ColumnName="platform" />
                 <ScalarProperty Name="seoAnalytics" ColumnName="seoAnalytics" />
                 <ScalarProperty Name="additionalComments" ColumnName="additionalComments" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="vw_typerequest_assets">
-            <EntityTypeMapping TypeName="PSTProjectControlModel.vw_typerequest_assets">
-              <MappingFragment StoreEntitySet="vw_typerequest_assets">
-                <ScalarProperty Name="asset" ColumnName="asset" />
-                <ScalarProperty Name="request" ColumnName="request" />
-                <ScalarProperty Name="idTypeRequest" ColumnName="idTypeRequest" />
-                <ScalarProperty Name="idAssetsList" ColumnName="idAssetsList" />
-                <ScalarProperty Name="uniqueId" ColumnName="uniqueId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

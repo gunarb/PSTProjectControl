@@ -2,94 +2,100 @@
 
 <div class="row">
     <div class="col-sm-3">
+        <label class="control-label" for="author">Author</label>
         <div class="form-group">
-            <label class="control-label" for="author">Author</label>
             @Html.DisplayFor(m => m.WorkOrderDescription.author, new { id = "author", @class = "form-control" })
         </div>
     </div>
     <div class="col-sm-3">
+        <label class="control-label" for="date">Date</label>
         <div class="form-group">
-            <label class="control-label" for="date">Date</label>
             @Html.DisplayFor(m => m.WorkOrderDescription.date, new { id = "date", @class = "form-control" })
         </div>
     </div>
 </div>
 <div class="row">
     <div class="col-sm-3">
+        <label class="control-label" for="projectName">Project Name</label>
         <div class="form-group">
-            <label class="control-label" for="projectName">Project Name</label>
             @Html.DisplayFor(m => m.WorkOrderDescription.projectName, new { id = "projectName", @class = "form-control" })
         </div>
     </div>
     <div class="col-sm-3">
+        <label class="control-label" for="referencePreviousJob">Reference Previous Job</label>
         <div class="form-group">
-            <label class="control-label" for="referencePreviousJob">Reference Previous Job</label>
             @Html.DisplayFor(m => m.WorkOrderDescription.referencePreviousJob, new { id = "referencePreviousJob", @class = "form-control" })
         </div>
     </div>
 </div>
 <div class="row">
     <div class="col-md-3 col-sm-4">
+        <label class="control-label" for="agencyPM">Agency PM</label>
         <div class="form-group">
-            <label class="control-label" for="agencyPM">Agency PM</label>
             @Html.DisplayFor(m => m.WorkOrderDescription.agencyPM, new { id = "agencyPM", @class = "form-control" })
         </div>
     </div>
 
     <div class="col-md-3 col-sm-4">
+        <label class="control-label" for="agencyAccountDirector">Agency Account Director</label>
         <div class="form-group">
-            <label class="control-label" for="agencyAccountDirector">Agency Account Director</label>
             @Html.DisplayFor(m => m.WorkOrderDescription.agencyAccountDirector, new { id = "agencyAccountDirector", @class = "form-control" })
         </div>
     </div>
 
     <div class="col-md-3 col-sm-4">
+        <label class="control-label" for="brandManager">Brand Manager</label>
         <div class="form-group">
-            <label class="control-label" for="brandManager">Brand Manager</label>
             @Html.DisplayFor(m => m.WorkOrderDescription.brandManager, new { id = "brandManager", @class = "form-control" })
         </div>
     </div>
 
     <div class="col-md-3 col-sm-4">
+        <label class="control-label" for="prodigiousPM">Prodigious PM</label>
         <div class="form-group">
-            <label class="control-label" for="prodigiousPM">Prodigious PM</label>
             @Html.DisplayFor(m => m.WorkOrderDescription.prodigiousPM, new { id = "prodigiousPM", @class = "form-control" })
         </div>
     </div>
 </div>
+
+
+<label class="control-label" for="projectDescription">Project Description</label>
 <div class="form-group">
-    <label class="control-label" for="projectDescription">Project Description</label>
     @Html.DisplayFor(m => m.WorkOrderDescription.projectDescription, new { id = "projectDescription", @class = "form-control" })
 </div>
+
 <div class="row">
     <div class="col-sm-3">
+        <label class="control-label" for="kickOffDate">Kick Off Date</label>
         <div class="form-group">
-            <label class="control-label" for="kickOffDate">Kick Off Date</label>
             @Html.DisplayFor(m => m.WorkOrderDescription.kickOffDate, new { id = "kickOffDate", @class = "form-control" })
         </div>
     </div>
     <div class="col-sm-3">
+        <label class="control-label" for="liveDate">Live Date</label>
         <div class="form-group">
-            <label class="control-label" for="liveDate">Live Date</label>
             @Html.DisplayFor(m => m.WorkOrderDescription.liveDate, new { id = "liveDate", @class = "form-control" })
         </div>
     </div>
 </div>
-<div class="row">
-    <div class="col-md-3 col-sm-4">
-        <div class="form-group">
-            <label class="control-label" for="plataform">Plataform / Enviroment</label>
-            @Html.DisplayFor(m => m.WorkOrderDescription.platform, new { id = "platform", @class = "form-control" })
-        </div>
-    </div>
-</div>
+
+<label class="control-label" for="plataform">Plataform / Enviroment</label>
 <div class="form-group">
-    <label class="control-label">Assets Check List</label>
+    @Html.DisplayFor(m => m.WorkOrderDescription.platform, new { id = "platform", @class = "form-control" })
+</div>
+
+<label class="control-label">Assets Check List</label>    
+<div class="form-group">
     <div id="assets-check-box">
-        @Html.EditorFor(m => m.Assets)
+        @foreach (var item in Model.Assets)
+        {
+            Html.RenderPartial("_Assets", item);
+        }
     </div>
 </div>
+
+
+<label class="control-label" for="additionalComments">Additional Comments</label>
 <div class="form-group">
-    <label class="control-label" for="additionalComments">Additional Comments</label>
     @Html.DisplayFor(m => m.WorkOrderDescription.additionalComments, new { id = "additionalComments", @class = "form-control" })
 </div>

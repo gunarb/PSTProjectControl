@@ -5,11 +5,11 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h4><i class="fa fa-wrench"></i>&nbsp;&nbsp; @Model.WorkOrderDescription.request</h4>
+<h4><i class="fa fa-briefcase"></i> @Model.WorkOrderDescription.request</h4>
 <br />
 @using (Ajax.BeginForm("UpdateWorkOrderDescription", "WorkOrder", new AjaxOptions {HttpMethod = "POST", OnSuccess = "WO.form.init()", UpdateTargetId = "workOrderResult"}))
 {
-    <div id="workOrderResult"></div>
+    <div id="workOrderResult" class="alert alert-success hide"></div>
     <fieldset>
         @switch (Model.WorkOrderDescription.idTypeRequest)
         {
@@ -32,7 +32,13 @@
             @Html.HiddenFor(m => m.WorkOrderDescription.idProjectStatus)
             @Html.HiddenFor(m => m.WorkOrderDescription.targetDevice)
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
-        <button type="button" class="btn btn-secondary">Export to PDF</button>
+        <div class="row">
+            <div class="col-sm-3">
+                <button type="submit" class="btn btn-primary btn-block"><i class="fa fa-save"></i> Save</button>
+            </div>
+            <div class="col-sm-3">
+                <button type="button" class="btn btn-default btn-block"><i class="fa fa-file-pdf-o"></i> Export to PDF</button>
+            </div>
+        </div>
     </fieldset>
 }

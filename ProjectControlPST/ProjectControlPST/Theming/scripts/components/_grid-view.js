@@ -23,8 +23,8 @@ app.controller('GridCtrl', function ($scope, $http, projectControlService) {
                 { field: 'date', type: 'date', cellFilter: 'date:\'MMM dd yyyy\'' },
                 { field: 'prodigiousPM', name: 'Prodigious PM' },
                 { field: 'idProjectStatus', name: 'Status', cellFilter: 'getStatusType:grid.appScope.projectStatus' },
-                { name: 'View', width: 100, cellTemplate: '<div><a href="/workorder/detail/{{ row.entity.uniqueId }}/{{ row.entity.secureCode }}"><span class="glyphicon glyphicon-eye-open"></span></a></div>' },
-                { name: 'Update', width: 100, cellTemplate: '<div><a href="/workorder/update/{{ row.entity.uniqueId }}/{{ row.entity.secureCode }}"><span class="glyphicon glyphicon-pencil"></span></a></div>' }
+                { name: 'View', width: 100, cellTemplate: '<div class="ui-grid-cell-contents"><a href="/workorder/detail/{{ row.entity.uniqueId }}/{{ row.entity.secureCode }}"><i class="fa fa-link"></i></a></div>' },
+                { name: 'Update', width: 100, cellTemplate: '<div class="ui-grid-cell-contents grid-update"><a href="/workorder/update/{{ row.entity.uniqueId }}/{{ row.entity.secureCode }}"><i class="fa fa-edit"></i></a></div>' }
             ]
         };
         //**** get and map id and request type from TypeRequest Table data ****

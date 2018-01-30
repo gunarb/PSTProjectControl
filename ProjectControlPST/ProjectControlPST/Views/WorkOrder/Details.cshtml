@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h4><i class="fa fa-wrench"></i>&nbsp;&nbsp; @Model.WorkOrderDescription.request</h4>
+<h4><i class="fa fa-briefcase"></i> @Model.WorkOrderDescription.request</h4>
 <br />
 <div>
     @switch (Model.WorkOrderDescription.idTypeRequest)
@@ -29,5 +29,9 @@
         @Html.HiddenFor(m => m.WorkOrderDescription.idProjectStatus)
         @Html.HiddenFor(m => m.WorkOrderDescription.targetDevice)
     </div>
-    <button type="button" class="btn btn-secondary">Export to PDF</button>
+    <div class="row">
+        <div class="col-sm-3">
+            <button type="button" class="btn btn-default btn-block"><i class="fa fa-file-pdf-o"></i> Export to PDF</button>
+        </div>
+    </div>
 </div>

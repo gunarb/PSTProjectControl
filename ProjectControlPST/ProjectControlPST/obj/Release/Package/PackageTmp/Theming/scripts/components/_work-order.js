@@ -65,5 +65,6 @@ WO.thirdPartyURL.init();
 WO.form = {
     init: function() {
         $('html, body').animate({ scrollTop: 0 }, 'fast');
+        $('#workOrderResult').removeClass("hide");
     }
 };

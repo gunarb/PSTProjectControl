@@ -1,32 +1,30 @@
 ﻿@model ProjectControlPST.Models.User
-
 @{
     ViewBag.Title = "Log In";
     Layout = "~/Views/Shared/_LayoutLogin.cshtml";
 }
-
 @using (Html.BeginForm("LogIn", "Login", FormMethod.Post))
-{
-    <fieldset>
-        <legend>Log In</legend>
-        @Html.AntiForgeryToken()
-        <table>
-            <tr>
-                <td><label class="control-label">User</label></td>
-                <td>@Html.TextBoxFor(m => m.userName)</td>
-            </tr>
-            <tr>
-                <td><label class="control-label">Password</label></td>
-                <td>@Html.PasswordFor(m => m.password)</td>
-            </tr>
-            <tr>
-                <td></td>
-                <td>
-                    <button type="submit" class="btn btn-primary">
-                        <span class="glyphicon glyphicon-log-in"></span> Log in
+    {
+    <div class="login-bg"></div>
+    <div class="row animated fadeIn">
+        <div class="col-sm-4 col-sm-offset-4">
+            <div class="panel panel-default login">
+                <div class="panel-body">
+                    <h4>Log In</h4>
+                    @Html.AntiForgeryToken()
+                    <div class="form-group">
+                        <label class="control-label">Username</label>
+                        @Html.TextBoxFor(m => m.userName, new { @class = "form-control" })
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Password</label>
+                        @Html.PasswordFor(m => m.password, new { @class = "form-control" })
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">
+                        Enter
                     </button>
-                </td>
-            </tr>
-        </table>
-    </fieldset>
+                </div>
+            </div>
+        </div>
+    </div>
 }

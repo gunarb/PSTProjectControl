@@ -1,0 +1,543 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+This file is used by the publish/package process of your Web project. You can customize the behavior of this process
+by editing this MSBuild file. In order to learn more about this please visit http://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <_PublishTargetUrl>http://local.pst-work-orders.com/</_PublishTargetUrl>
+  </PropertyGroup>
+  <ItemGroup>
+    <File Include="ApplicationInsights.config">
+      <publishTime>01/09/2018 11:44:18</publishTime>
+    </File>
+    <File Include="bin/ApplicationInsights.config">
+      <publishTime>01/09/2018 11:44:18</publishTime>
+    </File>
+    <File Include="bin/EntityFramework.dll">
+      <publishTime>03/02/2015 07:32:26</publishTime>
+    </File>
+    <File Include="bin/EntityFramework.SqlServer.dll">
+      <publishTime>03/02/2015 07:32:26</publishTime>
+    </File>
+    <File Include="bin/Microsoft.AI.Agent.Intercept.dll">
+      <publishTime>11/30/2016 14:07:42</publishTime>
+    </File>
+    <File Include="bin/Microsoft.AI.DependencyCollector.dll">
+      <publishTime>12/07/2016 09:45:42</publishTime>
+    </File>
+    <File Include="bin/Microsoft.AI.PerfCounterCollector.dll">
+      <publishTime>12/07/2016 09:50:34</publishTime>
+    </File>
+    <File Include="bin/Microsoft.AI.ServerTelemetryChannel.dll">
+      <publishTime>12/06/2016 13:15:48</publishTime>
+    </File>
+    <File Include="bin/Microsoft.AI.Web.dll">
+      <publishTime>12/07/2016 09:49:10</publishTime>
+    </File>
+    <File Include="bin/Microsoft.AI.WindowsServer.dll">
+      <publishTime>12/07/2016 09:50:34</publishTime>
+    </File>
+    <File Include="bin/Microsoft.ApplicationInsights.dll">
+      <publishTime>12/06/2016 13:09:52</publishTime>
+    </File>
+    <File Include="bin/Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll">
+      <publishTime>06/15/2015 01:06:24</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Web.Infrastructure.dll">
+      <publishTime>07/25/2012 10:48:56</publishTime>
+    </File>
+    <File Include="bin/Newtonsoft.Json.dll">
+      <publishTime>08/03/2014 19:33:56</publishTime>
+    </File>
+    <File Include="bin/ProjectControlPST.dll">
+      <publishTime>01/29/2018 08:19:15</publishTime>
+    </File>
+    <File Include="bin/roslyn/csc.exe">
+      <publishTime>06/18/2015 19:19:46</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.Build.Tasks.CodeAnalysis.dll">
+      <publishTime>06/18/2015 19:19:46</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.CodeAnalysis.CSharp.dll">
+      <publishTime>06/18/2015 19:19:46</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.CodeAnalysis.dll">
+      <publishTime>06/18/2015 19:19:44</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.CodeAnalysis.VisualBasic.dll">
+      <publishTime>06/18/2015 19:19:46</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.CSharp.Core.targets">
+      <publishTime>01/10/2018 09:55:17</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.VisualBasic.Core.targets">
+      <publishTime>01/10/2018 09:55:17</publishTime>
+    </File>
+    <File Include="bin/roslyn/System.Collections.Immutable.dll">
+      <publishTime>06/18/2015 19:19:46</publishTime>
+    </File>
+    <File Include="bin/roslyn/System.Reflection.Metadata.dll">
+      <publishTime>06/18/2015 19:19:46</publishTime>
+    </File>
+    <File Include="bin/roslyn/vbc.exe">
+      <publishTime>06/18/2015 19:19:46</publishTime>
+    </File>
+    <File Include="bin/roslyn/VBCSCompiler.exe">
+      <publishTime>06/18/2015 19:19:46</publishTime>
+    </File>
+    <File Include="bin/roslyn/VBCSCompiler.exe.config">
+      <publishTime>01/10/2018 09:55:17</publishTime>
+    </File>
+    <File Include="bin/RouteDebugger.dll">
+      <publishTime>04/13/2016 14:08:38</publishTime>
+    </File>
+    <File Include="bin/System.Net.Http.Formatting.dll">
+      <publishTime>01/28/2015 02:02:42</publishTime>
+    </File>
+    <File Include="bin/System.Web.Helpers.dll">
+      <publishTime>01/28/2015 02:04:30</publishTime>
+    </File>
+    <File Include="bin/System.Web.Http.dll">
+      <publishTime>01/28/2015 02:02:54</publishTime>
+    </File>
+    <File Include="bin/System.Web.Http.WebHost.dll">
+      <publishTime>01/28/2015 02:03:46</publishTime>
+    </File>
+    <File Include="bin/System.Web.Mvc.dll">
+      <publishTime>01/28/2015 02:02:18</publishTime>
+    </File>
+    <File Include="bin/System.Web.Razor.dll">
+      <publishTime>01/28/2015 02:02:32</publishTime>
+    </File>
+    <File Include="bin/System.Web.Webpages.Deployment.dll">
+      <publishTime>01/28/2015 02:04:30</publishTime>
+    </File>
+    <File Include="bin/System.Web.Webpages.dll">
+      <publishTime>01/28/2015 02:04:30</publishTime>
+    </File>
+    <File Include="bin/System.Web.Webpages.Razor.dll">
+      <publishTime>01/28/2015 02:04:30</publishTime>
+    </File>
+    <File Include="Global.asax">
+      <publishTime>01/09/2018 11:44:18</publishTime>
+    </File>
+    <File Include="Models/PSTProjectControl.edmx.diagram">
+      <publishTime>01/29/2018 07:37:14</publishTime>
+    </File>
+    <File Include="packages.config">
+      <publishTime>01/25/2018 09:06:12</publishTime>
+    </File>
+    <File Include="Theming/bower_components/angular-animate/.bower.json">
+      <publishTime>01/10/2018 09:55:33</publishTime>
+    </File>
+    <File Include="Theming/bower_components/angular-animate/angular-animate.js">
+      <publishTime>01/10/2018 09:55:33</publishTime>
+    </File>
+    <File Include="Theming/bower_components/angular-animate/angular-animate.min.js">
+      <publishTime>01/10/2018 09:55:33</publishTime>
+    </File>
+    <File Include="Theming/bower_components/angular-animate/angular-animate.min.js.map">
+      <publishTime>01/10/2018 09:55:33</publishTime>
+    </File>
+    <File Include="Theming/bower_components/angular-animate/bower.json">
+      <publishTime>01/10/2018 09:55:33</publishTime>
+    </File>
+    <File Include="Theming/bower_components/angular-animate/index.js">
+      <publishTime>01/10/2018 09:55:33</publishTime>
+    </File>
+    <File Include="Theming/bower_components/angular-animate/LICENSE.md">
+      <publishTime>01/10/2018 09:55:33</publishTime>
+    </File>
+    <File Include="Theming/bower_components/angular-animate/package.json">
+      <publishTime>01/10/2018 09:55:33</publishTime>
+    </File>
+    <File Include="Theming/bower_components/angular-animate/README.md">
+      <publishTime>01/10/2018 09:55:33</publishTime>
+    </File>
+    <File Include="Theming/bower_components/angular-sanitize/.bower.json">
+      <publishTime>01/10/2018 09:55:33</publishTime>
+    </File>
+    <File Include="Theming/bower_components/angular-sanitize/angular-sanitize.js">
+      <publishTime>01/10/2018 09:55:33</publishTime>
+    </File>
+    <File Include="Theming/bower_components/angular-sanitize/angular-sanitize.min.js">
+      <publishTime>01/10/2018 09:55:33</publishTime>
+    </File>
+    <File Include="Theming/bower_components/angular-sanitize/angular-sanitize.min.js.map">
+      <publishTime>01/10/2018 09:55:33</publishTime>
+    </File>
+    <File Include="Theming/bower_components/angular-sanitize/bower.json">
+      <publishTime>01/10/2018 09:55:33</publishTime>
+    </File>
+    <File Include="Theming/bower_components/angular-sanitize/index.js">
+      <publishTime>01/10/2018 09:55:33</publishTime>
+    </File>
+    <File Include="Theming/bower_components/angular-sanitize/LICENSE.md">
+      <publishTime>01/10/2018 09:55:33</publishTime>
+    </File>
+    <File Include="Theming/bower_components/angular-sanitize/package.json">
+      <publishTime>01/10/2018 09:55:33</publishTime>
+    </File>
+    <File Include="Theming/bower_components/angular-sanitize/README.md">
+      <publishTime>01/10/2018 09:55:33</publishTime>
+    </File>
+    <File Include="Theming/bower_components/angular-touch/.bower.json">
+      <publishTime>01/10/2018 09:55:33</publishTime>
+    </File>
+    <File Include="Theming/bower_components/angular-touch/angular-touch.js">
+      <publishTime>01/10/2018 09:55:33</publishTime>
+    </File>
+    <File Include="Theming/bower_components/angular-touch/angular-touch.min.js">
+      <publishTime>01/10/2018 09:55:33</publishTime>
+    </File>
+    <File Include="Theming/bower_components/angular-touch/angular-touch.min.js.map">
+      <publishTime>01/10/2018 09:55:33</publishTime>
+    </File>
+    <File Include="Theming/bower_components/angular-touch/bower.json">
+      <publishTime>01/10/2018 09:55:33</publishTime>
+    </File>
+    <File Include="Theming/bower_components/angular-touch/index.js">
+      <publishTime>01/10/2018 09:55:33</publishTime>
+    </File>
+    <File Include="Theming/bower_components/angular-touch/LICENSE.md">
+      <publishTime>01/10/2018 09:55:33</publishTime>
+    </File>
+    <File Include="Theming/bower_components/angular-touch/package.json">
+      <publishTime>01/10/2018 09:55:33</publishTime>
+    </File>
+    <File Include="Theming/bower_components/angular-touch/README.md">
+      <publishTime>01/10/2018 09:55:33</publishTime>
+    </File>
+    <File Include="Theming/bower_components/angular-ui-grid/.bower.json">
+      <publishTime>01/09/2018 11:44:18</publishTime>
+    </File>
+    <File Include="Theming/bower_components/angular-ui-grid/bower.json">
+      <publishTime>01/09/2018 11:44:18</publishTime>
+    </File>
+    <File Include="Theming/bower_components/angular-ui-grid/CHANGELOG.md">
+      <publishTime>01/09/2018 11:44:18</publishTime>
+    </File>
+    <File Include="Theming/bower_components/angular-ui-grid/index.js">
+      <publishTime>01/09/2018 11:44:18</publishTime>
+    </File>
+    <File Include="Theming/bower_components/angular-ui-grid/less/animation.less">
+      <publishTime>01/09/2018 11:44:18</publishTime>
+    </File>
+    <File Include="Theming/bower_components/angular-ui-grid/less/body.less">
+      <publishTime>01/09/2018 11:44:18</publishTime>
+    </File>
+    <File Include="Theming/bower_components/angular-ui-grid/less/bootstrap/bootstrap.less">
+      <publishTime>01/09/2018 11:44:18</publishTime>
+    </File>
+    <File Include="Theming/bower_components/angular-ui-grid/less/cell.less">
+      <publishTime>01/09/2018 11:44:18</publishTime>
+    </File>
+    <File Include="Theming/bower_components/angular-ui-grid/less/cellnav/less/cellNav.less">
+      <publishTime>01/09/2018 11:44:18</publishTime>
+    </File>
+    <File Include="Theming/bower_components/angular-ui-grid/less/edit/less/edit.less">
+      <publishTime>01/09/2018 11:44:18</publishTime>
+    </File>
+    <File Include="Theming/bower_components/angular-ui-grid/less/elements.less">
+      <publishTime>01/09/2018 11:44:18</publishTime>
+    </File>
+    <File Include="Theming/bower_components/angular-ui-grid/less/empty-base-layer/less/emptyBaseLayer.less">
+      <publishTime>01/09/2018 11:44:18</publishTime>
+    </File>
+    <File Include="Theming/bower_components/angular-ui-grid/less/expandable/less/expandable.less">
+      <publishTime>01/09/2018 11:44:18</publishTime>
+    </File>
+    <File Include="Theming/bower_components/angular-ui-grid/less/exporter/less/exporter.less">
+      <publishTime>01/09/2018 11:44:18</publishTime>
+    </File>
+    <File Include="Theming/bower_components/angular-ui-grid/less/footer.less">
+      <publishTime>01/09/2018 11:44:18</publishTime>
+    </File>
+    <File Include="Theming/bower_components/angular-ui-grid/less/goups.less">
+      <publishTime>01/09/2018 11:44:18</publishTime>
+    </File>
+    <File Include="Theming/bower_components/angular-ui-grid/less/grid.less">
+      <publishTime>01/09/2018 11:44:18</publishTime>
+    </File>
+    <File Include="Theming/bower_components/angular-ui-grid/less/grouping/less/grouping.less">
+      <publishTime>01/09/2018 11:44:18</publishTime>
+    </File>
+    <File Include="Theming/bower_components/angular-ui-grid/less/header.less">
+      <publishTime>01/09/2018 11:44:18</publishTime>
+    </File>
+    <File Include="Theming/bower_components/angular-ui-grid/less/icons.less">
+      <publishTime>01/09/2018 11:44:18</publishTime>
+    </File>
+    <File Include="Theming/bower_components/angular-ui-grid/less/importer/less/importer.less">
+      <publishTime>01/09/2018 11:44:18</publishTime>
+    </File>
+    <File Include="Theming/bower_components/angular-ui-grid/less/main.less">
+      <publishTime>01/09/2018 11:44:18</publishTime>
+    </File>
+    <File Include="Theming/bower_components/angular-ui-grid/less/menu.less">
+      <publishTime>01/09/2018 11:44:18</publishTime>
+    </File>
+    <File Include="Theming/bower_components/angular-ui-grid/less/move-columns/less/colMovable.less">
+      <publishTime>01/09/2018 11:44:18</publishTime>
+    </File>
+    <File Include="Theming/bower_components/angular-ui-grid/less/pagination/less/pagination.less">
+      <publishTime>01/09/2018 11:44:18</publishTime>
+    </File>
+    <File Include="Theming/bower_components/angular-ui-grid/less/pinning/less/pinning.less">
+      <publishTime>01/09/2018 11:44:18</publishTime>
+    </File>
+    <File Include="Theming/bower_components/angular-ui-grid/less/resize-columns/less/column-resizer.less">
+      <publishTime>01/09/2018 11:44:18</publishTime>
+    </File>
+    <File Include="Theming/bower_components/angular-ui-grid/less/row-edit/less/rowEdit.less">
+      <publishTime>01/09/2018 11:44:18</publishTime>
+    </File>
+    <File Include="Theming/bower_components/angular-ui-grid/less/rtl.less">
+      <publishTime>01/09/2018 11:44:18</publishTime>
+    </File>
+    <File Include="Theming/bower_components/angular-ui-grid/less/selection/less/selection.less">
+      <publishTime>01/09/2018 11:44:18</publishTime>
+    </File>
+    <File Include="Theming/bower_components/angular-ui-grid/less/sorting.less">
+      <publishTime>01/09/2018 11:44:18</publishTime>
+    </File>
+    <File Include="Theming/bower_components/angular-ui-grid/less/tree-base/less/tree-base.less">
+      <publishTime>01/09/2018 11:44:18</publishTime>
+    </File>
+    <File Include="Theming/bower_components/angular-ui-grid/less/tree-view/less/tree-view.less">
+      <publishTime>01/09/2018 11:44:18</publishTime>
+    </File>
+    <File Include="Theming/bower_components/angular-ui-grid/less/validate/less/validate.less">
+      <publishTime>01/09/2018 11:44:18</publishTime>
+    </File>
+    <File Include="Theming/bower_components/angular-ui-grid/less/variables.less">
+      <publishTime>01/09/2018 11:44:18</publishTime>
+    </File>
+    <File Include="Theming/bower_components/angular-ui-grid/package.json">
+      <publishTime>01/09/2018 11:44:18</publishTime>
+    </File>
+    <File Include="Theming/bower_components/angular-ui-grid/README.md">
+      <publishTime>01/09/2018 11:44:18</publishTime>
+    </File>
+    <File Include="Theming/bower_components/angular-ui-grid/ui-grid.css">
+      <publishTime>01/09/2018 11:44:18</publishTime>
+    </File>
+    <File Include="Theming/bower_components/angular-ui-grid/ui-grid.eot">
+      <publishTime>01/09/2018 11:44:18</publishTime>
+    </File>
+    <File Include="Theming/bower_components/angular-ui-grid/ui-grid.js">
+      <publishTime>01/09/2018 11:44:18</publishTime>
+    </File>
+    <File Include="Theming/bower_components/angular-ui-grid/ui-grid.min.css">
+      <publishTime>01/09/2018 11:44:18</publishTime>
+    </File>
+    <File Include="Theming/bower_components/angular-ui-grid/ui-grid.min.js">
+      <publishTime>01/09/2018 11:44:18</publishTime>
+    </File>
+    <File Include="Theming/bower_components/angular-ui-grid/ui-grid.svg">
+      <publishTime>01/09/2018 11:44:18</publishTime>
+    </File>
+    <File Include="Theming/bower_components/angular-ui-grid/ui-grid.ttf">
+      <publishTime>01/09/2018 11:44:18</publishTime>
+    </File>
+    <File Include="Theming/bower_components/angular-ui-grid/ui-grid.woff">
+      <publishTime>01/09/2018 11:44:18</publishTime>
+    </File>
+    <File Include="Theming/bower_components/angular/.bower.json">
+      <publishTime>01/09/2018 11:44:18</publishTime>
+    </File>
+    <File Include="Theming/bower_components/angular/angular-csp.css">
+      <publishTime>01/09/2018 11:44:18</publishTime>
+    </File>
+    <File Include="Theming/bower_components/angular/angular.js">
+      <publishTime>01/09/2018 11:44:18</publishTime>
+    </File>
+    <File Include="Theming/bower_components/angular/angular.min.js">
+      <publishTime>01/09/2018 11:44:18</publishTime>
+    </File>
+    <File Include="Theming/bower_components/angular/angular.min.js.gzip">
+      <publishTime>01/09/2018 11:44:18</publishTime>
+    </File>
+    <File Include="Theming/bower_components/angular/angular.min.js.map">
+      <publishTime>01/09/2018 11:44:18</publishTime>
+    </File>
+    <File Include="Theming/bower_components/angular/bower.json">
+      <publishTime>01/09/2018 11:44:18</publishTime>
+    </File>
+    <File Include="Theming/bower_components/angular/index.js">
+      <publishTime>01/09/2018 11:44:18</publishTime>
+    </File>
+    <File Include="Theming/bower_components/angular/LICENSE.md">
+      <publishTime>01/09/2018 11:44:18</publishTime>
+    </File>
+    <File Include="Theming/bower_components/angular/package.json">
+      <publishTime>01/09/2018 11:44:18</publishTime>
+    </File>
+    <File Include="Theming/bower_components/angular/README.md">
+      <publishTime>01/09/2018 11:44:18</publishTime>
+    </File>
+    <File Include="Theming/fonts/glyphicons-halflings-regular.eot">
+      <publishTime>01/09/2018 11:44:18</publishTime>
+    </File>
+    <File Include="Theming/fonts/glyphicons-halflings-regular.svg">
+      <publishTime>01/09/2018 11:44:18</publishTime>
+    </File>
+    <File Include="Theming/fonts/glyphicons-halflings-regular.ttf">
+      <publishTime>01/09/2018 11:44:18</publishTime>
+    </File>
+    <File Include="Theming/fonts/glyphicons-halflings-regular.woff">
+      <publishTime>01/09/2018 11:44:18</publishTime>
+    </File>
+    <File Include="Theming/images/login-bg.jpg">
+      <publishTime>01/29/2018 07:49:22</publishTime>
+    </File>
+    <File Include="Theming/images/logo.png">
+      <publishTime>01/12/2018 09:23:24</publishTime>
+    </File>
+    <File Include="Theming/images/navbar.png">
+      <publishTime>01/25/2018 09:06:12</publishTime>
+    </File>
+    <File Include="Theming/scripts/app.js">
+      <publishTime>01/30/2018 12:03:02</publishTime>
+    </File>
+    <File Include="Theming/scripts/app.min.js">
+      <publishTime>01/30/2018 12:03:02</publishTime>
+    </File>
+    <File Include="Theming/scripts/bootstrap.js">
+      <publishTime>01/09/2018 11:44:18</publishTime>
+    </File>
+    <File Include="Theming/scripts/bootstrap.min.js">
+      <publishTime>01/09/2018 11:44:18</publishTime>
+    </File>
+    <File Include="Theming/scripts/components/_global.js">
+      <publishTime>01/18/2018 07:03:39</publishTime>
+    </File>
+    <File Include="Theming/scripts/components/_gobal.js">
+      <publishTime>01/10/2018 09:55:33</publishTime>
+    </File>
+    <File Include="Theming/scripts/components/_grid-view.js">
+      <publishTime>01/30/2018 12:03:02</publishTime>
+    </File>
+    <File Include="Theming/scripts/components/_preferences.js">
+      <publishTime>01/29/2018 07:25:06</publishTime>
+    </File>
+    <File Include="Theming/scripts/components/_work-order.js">
+      <publishTime>01/29/2018 12:44:35</publishTime>
+    </File>
+    <File Include="Theming/scripts/jquery-1.10.2.js">
+      <publishTime>01/09/2018 11:44:18</publishTime>
+    </File>
+    <File Include="Theming/scripts/jquery-1.10.2.min.js">
+      <publishTime>01/09/2018 11:44:18</publishTime>
+    </File>
+    <File Include="Theming/scripts/jquery-1.10.2.min.map">
+      <publishTime>01/09/2018 11:44:18</publishTime>
+    </File>
+    <File Include="Theming/scripts/jquery.unobtrusive-ajax.js">
+      <publishTime>01/25/2018 09:06:12</publishTime>
+    </File>
+    <File Include="Theming/scripts/jquery.unobtrusive-ajax.min.js">
+      <publishTime>01/25/2018 09:06:12</publishTime>
+    </File>
+    <File Include="Theming/scripts/modernizr-2.6.2.js">
+      <publishTime>01/09/2018 11:44:18</publishTime>
+    </File>
+    <File Include="Theming/styles/bootstrap.css">
+      <publishTime>01/09/2018 11:44:18</publishTime>
+    </File>
+    <File Include="Theming/styles/bootstrap.min.css">
+      <publishTime>01/09/2018 11:44:18</publishTime>
+    </File>
+    <File Include="Theming/styles/Site.css">
+      <publishTime>01/30/2018 12:12:04</publishTime>
+    </File>
+    <File Include="Views/DetailOrder/Index.cshtml">
+      <publishTime>01/10/2018 09:55:33</publishTime>
+    </File>
+    <File Include="Views/Home/GridView.cshtml">
+      <publishTime>01/10/2018 09:55:33</publishTime>
+    </File>
+    <File Include="Views/Home/Index.cshtml">
+      <publishTime>01/29/2018 13:11:27</publishTime>
+    </File>
+    <File Include="Views/Home/_GridView.cshtml">
+      <publishTime>01/25/2018 09:06:12</publishTime>
+    </File>
+    <File Include="Views/Login/Index.cshtml">
+      <publishTime>01/30/2018 08:29:55</publishTime>
+    </File>
+    <File Include="Views/Preferences/Index.cshtml">
+      <publishTime>01/30/2018 08:39:47</publishTime>
+    </File>
+    <File Include="Views/Shared/EditorTemplates/Domain.cshtml">
+      <publishTime>01/29/2018 12:01:48</publishTime>
+    </File>
+    <File Include="Views/Shared/EditorTemplates/EffectedURL.cshtml">
+      <publishTime>01/29/2018 12:07:30</publishTime>
+    </File>
+    <File Include="Views/Shared/EditorTemplates/ThirdPartyCredential.cshtml">
+      <publishTime>01/29/2018 12:15:36</publishTime>
+    </File>
+    <File Include="Views/Shared/EditorTemplates/vw_assets_project.cshtml">
+      <publishTime>01/30/2018 08:19:00</publishTime>
+    </File>
+    <File Include="Views/Shared/_Layout.cshtml">
+      <publishTime>01/29/2018 13:55:22</publishTime>
+    </File>
+    <File Include="Views/Shared/_LayoutLogin.cshtml">
+      <publishTime>01/29/2018 13:53:13</publishTime>
+    </File>
+    <File Include="Views/Shared/_NavBar.cshtml">
+      <publishTime>01/29/2018 11:32:13</publishTime>
+    </File>
+    <File Include="Views/web.config">
+      <publishTime>01/09/2018 11:44:18</publishTime>
+    </File>
+    <File Include="Views/WorkOrder/Details.cshtml">
+      <publishTime>01/30/2018 08:04:43</publishTime>
+    </File>
+    <File Include="Views/WorkOrder/Details/_Banners.cshtml">
+      <publishTime>01/30/2018 08:25:08</publishTime>
+    </File>
+    <File Include="Views/WorkOrder/Details/_Print.cshtml">
+      <publishTime>01/30/2018 08:24:58</publishTime>
+    </File>
+    <File Include="Views/WorkOrder/Details/_WebDevelopment.cshtml">
+      <publishTime>01/30/2018 08:23:37</publishTime>
+    </File>
+    <File Include="Views/WorkOrder/Index.cshtml">
+      <publishTime>01/12/2018 09:23:24</publishTime>
+    </File>
+    <File Include="Views/WorkOrder/Update.cshtml">
+      <publishTime>01/30/2018 07:56:10</publishTime>
+    </File>
+    <File Include="Views/WorkOrder/Update/_Banners.cshtml">
+      <publishTime>01/30/2018 07:54:40</publishTime>
+    </File>
+    <File Include="Views/WorkOrder/Update/_Print.cshtml">
+      <publishTime>01/30/2018 08:07:13</publishTime>
+    </File>
+    <File Include="Views/WorkOrder/Update/_WebDevelopment.cshtml">
+      <publishTime>01/29/2018 12:37:52</publishTime>
+    </File>
+    <File Include="Views/WorkOrder/_Assets.cshtml">
+      <publishTime>01/30/2018 08:18:53</publishTime>
+    </File>
+    <File Include="Views/WorkOrder/_Domain.cshtml">
+      <publishTime>01/29/2018 13:22:43</publishTime>
+    </File>
+    <File Include="Views/WorkOrder/_EffectedURL.cshtml">
+      <publishTime>01/29/2018 13:25:09</publishTime>
+    </File>
+    <File Include="Views/WorkOrder/_ThirdPartyCredential.cshtml">
+      <publishTime>01/29/2018 13:37:13</publishTime>
+    </File>
+    <File Include="Views/_ViewStart.cshtml">
+      <publishTime>01/09/2018 11:44:18</publishTime>
+    </File>
+    <File Include="Web.config">
+      <publishTime>01/29/2018 07:39:11</publishTime>
+    </File>
+  </ItemGroup>
+</Project>

@@ -385,17 +385,5 @@
       <End Role="Users" EntitySet="Users" />
       <End Role="WorkOrder" EntitySet="WorkOrders" />
     </AssociationSet>
-    <EntitySet Name="vw_typerequest_assets" EntityType="PSTProjectControlModel.vw_typerequest_assets" />
   </EntityContainer>
-  <EntityType Name="vw_typerequest_assets">
-    <Key>
-      <PropertyRef Name="uniqueId" />
-      <PropertyRef Name="request" />
-    </Key>
-    <Property Name="uniqueId" Type="Int32" Nullable="false" />
-    <Property Name="idAssetsList" Type="Int32" />
-    <Property Name="idTypeRequest" Type="Int32" />
-    <Property Name="request" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
-    <Property Name="asset" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-  </EntityType>
 </Schema>

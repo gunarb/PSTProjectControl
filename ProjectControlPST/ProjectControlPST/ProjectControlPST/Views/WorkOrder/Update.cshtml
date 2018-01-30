@@ -1,0 +1,91 @@
+﻿@model ProjectControlPST.Models.WorkOrder
+
+@{
+    ViewBag.Title = "Update Work Order";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Update Project Number: @Model.uniqueId</h2>
+
+<form>
+    <fieldset>
+        <legend>@Model.TypeRequest.request</legend>
+        <div class="form-group">
+            <label for="author">Author</label>
+            <input id="author" type="text" class="form-control" value="@Model.author" />
+        </div>
+        <div class="form-group">
+            <label for="date">Date</label>
+            <input id="date" type="text" class="form-control" value="@Model.date" />
+        </div>
+        <div class="form-group">
+            <label for="projectName">Project Name</label>
+            <input id="projectName" type="text" class="form-control" value="@Model.projectName" />
+        </div>
+        <div class="form-group">
+            <label for="referencePreviousJob">Reference Previous Job</label>
+            <input id="referencePreviousJob" type="text" class="form-control" value="@Model.referencePreviousJob" />
+        </div>
+        <div class="form-group">
+            <label for="agencyPM">Agency PM</label>
+            <input id="agencyPM" type="text" class="form-control" value="@Model.agencyPM" />
+        </div>
+        <div class="form-group">
+            <label for="agencyAccountDirector">Agency Account Director</label>
+            <input id="agencyAccountDirector" type="text" class="form-control" value="@Model.agencyAccountDirector" />
+        </div>
+        <div class="form-group">
+            <label for="brandManager">Brand Manager</label>
+            <input id="brandManager" type="text" class="form-control" value="@Model.brandManager" />
+        </div>
+        <div class="form-group">
+            <label for="prodigiousPM">Brand Manager</label>
+            <input id="prodigiousPM" type="text" class="form-control" value="@Model.prodigiousPM" />
+        </div>
+        <div class="form-group">
+            <label for="projectDescription">Project Description</label>
+            <textarea id="projectDescription" class="form-control" rows="3"></textarea>
+        </div>
+        <div class="form-group">
+            <label for="kickOffDate">Kick Off Date</label>
+            <input id="kickOffDate" type="date" />
+        </div>
+        <div class="form-group">
+            <label for="liveDate">Live Date</label>
+            <input id="liveDate" type="date" />
+        </div>
+        <div class="form-group">
+            <label>Domains</label>
+            <input id="domain1" type="text" class="form-control" />
+            <input id="domains2" type="text" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label for="plataform"></label>
+            <input id="plataform" type="text" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label for="seo"></label>
+            <input id="seo" type="text" class="form-control" />
+        </div>
+        <fieldset class="form-group">
+            <legend>Checkboxes</legend>
+            <div class="form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" type="checkbox" value="" checked="">
+                    Option one is this and that—be sure to include why it's great
+                </label>
+            </div>
+            <div class="form-check disabled">
+                <label class="form-check-label">
+                    <input class="form-check-input" type="checkbox" value="" disabled="">
+                    Option two is disabled
+                </label>
+            </div>
+        </fieldset>
+        <div class="form-group">
+            <label for="additionalComments">Additional Comments</label>
+            <textarea id="additionalComments" class="form-control" rows="3"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </fieldset>
+</form>

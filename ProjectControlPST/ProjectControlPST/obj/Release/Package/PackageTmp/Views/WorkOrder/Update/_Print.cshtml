@@ -59,7 +59,7 @@
 </div>
 <div class="form-group">
     <label class="control-label" for="projectDescription">Project Description</label>
-    @Html.TextAreaFor(m => m.WorkOrderDescription.projectDescription, new { id = "projectDescription", @class = "form-control" })
+    @Html.TextAreaFor(m => m.WorkOrderDescription.projectDescription, new { id = "projectDescription", @class = "form-control", @rows = 6 })
 </div>
 <div class="row">
     <div class="col-sm-3">
@@ -91,5 +91,5 @@
 </div>
 <div class="form-group">
     <label class="control-label" for="additionalComments">Additional Comments</label>
-    @Html.TextAreaFor(m => m.WorkOrderDescription.additionalComments, new { id = "additionalComments", @class = "form-control" })
+    @Html.TextAreaFor(m => m.WorkOrderDescription.additionalComments, new { id = "additionalComments", @class = "form-control", @rows = 6 })
 </div>

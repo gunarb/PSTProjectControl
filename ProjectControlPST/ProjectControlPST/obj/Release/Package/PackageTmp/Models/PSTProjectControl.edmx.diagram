@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="606abd60902c401daa3b3915463eebd4" Name="Diagram1">
+      <Diagram DiagramId="d7cc9b54b5ed45dcb79816524aad01b6" Name="Diagram1">
         <EntityTypeShape EntityType="PSTProjectControlModel.AssetProject" Width="1.5" PointX="10.5" PointY="3.875" IsExpanded="true" />
         <EntityTypeShape EntityType="PSTProjectControlModel.AssetsForRequest" Width="1.5" PointX="3" PointY="6.875" IsExpanded="true" />
         <EntityTypeShape EntityType="PSTProjectControlModel.AssetsList" Width="1.5" PointX="0.75" PointY="4" IsExpanded="true" />
@@ -30,7 +30,6 @@
         <AssociationConnector Association="PSTProjectControlModel.FK_WorkOrder_ProjectStatus" ManuallyRouted="false" />
         <AssociationConnector Association="PSTProjectControlModel.FK_WorkOrder_TypeRequest" ManuallyRouted="false" />
         <AssociationConnector Association="PSTProjectControlModel.FK_WorkOrder_User" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="PSTProjectControlModel.vw_typerequest_assets" Width="1.5" PointX="3.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
