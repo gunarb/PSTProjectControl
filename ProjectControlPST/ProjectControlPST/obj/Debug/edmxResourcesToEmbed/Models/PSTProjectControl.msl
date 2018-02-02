@@ -162,16 +162,5 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="vw_typerequest_assets">
-      <EntityTypeMapping TypeName="PSTProjectControlModel.vw_typerequest_assets">
-        <MappingFragment StoreEntitySet="vw_typerequest_assets">
-          <ScalarProperty Name="asset" ColumnName="asset" />
-          <ScalarProperty Name="request" ColumnName="request" />
-          <ScalarProperty Name="idTypeRequest" ColumnName="idTypeRequest" />
-          <ScalarProperty Name="idAssetsList" ColumnName="idAssetsList" />
-          <ScalarProperty Name="uniqueId" ColumnName="uniqueId" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

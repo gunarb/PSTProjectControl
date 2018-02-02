@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Web.Mvc;
+using Rotativa.MVC;
 using ProjectControlPST.Models;
+using ProjectControlPST.Extensions;
 using ProjectControlPST.Repositories;
+using static System.Web.HttpContext;
 
 namespace ProjectControlPST.Controllers
 {
@@ -26,7 +29,7 @@ namespace ProjectControlPST.Controllers
             return Content(
                 $"Error! the secure code entered do no match to the secure code for project {workOrder.WorkOrderDescription.projectName}");
         }
-        [Route("workorder/detail/{id}/{secureCode}")]
+        [Route("workorder/view/{id}/{secureCode}")]
         public ActionResult Details(int id, string secureCode)
         {
             var workOrder = _repository.GetWorkOrder(id);
@@ -44,7 +47,7 @@ namespace ProjectControlPST.Controllers
             return RedirectToAction("Update", "WorkOrder", new { @id = workOrderId, @secureCode = workOrderSecureCode });
         }
         [HttpPost]
-        public ActionResult UpdateWorkOrderDescription(WorkOrderDetails workOrderDetails)
+        public ActionResult UpdateWorkOrderDescription(WorkOrderDetails workOrderDetails, string submitButton)
         {
             var idProjectDescription = workOrderDetails.WorkOrderDescription.idProjectDescription ?? 0;
 
@@ -61,8 +64,26 @@ namespace ProjectControlPST.Controllers
                 Console.WriteLine(e);
                 return Content("Work Order NOT Updated! " + e.Message);
             }
-            
-            return Content("Work Order Updated!");
+
+            return submitButton == "ExportPdf" ? Content("Work Order Updated! Preparing PDF file to downloading...") : Content("Work Order Updated!");
+        }
+        [Route("workorder/generatepdf/{id}/{secureCode}")]
+        public ActionResult GeneratePdf(int id, string secureCode)
+        {
+            return new ActionAsPdf("Details", new { id = id, secureCode = secureCode });
+        }
+        public ActionResult GeneratePdf(string workOrderName)
+        {
+            if (Current.Request.UrlReferrer == null) return Content("URL do no exist!");
+
+            var url = Current.Request.UrlReferrer.AbsoluteUri;
+            if (url.IndexOf("update", StringComparison.Ordinal) >= 0)
+                url = url.Replace("update", "detail");
+
+            var fileName = workOrderName.ToHashtagUrl() + ".pdf";
+            var memory = _repository.PdfStream(url);
+
+            return File(memory, "application/pdf", Server.UrlEncode(fileName));
         }
     }
 }

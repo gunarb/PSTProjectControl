@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.IO;
+using System.Collections.Generic;
 using ProjectControlPST.Models;
 
 namespace ProjectControlPST.Repositories
@@ -11,6 +12,7 @@ namespace ProjectControlPST.Repositories
         List<ProjectStatu> GetProjectStatus();
         WorkOrderDetails GetWorkOrder(int id);
         PreferencesDetails GetPreferencesDetails(int userId);
+        MemoryStream PdfStream(string url);
         string[] InsertWorkOrder(int typeRequest, int userId);
         void UpdateAssets(IList<vw_assets_project> assetsProjects);
         void UpdateWorkOrderDescription(WorkOrderDetails workOrderDetails);

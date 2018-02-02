@@ -1,7 +1,8 @@
 ﻿using System;
+using System.IO;
 using System.Linq;
 using System.Collections.Generic;
-using System.Web.Mvc;
+using Codaxy.WkHtmlToPdf;
 using ProjectControlPST.Models;
 
 namespace ProjectControlPST.Repositories
@@ -56,7 +57,6 @@ namespace ProjectControlPST.Repositories
             };
             return workOrder;
         }
-
         public PreferencesDetails GetPreferencesDetails(int userId)
         {
             var assets = DbContext.AssetsLists.ToList();
@@ -67,6 +67,17 @@ namespace ProjectControlPST.Repositories
                 Assets = assets
             };
             return preferencesDetails;
+        }
+        public MemoryStream PdfStream(string url)
+        {
+            var memory = new MemoryStream();
+            var document = new PdfDocument() {Url = url};
+            var output = new PdfOutput() {OutputStream = memory};
+
+            PdfConvert.ConvertHtmlToPdf(document, output);
+            memory.Position = 0;
+
+            return memory;
         }
         public string[] InsertWorkOrder(int typeRequest, int userId)
         {

@@ -11,22 +11,19 @@ namespace ProjectControlPST.Controllers
         {
             _repository = repository;
         }
-        [HttpGet]
-        [Route("api/projectControl/getWorkOrder")]
+        [HttpGet, Route("api/projectControl/getWorkOrder")]
         public IHttpActionResult GetWorkOrder()
         {
             var workOrders = _repository.GetWorkOrders();
             return Json(workOrders);
         }
-        [HttpGet]
-        [Route("api/projectControl/getProjectStatus")]
+        [HttpGet, Route("api/projectControl/getProjectStatus")]
         public IHttpActionResult GetProjectStatus()
         {
             var projectStatus = _repository.GetProjectStatus();
             return Json(projectStatus);
         }
-        [HttpGet]
-        [Route("api/projectControl/getTypeRequest")]
+        [HttpGet, Route("api/projectControl/getTypeRequest")]
         public IHttpActionResult GetTypeRequest()
         {
             var typeRequests = _repository.GetTypeRequest();

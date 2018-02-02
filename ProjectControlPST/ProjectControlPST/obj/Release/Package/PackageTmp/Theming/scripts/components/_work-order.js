@@ -62,9 +62,19 @@ WO.thirdPartyURL = {
 };
 WO.thirdPartyURL.init();
 
-WO.form = {
+
+WO.OnSuccess = {
     init: function() {
         $('html, body').animate({ scrollTop: 0 }, 'fast');
         $('#workOrderResult').removeClass("hide");
+    }
+};
+
+WO.OnComplete = {
+    init: function(value) {
+        var buttonValue = value.context.ownerDocument.activeElement.value;
+        var urlPdf = value.context.baseURI.replace('update', 'generatepdf');
+        if (buttonValue === "ExportPdf")
+            window.location.href = urlPdf;
     }
 };

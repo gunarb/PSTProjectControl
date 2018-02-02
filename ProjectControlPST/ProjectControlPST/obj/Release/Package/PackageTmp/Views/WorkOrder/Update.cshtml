@@ -7,7 +7,14 @@
 
 <h4><i class="fa fa-briefcase"></i> @Model.WorkOrderDescription.request</h4>
 <br />
-@using (Ajax.BeginForm("UpdateWorkOrderDescription", "WorkOrder", new AjaxOptions {HttpMethod = "POST", OnSuccess = "WO.form.init()", UpdateTargetId = "workOrderResult"}))
+@using (Ajax.BeginForm("UpdateWorkOrderDescription", "WorkOrder",
+    new AjaxOptions
+    {
+        HttpMethod = "POST",
+        OnSuccess = "WO.OnSuccess.init()",
+        OnComplete = "WO.OnComplete.init($(this))",
+        UpdateTargetId = "workOrderResult"
+    }))
 {
     <div id="workOrderResult" class="alert alert-success hide"></div>
     <fieldset>
@@ -34,10 +41,14 @@
         </div>
         <div class="row">
             <div class="col-sm-3">
-                <button type="submit" class="btn btn-primary btn-block"><i class="fa fa-save"></i> Save</button>
+                <button id="saveButton" name="submitButton" type="submit" value="Save" class="btn btn-primary btn-block">
+                    <i class="fa fa-save"></i> Save
+                </button>
             </div>
             <div class="col-sm-3">
-                <button type="button" class="btn btn-default btn-block"><i class="fa fa-file-pdf-o"></i> Export to PDF</button>
+                <button id="exportPdfButton" name="submitButton" type="submit" value="ExportPdf" class="btn btn-default btn-block">
+                    <i class="fa fa-file-pdf-o"></i> Export to PDF
+                </button>
             </div>
         </div>
     </fieldset>

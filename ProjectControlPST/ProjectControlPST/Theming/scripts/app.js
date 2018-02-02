@@ -55,7 +55,7 @@ app.controller('GridCtrl', function ($scope, $http, projectControlService) {
                 { field: 'date', type: 'date', cellFilter: 'date:\'MMM dd yyyy\'' },
                 { field: 'prodigiousPM', name: 'Prodigious PM' },
                 { field: 'idProjectStatus', name: 'Status', cellFilter: 'getStatusType:grid.appScope.projectStatus' },
-                { name: 'View', width: 100, cellTemplate: '<div class="ui-grid-cell-contents"><a href="/workorder/detail/{{ row.entity.uniqueId }}/{{ row.entity.secureCode }}"><i class="fa fa-link"></i></a></div>' },
+                { name: 'View', width: 100, cellTemplate: '<div class="ui-grid-cell-contents"><a href="/workorder/view/{{ row.entity.uniqueId }}/{{ row.entity.secureCode }}"><i class="fa fa-link"></i></a></div>' },
                 { name: 'Update', width: 100, cellTemplate: '<div class="ui-grid-cell-contents grid-update"><a href="/workorder/update/{{ row.entity.uniqueId }}/{{ row.entity.secureCode }}"><i class="fa fa-edit"></i></a></div>' }
             ]
         };
@@ -209,9 +209,19 @@ WO.thirdPartyURL = {
 };
 WO.thirdPartyURL.init();
 
-WO.form = {
+
+WO.OnSuccess = {
     init: function() {
         $('html, body').animate({ scrollTop: 0 }, 'fast');
         $('#workOrderResult').removeClass("hide");
+    }
+};
+
+WO.OnComplete = {
+    init: function(value) {
+        var buttonValue = value.context.ownerDocument.activeElement.value;
+        var urlPdf = value.context.baseURI.replace('update', 'generatepdf');
+        if (buttonValue === "ExportPdf")
+            window.location.href = urlPdf;
     }
 };

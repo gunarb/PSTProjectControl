@@ -31,7 +31,8 @@
     </div>
     <div class="row">
         <div class="col-sm-3">
-            <button type="button" class="btn btn-default btn-block"><i class="fa fa-file-pdf-o"></i> Export to PDF</button>
+            <button onclick="location.href='@Url.Action("GeneratePdf", "WorkOrder", new { workOrderName = Model.WorkOrderDescription.projectName })'" 
+                    type="button" class="btn btn-default btn-block"><i class="fa fa-file-pdf-o"></i> Export to PDF</button>
         </div>
     </div>
 </div>
