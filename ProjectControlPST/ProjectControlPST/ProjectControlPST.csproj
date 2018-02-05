@@ -420,6 +420,55 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Theming\scripts\jquery-1.12.4.intellisense.js" />
+    <Content Include="Theming\scripts\jquery-1.12.4.js" />
+    <Content Include="Theming\scripts\jquery-1.12.4.min.js" />
+    <Content Include="Theming\styles\bootstrap-theme.css" />
+    <Content Include="Theming\styles\bootstrap-theme.min.css" />
+    <Content Include="Theming\styles\bootstrap.css" />
+    <Content Include="Theming\styles\bootstrap.min.css" />
+    <Content Include="Theming\styles\themes\base\accordion.css" />
+    <Content Include="Theming\styles\themes\base\all.css" />
+    <Content Include="Theming\styles\themes\base\autocomplete.css" />
+    <Content Include="Theming\styles\themes\base\base.css" />
+    <Content Include="Theming\styles\themes\base\button.css" />
+    <Content Include="Theming\styles\themes\base\core.css" />
+    <Content Include="Theming\styles\themes\base\datepicker.css" />
+    <Content Include="Theming\styles\themes\base\dialog.css" />
+    <Content Include="Theming\styles\themes\base\draggable.css" />
+    <Content Include="Theming\styles\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Theming\styles\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Theming\styles\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Theming\styles\themes\base\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Theming\styles\themes\base\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Theming\styles\themes\base\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Theming\styles\themes\base\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Theming\styles\themes\base\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Theming\styles\themes\base\images\ui-icons_222222_256x240.png" />
+    <Content Include="Theming\styles\themes\base\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Theming\styles\themes\base\images\ui-icons_454545_256x240.png" />
+    <Content Include="Theming\styles\themes\base\images\ui-icons_888888_256x240.png" />
+    <Content Include="Theming\styles\themes\base\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Theming\styles\themes\base\menu.css" />
+    <Content Include="Theming\styles\themes\base\progressbar.css" />
+    <Content Include="Theming\styles\themes\base\resizable.css" />
+    <Content Include="Theming\styles\themes\base\selectable.css" />
+    <Content Include="Theming\styles\themes\base\selectmenu.css" />
+    <Content Include="Theming\styles\themes\base\slider.css" />
+    <Content Include="Theming\styles\themes\base\sortable.css" />
+    <Content Include="Theming\styles\themes\base\spinner.css" />
+    <Content Include="Theming\styles\themes\base\tabs.css" />
+    <Content Include="Theming\styles\themes\base\theme.css" />
+    <Content Include="Theming\styles\themes\base\tooltip.css" />
+    <Content Include="Theming\styles\bootstrap.min.css.map" />
+    <Content Include="Theming\styles\bootstrap.css.map" />
+    <Content Include="Theming\styles\bootstrap-theme.min.css.map" />
+    <Content Include="Theming\styles\bootstrap-theme.css.map" />
+    <Content Include="Theming\scripts\jquery-1.12.4.min.map" />
+    <Content Include="Theming\scripts\bootstrap.js" />
+    <Content Include="Theming\scripts\bootstrap.min.js" />
+    <Content Include="Theming\styles\themes\base\jquery-ui.css" />
+    <Content Include="Theming\styles\themes\base\jquery-ui.min.css" />
     <Content Include="Models\PSTProjectControl.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>PSTProjectControl.edmx</DependentUpon>
@@ -434,15 +483,14 @@
     <Content Include="Rotativa\help-wkhtmltopdf.txt" />
     <Content Include="Rotativa\wkhtmltoimage.exe" />
     <Content Include="Rotativa\wkhtmltopdf.exe" />
+    <Content Include="Theming\scripts\jquery-ui-1.12.1.js" />
+    <Content Include="Theming\scripts\jquery-ui-1.12.1.min.js" />
     <Content Include="Theming\bower_components\file-saver\.bower.json" />
     <Content Include="Theming\bower_components\file-saver\bower.json" />
     <Content Include="Theming\bower_components\file-saver\LICENSE.md" />
     <Content Include="App_Browsers\qt.browser" />
-    <None Include="Theming\scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Theming\bower_components\file-saver\FileSaver.js" />
     <Content Include="Theming\bower_components\file-saver\FileSaver.min.js" />
-    <Content Include="Theming\scripts\jquery-3.3.1.js" />
-    <Content Include="Theming\scripts\jquery-3.3.1.min.js" />
     <Content Include="Theming\scripts\modernizr-2.8.3.js" />
     <Content Include="Theming\images\login-bg.jpg" />
     <Content Include="Theming\images\navbar.png" />
@@ -476,13 +524,9 @@
     <Content Include="Theming\scripts\components\_global.js" />
     <Content Include="Theming\scripts\components\_grid-view.js" />
     <Content Include="Theming\scripts\components\_work-order.js" />
-    <Content Include="Theming\styles\bootstrap.css" />
-    <Content Include="Theming\styles\bootstrap.min.css" />
     <Content Include="Theming\styles\Site.css" />
     <Content Include="Theming\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Theming\scripts\bootstrap.js" />
-    <Content Include="Theming\scripts\bootstrap.min.js" />
     <Content Include="Theming\bower_components\angular-ui-grid\.bower.json" />
     <Content Include="Theming\bower_components\angular-ui-grid\bower.json" />
     <Content Include="Theming\bower_components\angular-ui-grid\CHANGELOG.md" />
@@ -556,7 +600,6 @@
       <DependentUpon>PSTProjectControl.edmx</DependentUpon>
     </Content>
     <None Include="Properties\PublishProfiles\local.pubxml" />
-    <Content Include="Theming\scripts\jquery-3.3.1.min.map" />
     <Content Include="Web.config" />
     <Content Include="Views\Shared\_NavBar.cshtml" />
   </ItemGroup>
@@ -581,6 +624,7 @@
     <Compile Include="Models\AssetsList.cs">
       <DependentUpon>PSTProjectControl.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ReferenceJob.cs" />
     <Compile Include="Models\Domain.cs">
       <DependentUpon>PSTProjectControl.tt</DependentUpon>
     </Compile>

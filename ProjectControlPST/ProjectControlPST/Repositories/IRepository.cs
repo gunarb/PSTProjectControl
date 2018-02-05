@@ -11,6 +11,7 @@ namespace ProjectControlPST.Repositories
         List<TypeRequest> GetTypeRequest();
         List<ProjectStatu> GetProjectStatus();
         WorkOrderDetails GetWorkOrder(int id);
+        List<ReferenceJob> GetReferenceJob();
         PreferencesDetails GetPreferencesDetails(int userId);
         MemoryStream PdfStream(string url);
         string[] InsertWorkOrder(int typeRequest, int userId);

@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Web.Mvc;
 using Rotativa.MVC;
 using ProjectControlPST.Models;
@@ -45,6 +47,24 @@ namespace ProjectControlPST.Controllers
             var workOrderId = int.Parse(newWorkOrder[0]);
             var workOrderSecureCode = newWorkOrder[1];
             return RedirectToAction("Update", "WorkOrder", new { @id = workOrderId, @secureCode = workOrderSecureCode });
+        }
+        [HttpPost]
+        public JsonResult AutoComplete(string prefix)
+        {
+            var obj = _repository.GetReferenceJob();
+            var job = (from n in obj
+                where n.ProjectName.ToLower().StartsWith(prefix.ToLower())
+                select new {n.ProjectName, n.UniqueId});
+            return Json(job);
+        }
+        [HttpPost]
+        public JsonResult GetProjectName(int id)
+        {
+            var obj = _repository.GetReferenceJob();
+            var job = (from n in obj
+                where n.UniqueId.Equals(id)
+                select new {n.ProjectName});
+            return Json(job);
         }
         [HttpPost]
         public ActionResult UpdateWorkOrderDescription(WorkOrderDetails workOrderDetails, string submitButton)

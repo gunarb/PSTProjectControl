@@ -35,6 +35,17 @@ namespace ProjectControlPST.Repositories
         {
             return DbContext.WorkOrders.ToList();
         }
+        public List<ReferenceJob> GetReferenceJob()
+        {
+            var workOrderList = DbContext.WorkOrders.Select(x => new {x.uniqueId, x.projectName}).ToList();
+            var referenceJob = new List<ReferenceJob>();
+            foreach (var item in workOrderList)
+            {
+                referenceJob.Add(new ReferenceJob() {UniqueId = item.uniqueId, ProjectName = item.projectName});
+            }
+            return referenceJob;
+        }
+
         public List<TypeRequest> GetTypeRequest()
         {
             return DbContext.TypeRequests.ToList();

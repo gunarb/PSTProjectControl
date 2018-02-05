@@ -23,7 +23,8 @@
     <div class="col-sm-3">
         <div class="form-group">
             <label class="control-label" for="referencePreviousJob">Reference Previous Job</label>
-            @Html.TextBoxFor(m => m.WorkOrderDescription.referencePreviousJob, new { id = "referencePreviousJob", @class = "form-control" })
+            @Html.HiddenFor(m => m.WorkOrderDescription.referencePreviousJob, new { id = "referencePreviousJob" })
+            <input type="text" id="referenceJob" name="ReferenceJob" class="form-control" placeholder="Project Name" />
         </div>
     </div>
 </div>

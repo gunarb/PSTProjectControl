@@ -62,7 +62,6 @@ WO.thirdPartyURL = {
 };
 WO.thirdPartyURL.init();
 
-
 WO.OnSuccess = {
     init: function() {
         $('html, body').animate({ scrollTop: 0 }, 'fast');
@@ -72,9 +71,52 @@ WO.OnSuccess = {
 
 WO.OnComplete = {
     init: function(value) {
-        var buttonValue = value.context.ownerDocument.activeElement.value;
-        var urlPdf = value.context.baseURI.replace('update', 'generatepdf');
+        const buttonValue = value.context.ownerDocument.activeElement.value;
+        const urlPdf = value.context.baseURI.replace('update', 'generatepdf');
         if (buttonValue === "ExportPdf")
             window.location.href = urlPdf;
     }
 };
+
+$(document).ready(function() {
+    var referenceJobAutoComplete = $('#referenceJob');
+    var referenceJobHide = $('#referencePreviousJob');
+
+    if (referenceJobHide.val()) {
+        $.ajax({
+            url: '/WorkOrder/GetProjectName',
+            data: "{ 'id': '" + referenceJobHide.val() + "'}",
+            dataType: "json",
+            type: "POST",
+            contentType: "application/json; charset=utf-8",
+            success: function (data) {
+                if (referenceJobAutoComplete.is('div')) {
+                    referenceJobAutoComplete.text(data.shift().ProjectName);
+                } else {
+                    referenceJobAutoComplete.val(data.shift().ProjectName);
+                }
+            }
+        });
+    }
+
+    referenceJobAutoComplete.autocomplete({
+        source: function (request, response) {
+            $.ajax({
+                url: '/WorkOrder/AutoComplete',
+                data: "{ 'prefix': '" + request.term + "'}",
+                dataType: "json",
+                type: "POST",
+                contentType: "application/json; charset=utf-8",
+                success: function (data) {
+                    response($.map(data, function (item) {
+                        return { label: item.ProjectName, value: item.ProjectName, idPN: item.UniqueId };
+                    }));
+                }
+            });
+        },
+        select: function (e, i) {
+            referenceJobHide.val(i.item.idPN);
+        },
+        minLength: 1
+    });
+});
