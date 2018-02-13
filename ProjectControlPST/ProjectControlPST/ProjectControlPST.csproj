@@ -615,6 +615,9 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Extensions\StringExtensions.cs" />
+    <Compile Include="Models\AdminPreference.cs">
+      <DependentUpon>PSTProjectControl.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\AssetProject.cs">
       <DependentUpon>PSTProjectControl.tt</DependentUpon>
     </Compile>

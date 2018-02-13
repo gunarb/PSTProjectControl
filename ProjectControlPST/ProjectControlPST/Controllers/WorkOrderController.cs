@@ -87,6 +87,19 @@ namespace ProjectControlPST.Controllers
 
             return submitButton == "ExportPdf" ? Content("Work Order Updated! Preparing PDF file to downloading...") : Content("Work Order Updated!");
         }
+        [HttpPost]
+        public ActionResult SendEmail(int idWorkOrder, string url)
+        {
+            var user = _repository.GetUserByWorkOrder(idWorkOrder);
+            var urlView = url.Replace("update", "view");
+            var pdfView = url.Replace("update", "generatepdf");
+            var htmlMsg = "<p>Hi " + user.name + ",</p><p>Work order #" + idWorkOrder + " has been updated.</p>";
+            htmlMsg += "<p>For more details go to <a href='" + urlView + "'>View Work Order #" + idWorkOrder + "</a><p>";
+            htmlMsg += "<p>Or download the PDF at <a href='" + pdfView + "'>Work Order #" + idWorkOrder + "</a><p>";
+            htmlMsg += "Have a nice day!";
+            _repository.SendEmail(user.email, htmlMsg, idWorkOrder);
+            return Content("Email send");
+        }
         [Route("workorder/generatepdf/{id}/{secureCode}")]
         public ActionResult GeneratePdf(int id, string secureCode)
         {

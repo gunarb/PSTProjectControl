@@ -334,5 +334,6 @@ C:\Users\angbolan\Documents\GitHub\PSTProjectControl\ProjectControlPST\ProjectCo
 C:\Users\angbolan\Documents\GitHub\PSTProjectControl\ProjectControlPST\ProjectControlPST\bin\System.Web.Webpages.Razor.xml
 C:\Users\angbolan\Documents\GitHub\PSTProjectControl\ProjectControlPST\ProjectControlPST\bin\System.Web.Helpers.xml
 C:\Users\angbolan\Documents\GitHub\PSTProjectControl\ProjectControlPST\ProjectControlPST\bin\System.Web.Mvc.xml
+C:\Users\angbolan\Documents\GitHub\PSTProjectControl\ProjectControlPST\ProjectControlPST\obj\Debug\ProjectControlPST.csprojResolveAssemblyReference.cache
 C:\Users\angbolan\Documents\GitHub\PSTProjectControl\ProjectControlPST\ProjectControlPST\obj\Debug\ProjectControlPST.dll
 C:\Users\angbolan\Documents\GitHub\PSTProjectControl\ProjectControlPST\ProjectControlPST\obj\Debug\ProjectControlPST.pdb

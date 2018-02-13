@@ -1,6 +1,8 @@
 ﻿using System;
 using System.IO;
+using System.Net;
 using System.Linq;
+using System.Net.Mail;
 using System.Collections.Generic;
 using Codaxy.WkHtmlToPdf;
 using ProjectControlPST.Models;
@@ -210,6 +212,41 @@ namespace ProjectControlPST.Repositories
                     original.password = item.password;
                     DbContext.SaveChanges();
                 }
+            }
+        }
+        public User GetUserByWorkOrder(int idWorkOrder)
+        {
+            var workOrder = DbContext.WorkOrders.First(x => x.uniqueId == idWorkOrder);
+            return DbContext.Users.First(x => x.uniqueId == workOrder.idUser);
+        }
+        public void SendEmail(string email, string htmlBody, int idWorkOrder)
+        {
+            try
+            {
+                var credentials = DbContext.AdminPreferences.SingleOrDefault();
+                if (credentials == null) return;
+                var smtp = new SmtpClient
+                {
+                    Host = "smtp.live.com",
+                    Credentials = new NetworkCredential
+                        (credentials.adminEmail, credentials.adminPassword),
+                    Port = 587,
+                    EnableSsl = true
+                };
+
+                using(var message = new MailMessage())  
+                {  
+                    message.From = new MailAddress(credentials.adminEmail);  
+                    message.To.Add(email);
+                    message.Subject = "Work Order #" + idWorkOrder + " Updated";
+                    message.IsBodyHtml = true;
+                    message.Body = htmlBody;
+                    smtp.Send(message);  
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
             }
         }
         private void InsertDomain(string url, int idProjectDescription)

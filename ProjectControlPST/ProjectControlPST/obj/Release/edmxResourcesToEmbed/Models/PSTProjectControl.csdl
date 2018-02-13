@@ -385,5 +385,14 @@
       <End Role="Users" EntitySet="Users" />
       <End Role="WorkOrder" EntitySet="WorkOrders" />
     </AssociationSet>
+    <EntitySet Name="AdminPreferences" EntityType="PSTProjectControlModel.AdminPreference" />
   </EntityContainer>
+  <EntityType Name="AdminPreference">
+    <Key>
+      <PropertyRef Name="adminEmail" />
+      <PropertyRef Name="adminPassword" />
+    </Key>
+    <Property Name="adminEmail" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="adminPassword" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
 </Schema>

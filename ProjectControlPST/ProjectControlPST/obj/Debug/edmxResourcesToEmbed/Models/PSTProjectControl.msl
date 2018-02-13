@@ -162,5 +162,13 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="AdminPreferences">
+      <EntityTypeMapping TypeName="PSTProjectControlModel.AdminPreference">
+        <MappingFragment StoreEntitySet="AdminPreferences">
+          <ScalarProperty Name="adminPassword" ColumnName="adminPassword" />
+          <ScalarProperty Name="adminEmail" ColumnName="adminEmail" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

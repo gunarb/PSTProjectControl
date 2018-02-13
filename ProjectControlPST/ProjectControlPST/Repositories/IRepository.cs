@@ -20,5 +20,7 @@ namespace ProjectControlPST.Repositories
         void UpdateDomains(IList<Domain> domains, int idProjectDescription);
         void UpdateEffectedUrls(IList<EffectedURL> effectedUrls, int idProjectDescription);
         void UpdateThirdPartyCredential(IList<ThirdPartyCredential> thirdPartyCredentials, int idProjectDescription);
+        User GetUserByWorkOrder(int idWorkOrder);
+        void SendEmail(string email, string htmlBody, int idWorkOrder);
     }
 }

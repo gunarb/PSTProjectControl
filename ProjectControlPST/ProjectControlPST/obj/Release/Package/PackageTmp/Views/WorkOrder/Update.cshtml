@@ -11,7 +11,7 @@
     new AjaxOptions
     {
         HttpMethod = "POST",
-        OnSuccess = "WO.OnSuccess.init()",
+        OnSuccess = "WO.OnSuccess.init($(this))",
         OnComplete = "WO.OnComplete.init($(this))",
         UpdateTargetId = "workOrderResult"
     }))

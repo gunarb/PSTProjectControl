@@ -1,5 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="PSTProjectControlModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'PSTProjectControl.dbo.AdminPreferences' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="AdminPreferences">
+    <Key>
+      <PropertyRef Name="adminEmail" />
+      <PropertyRef Name="adminPassword" />
+    </Key>
+    <Property Name="adminEmail" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="adminPassword" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
   <EntityType Name="AssetProject">
     <Key>
       <PropertyRef Name="uniqueId" />
@@ -315,6 +325,12 @@ warning 6002: The table/view 'PSTProjectControl.dbo.vw_workOrder_description' do
     <EntitySet Name="TypeRequest" EntityType="Self.TypeRequest" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="WorkOrder" EntityType="Self.WorkOrder" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AdminPreferences" EntityType="Self.AdminPreferences" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [AdminPreferences].[adminEmail] AS [adminEmail], 
+    [AdminPreferences].[adminPassword] AS [adminPassword]
+    FROM [dbo].[AdminPreferences] AS [AdminPreferences]</DefiningQuery>
+    </EntitySet>
     <EntitySet Name="vw_assets_project" EntityType="Self.vw_assets_project" store:Type="Views" store:Schema="dbo">
       <DefiningQuery>SELECT 
     [vw_assets_project].[assetProjectId] AS [assetProjectId], 

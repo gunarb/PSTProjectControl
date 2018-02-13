@@ -38,5 +38,6 @@ namespace ProjectControlPST.Models
         public virtual DbSet<WorkOrder> WorkOrders { get; set; }
         public virtual DbSet<vw_assets_project> vw_assets_project { get; set; }
         public virtual DbSet<vw_workOrder_description> vw_workOrder_description { get; set; }
+        public virtual DbSet<AdminPreference> AdminPreferences { get; set; }
     }
 }

@@ -63,9 +63,29 @@ WO.thirdPartyURL = {
 WO.thirdPartyURL.init();
 
 WO.OnSuccess = {
-    init: function() {
+    getWorkOrderId:function(contx) {
+        const urlSplited = contx.baseURI.split('/');
+        return parseInt(urlSplited[5]);
+    },
+    sendEmail: function(idWorkOrder, url) {
+        $.ajax({
+            url: "/WorkOrder/SendEmail",
+            type: "POST",
+            data: `{ 'idWorkOrder': '${idWorkOrder}', 'url': '${url}' }`,
+            dataType: "text",
+            contentType: "application/json; charset=utf-8",
+            success: function(data) {
+                console.log("email send");
+            },
+            error: function(e) {
+                console.log(e);
+            }
+        });
+    },
+    init: function(value) {
         $('html, body').animate({ scrollTop: 0 }, 'fast');
         $('#workOrderResult').removeClass("hide");
+        WO.OnSuccess.sendEmail(WO.OnSuccess.getWorkOrderId(value.context), value.context.baseURI);
     }
 };
 
@@ -85,7 +105,7 @@ $(document).ready(function() {
     if (referenceJobHide.val()) {
         $.ajax({
             url: '/WorkOrder/GetProjectName',
-            data: "{ 'id': '" + referenceJobHide.val() + "'}",
+            data: `{ 'id': '${referenceJobHide.val()}'}`,
             dataType: "json",
             type: "POST",
             contentType: "application/json; charset=utf-8",
@@ -103,7 +123,7 @@ $(document).ready(function() {
         source: function (request, response) {
             $.ajax({
                 url: '/WorkOrder/AutoComplete',
-                data: "{ 'prefix': '" + request.term + "'}",
+                data: `{ 'prefix': '${request.term}'}`,
                 dataType: "json",
                 type: "POST",
                 contentType: "application/json; charset=utf-8",
