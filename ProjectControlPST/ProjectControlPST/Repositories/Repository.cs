@@ -47,7 +47,6 @@ namespace ProjectControlPST.Repositories
             }
             return referenceJob;
         }
-
         public List<TypeRequest> GetTypeRequest()
         {
             return DbContext.TypeRequests.ToList();
@@ -105,6 +104,26 @@ namespace ProjectControlPST.Repositories
             DbContext.SaveChanges();
             return new[] {workOrder.uniqueId.ToString(), workOrder.secureCode};
         }
+
+        public void UpdateUsers(User user)
+        {
+            if (user == null) return;
+
+            var original = DbContext.Users.Find(user.uniqueId);
+
+            if (original == null) return;
+            if (original.email == user.email && original.name == user.name && original.userName == user.userName &&
+                original.password == user.password)
+                return;
+
+            original.email = user.email;
+            original.name = user.name;
+            original.userName = user.userName;
+            original.password = user.password;
+
+            DbContext.SaveChanges();
+        }
+
         public void UpdateAssets(IList<vw_assets_project> assetsProjects)
         {
             if (assetsProjects == null) return;

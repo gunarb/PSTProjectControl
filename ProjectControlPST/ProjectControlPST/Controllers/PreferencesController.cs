@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using System;
+using System.Web.Mvc;
 using ProjectControlPST.Models;
 using ProjectControlPST.Repositories;
 
@@ -29,8 +30,19 @@ namespace ProjectControlPST.Controllers
         [HttpPost]
         public ActionResult UpdatePreferences(PreferencesDetails details)
         {
+            if (details.User.password != details.ConfirmPassword)
+                return Content("Error the passwords do not match!");
 
-            return Content("Saved!");
+            try
+            {
+                _repository.UpdateUsers(details.User);
+                return Content("Saved!");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return Content("Not Updated " + e.Message);
+            }
         }
     }
 }

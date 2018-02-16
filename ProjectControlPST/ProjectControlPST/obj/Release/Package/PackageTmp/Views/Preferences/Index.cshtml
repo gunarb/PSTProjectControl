@@ -5,7 +5,7 @@
 }
 <h4><i class="fa fa-cog"></i> Preferences</h4>
 <br />
-@using (Ajax.BeginForm("UpdatePreferences", "Preferences", new AjaxOptions { HttpMethod = "POST", OnSuccess = "Pr.form.init()", UpdateTargetId = "preferencesResult" }))
+@using (Ajax.BeginForm("UpdatePreferences", "Preferences", new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "preferencesResult" }))
 {
     <div id="preferencesResult"></div>
     <div class="row">
@@ -45,25 +45,29 @@
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-sm-5">
-                <div class="form-group">
-                    @Html.ListBoxFor(m => m.SelectedIds, new SelectList(Model.Assets, "uniqueId", "asset"), new { @id = "assetsOring", @class = "form-control" })
-                </div>
-            </div>
-            <div class="col-sm-1">
-                <button type="button" id="right" class="btn btn-default btn-block"><i class="fa fa-arrow-right"></i></button>
-                <button type="button" id="left" class="btn btn-default btn-block"><i class="fa fa-arrow-left"></i></button>    
-            </div>
-            <div class="col-sm-5">
-                <div class="form-group">
-                    <select id="assetsDestination" multiple="multiple" class="form-control"></select>
-                </div>
+    <div class="row">
+        <div class="col-sm-5">
+            <div class="form-group">
+                @Html.ListBoxFor(m => m.SelectedIds, new SelectList(Model.Assets, "uniqueId", "asset"), new { @id = "assetsOring", @class = "form-control" })
             </div>
         </div>
-        <div class="row">
-            <div class="col-sm-3">
-                <button type="submit" class="btn btn-primary btn-block"><i class="fa fa-save"></i> Save</button>
+        <div class="col-sm-1">
+            <button type="button" id="right" class="btn btn-default btn-block"><i class="fa fa-arrow-right"></i></button>
+            <button type="button" id="left" class="btn btn-default btn-block"><i class="fa fa-arrow-left"></i></button>    
+        </div>
+        <div class="col-sm-5">
+            <div class="form-group">
+                <select id="assetsDestination" multiple="multiple" class="form-control"></select>
             </div>
         </div>
+    </div>
+    <div class="invisible">
+        @Html.HiddenFor(m => m.User.uniqueId)
+        @Html.HiddenFor(m => m.User.userName)
+    </div>
+    <div class="row">
+        <div class="col-sm-3">
+            <button type="submit" class="btn btn-primary btn-block"><i class="fa fa-save"></i> Save</button>
+        </div>
+    </div>
 }

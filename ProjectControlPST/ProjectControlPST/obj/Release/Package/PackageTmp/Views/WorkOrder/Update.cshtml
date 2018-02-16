@@ -11,8 +11,8 @@
     new AjaxOptions
     {
         HttpMethod = "POST",
-        OnSuccess = "WO.OnSuccess.init($(this))",
-        OnComplete = "WO.OnComplete.init($(this))",
+        OnSuccess = "PC.workOrder.OnSuccess($(this))",
+        OnComplete = "PC.workOrder.OnComplete($(this))",
         UpdateTargetId = "workOrderResult"
     }))
 {
@@ -37,7 +37,6 @@
             @Html.HiddenFor(m => m.WorkOrderDescription.idProjectDescription)
             @Html.HiddenFor(m => m.WorkOrderDescription.jiraParentUrl)
             @Html.HiddenFor(m => m.WorkOrderDescription.idProjectStatus)
-            @Html.HiddenFor(m => m.WorkOrderDescription.targetDevice)
         </div>
         <div class="row">
             <div class="col-sm-3">

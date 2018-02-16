@@ -15,6 +15,7 @@ namespace ProjectControlPST.Repositories
         PreferencesDetails GetPreferencesDetails(int userId);
         MemoryStream PdfStream(string url);
         string[] InsertWorkOrder(int typeRequest, int userId);
+        void UpdateUsers(User user);
         void UpdateAssets(IList<vw_assets_project> assetsProjects);
         void UpdateWorkOrderDescription(WorkOrderDetails workOrderDetails);
         void UpdateDomains(IList<Domain> domains, int idProjectDescription);

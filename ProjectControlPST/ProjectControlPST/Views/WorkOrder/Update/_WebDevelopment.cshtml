@@ -14,6 +14,7 @@
         </div>
     </div>
 </div>
+
 <div class="row">
     <div class="col-sm-3">
         <div class="form-group">
@@ -29,6 +30,7 @@
         </div>
     </div>
 </div>
+
 <div class="row">
     <div class="col-md-3 col-sm-4">
         <div class="form-group">
@@ -55,10 +57,12 @@
         </div>
     </div>
 </div>
+
 <div class="form-group">
     <label class="control-label" for="projectDescription">Project Description</label>
     @Html.TextAreaFor(m => m.WorkOrderDescription.projectDescription, new { id = "projectDescription", @class = "form-control", @rows = 6 })
 </div>
+
 <div class="row">
     <div class="col-sm-3">
         <div class="form-group">
@@ -91,6 +95,24 @@
     </div>
 </div>
 
+<label class="control-label">Target Devices</label>
+<div id="targetDevices-inputs">
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="input-group form-group">
+                <input id="newTargetDevice" type="text" class="form-control initial-list" placeholder="Target Device" />
+                <span class="input-group-btn">
+                    <button id="btn-target-device" class="btn btn-primary"><i class="fa fa-plus"></i></button>
+                </span>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        @Html.HiddenFor(m => m.WorkOrderDescription.targetDevice, new { id = "targetDevice" })
+        <ul id="targetDeviceList"></ul>
+    </div>
+</div>
+
 <div class="row">
     <div class="col-md-3 col-sm-4">
         <div class="form-group">
@@ -99,7 +121,6 @@
         </div>
     </div>
 </div>
-
 
 <label class="control-label">URLs of All Pages Effected</label>
 <div id="urlAffected-inputs" data-count="@Model.EffectedUrls.Count">
