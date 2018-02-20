@@ -108,8 +108,10 @@
         </div>
     </div>
     <div class="row">
-        @Html.HiddenFor(m => m.WorkOrderDescription.targetDevice, new { id = "targetDevice" })
-        <ul id="targetDeviceList"></ul>
+        <div class="col-sm-12">
+            @Html.HiddenFor(m => m.WorkOrderDescription.targetDevice, new { id = "targetDevice" })
+            <p id="targetDeviceList"></p>
+        </div>
     </div>
 </div>
 

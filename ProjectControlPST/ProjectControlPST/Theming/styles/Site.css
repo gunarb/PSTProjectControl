@@ -138,3 +138,14 @@ ui-grid-header-cell-wrapper {
     max-width: 117px !important;
     min-width: 117px !important;
 }
+
+#targetDeviceList .label {
+    background-color: #367cff;
+    margin-right: 5px;
+    font-size: 100%;
+}
+
+#targetDeviceList .label a {
+    color: white;
+    padding-left: 5px;
+}

@@ -270,12 +270,15 @@ PC.workOrder = {
         PC.workOrder.thirdPartyURL();
         $(document).ready(function() {
             if (PC.workOrder._prop.targetDevice.val()) {
+                var needButton = this.URL.indexOf("update") > -1;
                 const targets = PC.workOrder._prop.targetDevice.val().split(';');
                 targets.forEach(function(item) {
                     if (item === "") return;
                     const id = item.toLowerCase().replace(' ', '-');
-                    const liItem = '<li id="' + id + '"><span>' + item +
-                        '</span><button onclick="PC.workOrder.Remove(' + id.toString() + ')" class="btn btn-primary"><i class="fa fa-times"></i></button></li>';
+                    var button = needButton
+                        ? '<a onclick="PC.workOrder.Remove(' + id.toString() + ')" class="fa fa-times"></a>'
+                        : '';
+                    const liItem = '<span id="' + id + '" class="label label-primary">' + item + button + '</span>';
                     PC.workOrder._prop.targetList.append(liItem);
                 });
             }
